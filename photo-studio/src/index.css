@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply antialiased font-sans;
+    scroll-behavior: smooth;
+    background-color: #FAF8F4;
+    color: #57534E;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #1C1917;
+}
+
+.section-title {
+  @apply text-4xl md:text-5xl font-serif font-bold text-center mb-12;
+  color: #1C1917;
+}
+
+.btn-primary {
+  @apply text-white px-8 py-3 rounded-full font-medium transition-colors duration-300 shadow-sm inline-block tracking-wide text-sm;
+  background-color: #B08544;
+}
+
+.btn-primary:hover {
+  background-color: #1C1917;
+}
+
+.masonry-grid {
+  column-count: 1;
+  column-gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+}
