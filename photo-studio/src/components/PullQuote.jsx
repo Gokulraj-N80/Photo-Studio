@@ -27,13 +27,13 @@ const PullQuote = () => {
   }, []);
 
   return (
-    <section className="py-40 px-8 bg-surface border-y border-secondary/10 flex items-center justify-center min-h-[50vh]">
+    <section className="py-40 px-8 bg-[#12100E] flex items-center justify-center min-h-[50vh] w-full">
       <div className="max-w-4xl mx-auto text-center" ref={quoteRef}>
         <div ref={textRef}>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-ink italic leading-tight font-light mb-12">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-[#FFFDF8] italic leading-tight font-light mb-12">
             “The best photographs don't just show a moment. They make you feel it again.”
           </h2>
-          <span className="text-xs font-bold tracking-[0.3em] uppercase text-secondary">
+          <span className="text-xs font-bold tracking-[0.3em] uppercase text-[#C5A059]">
             — THE STUDIO PHILOSOPHY
           </span>
         </div>

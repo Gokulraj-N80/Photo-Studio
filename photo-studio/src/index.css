@@ -5,30 +5,42 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-espresso: #12100E;
+    --color-charcoal: #201D19;
+    --color-warm-ivory: #F7F3EA;
+    --color-champagne-gold: #C9A45C;
+    --color-light-champagne: #E4C98A;
+    --color-dusty-rose: #B8897A;
+    --color-soft-white: #FFFDF8;
+  }
+
   html, body {
     @apply antialiased font-sans;
     scroll-behavior: smooth;
-    background-color: #FAF8F4;
-    color: #57534E;
+    background-color: var(--color-espresso);
+    color: var(--color-soft-white);
   }
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #1C1917;
+  color: var(--color-brand-gold);
 }
 
 .section-title {
   @apply text-4xl md:text-5xl font-serif font-bold text-center mb-12;
-  color: #1C1917;
+  color: var(--color-warm-white);
 }
 
 .btn-primary {
-  @apply text-white px-8 py-3 rounded-full font-medium transition-colors duration-300 shadow-sm inline-block tracking-wide text-sm;
-  background-color: #B08544;
+  @apply px-8 py-3 rounded-full font-medium transition-colors duration-300 shadow-sm inline-block tracking-wide text-sm;
+  color: var(--color-deep-black);
+  background-color: var(--color-brand-gold);
 }
 
 .btn-primary:hover {
-  background-color: #1C1917;
+  background-color: var(--color-dark-gold);
+  color: var(--color-warm-white);
 }
 
 .masonry-grid {
@@ -52,3 +64,4 @@ h1, h2, h3, h4, h5, h6 {
   break-inside: avoid;
   margin-bottom: 1.5rem;
 }
+

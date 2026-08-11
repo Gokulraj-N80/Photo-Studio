@@ -65,36 +65,38 @@ const Blog = () => {
   }, []);
 
   return (
-    <section id="blog" ref={sectionRef} className="py-32 px-8 max-w-7xl mx-auto">
-      <div className="text-center mb-20">
-        <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-secondary mb-4">JOURNAL</h2>
-        <h3 className="text-4xl md:text-5xl font-serif font-bold text-ink mb-0 leading-tight">Stories, Ideas &<br/>Behind the Lens</h3>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-        {blogPosts.map((post, idx) => (
-          <div key={idx} className="journal-card group cursor-pointer flex flex-col h-full">
-            <div className="aspect-[4/5] overflow-hidden mb-8 rounded-sm">
-              <img 
-                src={post.img} 
-                alt={post.title} 
-                className="journal-img w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105" 
-              />
-            </div>
-            <div className="journal-text flex flex-col flex-grow">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-[10px] text-ink font-bold uppercase tracking-widest">{post.date}</span>
-                <span className="text-secondary/50">•</span>
-                <span className="text-[10px] text-secondary font-bold uppercase tracking-widest">{post.category}</span>
+    <section id="blog" ref={sectionRef} className="py-24 md:py-32 px-6 w-full bg-[#12100E]">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-20">
+          <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059] mb-4">JOURNAL</h2>
+          <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#FFFDF8] mb-0 leading-tight">Stories, Ideas &<br/>Behind the Lens</h3>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {blogPosts.map((post, idx) => (
+            <div key={idx} className="journal-card group cursor-pointer flex flex-col h-full">
+              <div className="aspect-[4/5] overflow-hidden mb-8 rounded-sm">
+                <img 
+                  src={post.img} 
+                  alt={post.title} 
+                  className="journal-img w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105" 
+                />
               </div>
-              <h4 className="text-2xl font-serif font-bold text-ink mb-4 leading-snug group-hover:text-accent transition-colors">{post.title}</h4>
-              <p className="text-inkLight text-sm font-light leading-relaxed mb-6 flex-grow">{post.excerpt}</p>
-              <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-ink group-hover:text-accent transition-colors mt-auto">
-                Read Story <span className="transform group-hover:translate-x-2 transition-transform">&rarr;</span>
-              </span>
+              <div className="journal-text flex flex-col flex-grow">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-[10px] text-[#FFFDF8] font-bold uppercase tracking-widest">{post.date}</span>
+                  <span className="text-[#C5A059]/50">•</span>
+                  <span className="text-[10px] text-[#C5A059] font-bold uppercase tracking-widest">{post.category}</span>
+                </div>
+                <h4 className="text-2xl font-serif font-bold text-[#FFFDF8] mb-4 leading-snug group-hover:text-[#C5A059] transition-colors">{post.title}</h4>
+                <p className="text-[#FFFDF8]/70 text-sm font-light leading-relaxed mb-6 flex-grow">{post.excerpt}</p>
+                <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#FFFDF8] group-hover:text-[#C5A059] transition-colors mt-auto">
+                  Read Story <span className="transform group-hover:translate-x-2 transition-transform">&rarr;</span>
+                </span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

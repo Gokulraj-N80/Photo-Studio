@@ -1,107 +1,183 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Quote } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-  const sectionRef = useRef(null);
-  const counterRef1 = useRef(null);
-  const counterRef2 = useRef(null);
-  const counterRef3 = useRef(null);
+  const sectionRef    = useRef(null);
+  const imageRef      = useRef(null);
+  const imgInnerRef   = useRef(null);
+  const lineRef       = useRef(null);
+  const counterRef1   = useRef(null);
+  const counterRef2   = useRef(null);
+  const counterRef3   = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      let mm = gsap.matchMedia();
+      const mm = gsap.matchMedia();
 
-      // Desktop and Mobile Animation
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.fromTo('.about-image', 
-          { clipPath: 'inset(10% 10% 10% 10%)', scale: 1.08 },
-          { clipPath: 'inset(0% 0% 0% 0%)', scale: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } }
-        );
-      });
-
-      mm.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.fromTo('.about-image', { opacity: 0 }, { opacity: 1, duration: 1.2, scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } });
-      });
-      
-      gsap.fromTo('.about-text', 
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, stagger: 0.2, ease: "power3.out", scrollTrigger: { trigger: '.about-text-container', start: "top 75%" } }
-      );
-      
-      const animateCounter = (ref, targetValue) => {
-        gsap.to(ref.current, {
-          textContent: targetValue,
-          duration: 1.5,
-          ease: "power3.out",
-          snap: { textContent: 1 },
-          scrollTrigger: {
-            trigger: '.stat-grid',
-            start: "top 85%"
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        
+        /* ── 1. CINEMATIC IMAGE REVEAL ── */
+        gsap.fromTo(
+          '.about-image-wrapper',
+          { clipPath: 'inset(100% 0% 0% 0%)', scale: 0.9, filter: 'grayscale(100%) blur(10px)' },
+          {
+            clipPath: 'inset(0% 0% 0% 0%)', scale: 1, filter: 'grayscale(0%) blur(0px)',
+            duration: 1.8, ease: 'power4.inOut',
+            scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
           }
-        });
-      };
+        );
 
-      animateCounter(counterRef1, 15);
-      animateCounter(counterRef2, 1000);
-      animateCounter(counterRef3, 40);
+        /* ── 2. IMAGE INNER PARALLAX (Scrubbed) ── */
+        gsap.fromTo(
+          imgInnerRef.current,
+          { scale: 1.15, y: -30 },
+          {
+            scale: 1, y: 30,
+            ease: 'none',
+            scrollTrigger: { trigger: sectionRef.current, start: 'top bottom', end: 'bottom top', scrub: 1 }
+          }
+        );
+
+        /* ── 3. GOLDEN CORNER LINES ── */
+        gsap.fromTo(
+          ['.corner-tl', '.corner-br'],
+          { width: 0, height: 0, opacity: 0 },
+          { width: 96, height: 96, opacity: 1, duration: 1.5, ease: 'expo.out', stagger: 0.2,
+            scrollTrigger: { trigger: sectionRef.current, start: 'top 60%' } }
+        );
+
+        /* ── 4. TEXT BLOCKS — Elegant Wipe Reveal ── */
+        gsap.fromTo(
+          '.about-text',
+          { y: 50, opacity: 0, clipPath: 'inset(0% 0% 100% 0%)' },
+          {
+            y: 0, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)',
+            duration: 1.4, stagger: 0.2, ease: 'power3.out',
+            scrollTrigger: { trigger: '.about-text-container', start: 'top 80%' },
+          }
+        );
+
+        /* ── 5. STATS COUNTERS & CARDS ── */
+        const animateCounter = (ref, target) => {
+          gsap.to(ref.current, {
+            textContent: target, duration: 2.5, ease: 'expo.out', snap: { textContent: 1 },
+            scrollTrigger: { trigger: '.stat-grid', start: 'top 90%' },
+          });
+        };
+        animateCounter(counterRef1, 1000);
+        animateCounter(counterRef2, 500);
+        animateCounter(counterRef3, 10);
+
+        gsap.fromTo(
+          '.stat-card',
+          { scale: 0.5, opacity: 0, y: 50 },
+          { scale: 1, opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: 'back.out(1.7)',
+            scrollTrigger: { trigger: '.stat-grid', start: 'top 90%' } }
+        );
+
+      });
+
+      /* Reduced-motion fallback */
+      mm.add('(prefers-reduced-motion: reduce)', () => {
+        gsap.fromTo('.about-image-wrapper', { opacity: 0 }, { opacity: 1, duration: 1,
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } });
+        gsap.fromTo('.about-text', { opacity: 0 }, { opacity: 1, duration: 0.8, stagger: 0.15,
+          scrollTrigger: { trigger: '.about-text-container', start: 'top 75%' } });
+      });
 
     }, sectionRef);
-    return () => ctx.revert();
+
+    /* ── 9. MAGNETIC HOVER on image block ── */
+    const el = imageRef.current;
+    const handleMove = (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width  - 0.5) * 18;
+      const y = ((e.clientY - rect.top)  / rect.height - 0.5) * 18;
+      gsap.to(el, { rotateY: x, rotateX: -y, duration: 0.4, ease: 'power2.out', transformPerspective: 800 });
+    };
+    const handleLeave = () => {
+      gsap.to(el, { rotateY: 0, rotateX: 0, duration: 0.7, ease: 'elastic.out(1,0.5)' });
+    };
+    el.addEventListener('mousemove', handleMove);
+    el.addEventListener('mouseleave', handleLeave);
+
+    return () => {
+      ctx.revert();
+      el.removeEventListener('mousemove', handleMove);
+      el.removeEventListener('mouseleave', handleLeave);
+    };
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-32 px-8 max-w-7xl mx-auto">
-      <div className="flex flex-col md:flex-row gap-20 items-center">
-        <div className="w-full md:w-5/12 overflow-hidden rounded-sm aspect-[4/5]">
-          <img 
-            src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop" 
-            alt="The Artist" 
-            className="about-image w-full h-full object-cover"
-          />
+    <section id="about" ref={sectionRef} className="py-24 md:py-32 px-6 w-full bg-[#FFFDF8] overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+
+        {/* ── Left — Asymmetric Image ── */}
+        <div ref={imageRef} className="w-full lg:w-5/12 relative" style={{ transformStyle: 'preserve-3d' }}>
+          {/* Corner decoration lines */}
+          <div className="corner-tl absolute -top-4 -left-4 w-0 h-0 border-t-2 border-l-2 border-[#C5A059] z-10 pointer-events-none" />
+          <div className="corner-br absolute -bottom-4 -right-4 w-0 h-0 border-b-2 border-r-2 border-[#C5A059] z-10 pointer-events-none" />
+
+          {/* Floating golden glow */}
+          <div className="absolute -inset-4 rounded-sm z-0 pointer-events-none"
+               style={{ background: 'radial-gradient(ellipse at 60% 40%, rgba(197,160,89,0.12) 0%, transparent 70%)' }} />
+
+          <div className="about-image-wrapper relative z-10 overflow-hidden rounded-sm aspect-[3/4] shadow-2xl">
+            <img
+              ref={imgInnerRef}
+              src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=900&auto=format&fit=crop"
+              alt="Authentic Emotion"
+              className="w-full h-full object-cover"
+              style={{ willChange: 'transform' }}
+            />
+            {/* Dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#12100E]/40 via-transparent to-transparent pointer-events-none" />
+          </div>
         </div>
-        
-        <div className="w-full md:w-7/12 about-text-container">
-          <h2 className="about-text text-xs font-bold tracking-[0.2em] uppercase text-secondary mb-6">THE ARTIST</h2>
-          <h3 className="about-text text-4xl md:text-5xl font-serif font-bold text-ink mb-10 leading-tight">
-            More Than Photography.<br/>A Way of Seeing.
+
+        {/* ── Right — Content ── */}
+        <div className="w-full lg:w-7/12 about-text-container">
+
+          <div className="about-text flex items-center gap-4 mb-6">
+            <div ref={lineRef} className="h-[1px] w-12 bg-[#C5A059]" />
+            <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059]">BEHIND THE LENS</h2>
+          </div>
+
+          <h3 className="about-text text-4xl md:text-5xl font-serif font-bold text-[#12100E] mb-8 leading-tight">
+            Capturing Authentic <br className="hidden md:block" />Emotions &amp; Stories.
           </h3>
-          
-          <div className="about-text">
-            <p className="text-inkLight mb-6 leading-relaxed text-lg font-light">
-              Photography isn't about simply freezing a moment.
+
+          <div className="about-text relative mb-12 pl-6 md:pl-10">
+            <Quote className="absolute left-0 top-0 text-[#C5A059] w-6 md:w-8 h-6 md:h-8 opacity-40 -translate-x-2 -translate-y-2" />
+            <p className="text-[#201D19]/80 mb-6 leading-relaxed text-lg font-light">
+              At Pixelbees Photography, we believe that photography is more than just taking pictures. It's about freezing genuine feelings, unguarded smiles, and the invisible connections between people.
             </p>
-            <p className="text-inkLight mb-6 leading-relaxed text-lg font-light">
-              It's about understanding the emotion, the light, and the story behind it.
-            </p>
-            <p className="text-inkLight mb-16 leading-relaxed text-lg font-light">
-              For over 15 years, our studio has created photographs that remain meaningful long after the moment has passed.
+            <p className="text-[#201D19]/80 leading-relaxed text-lg font-light">
+              We focus on telling your unique story through an artistic and cinematic lens, ensuring every moment is preserved beautifully for generations to come.
             </p>
           </div>
-          
-          <div className="stat-grid grid grid-cols-3 gap-8 border-t border-secondary/20 pt-10">
-            <div className="about-text">
-              <span className="block text-accent text-4xl font-serif font-bold mb-2">
-                <span ref={counterRef1}>0</span>+
-              </span>
-              <span className="text-[10px] text-secondary font-medium uppercase tracking-[0.2em]">YEARS</span>
-            </div>
-            <div className="about-text">
-              <span className="block text-accent text-4xl font-serif font-bold mb-2">
-                <span ref={counterRef2}>0</span>+
-              </span>
-              <span className="text-[10px] text-secondary font-medium uppercase tracking-[0.2em]">SESSIONS</span>
-            </div>
-            <div className="about-text">
-              <span className="block text-accent text-4xl font-serif font-bold mb-2">
-                <span ref={counterRef3}>0</span>+
-              </span>
-              <span className="text-[10px] text-secondary font-medium uppercase tracking-[0.2em]">AWARDS</span>
-            </div>
+
+          {/* Statistics */}
+          <div className="stat-grid grid grid-cols-2 md:grid-cols-3 gap-8 pt-8 border-t border-[#12100E]/10">
+            {[
+              { ref: counterRef1, target: 1000, label: 'Moments Captured' },
+              { ref: counterRef2, target: 500,  label: 'Happy Clients' },
+              { ref: counterRef3, target: 10,   label: 'Years of Experience', span: 'col-span-2 md:col-span-1' },
+            ].map(({ ref, label, span = '' }) => (
+              <div key={label} className={`stat-card about-text ${span}`}>
+                <span className="block text-[#C5A059] text-4xl font-serif font-bold mb-2">
+                  <span ref={ref}>0</span>+
+                </span>
+                <span className="text-[11px] text-[#201D19]/60 font-bold uppercase tracking-[0.2em]">{label}</span>
+              </div>
+            ))}
           </div>
         </div>
+
       </div>
     </section>
   );

@@ -9,37 +9,25 @@ import HorizontalGallery from '../components/HorizontalGallery';
 import Blog from '../components/Blog';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
-import Preloader from '../components/Preloader';
+import BookingSection from '../components/BookingSection';
 
 const Home = () => {
-  const [loading, setLoading] = useState(true);
+  const [bookingCategory, setBookingCategory] = useState("wedding");
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-base selection:bg-accent selection:text-white">
-      <Preloader onComplete={() => setLoading(false)} />
-      
-      {/* Hide overflow during preloader, but keep it in DOM so ScrollTrigger can measure */}
-      <div className={`${loading ? 'h-screen overflow-hidden' : ''}`}>
+    <div className="min-h-screen overflow-x-hidden bg-[#12100E] selection:bg-[#C5A059] selection:text-[#12100E]">
+      <div className="">
         <Navbar />
         <main>
           <Hero />
           <About />
           <PullQuote />
-          <div className="bg-surface">
-            <Services />
-          </div>
-          <div className="bg-base border-t border-secondary/10">
-            <Gallery />
-          </div>
-          <div className="bg-ink">
-            <HorizontalGallery />
-          </div>
-          <div className="bg-surface">
-            <Blog />
-          </div>
-          <div className="bg-base border-t border-secondary/10">
-            <Contact />
-          </div>
+          <Services onBook={(category) => setBookingCategory(category)} />
+          <Gallery />
+          <HorizontalGallery />
+          <Blog />
+          <BookingSection selectedCategory={bookingCategory} onCategoryChange={setBookingCategory} />
+          <Contact />
         </main>
         <Footer />
       </div>

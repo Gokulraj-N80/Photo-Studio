@@ -45,24 +45,26 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-8 max-w-4xl mx-auto">
-      <div className="text-center mb-20">
-        <h2 className="text-sm font-bold tracking-widest uppercase text-secondary mb-3">Testimonials</h2>
-        <h3 className="section-title mb-0">Kind Words</h3>
-      </div>
-      
-      <div className="flex flex-col gap-16">
-        {testimonials.map((testimonial, idx) => (
-          <div key={idx} className="testimonial-block text-center border-b border-secondary/10 pb-16 last:border-0 last:pb-0">
-            <p className="text-2xl md:text-3xl font-serif text-ink italic mb-8 leading-relaxed font-light">
-              "{testimonial.text}"
-            </p>
-            <div>
-              <h4 className="font-bold text-ink tracking-wide uppercase text-sm mb-1">{testimonial.name}</h4>
-              <span className="text-secondary text-sm italic">{testimonial.role}</span>
+    <section ref={sectionRef} className="py-24 md:py-32 px-6 w-full bg-[#12100E]">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-20">
+          <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059] mb-4">Testimonials</h2>
+          <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#FFFDF8] mb-0 leading-tight">Kind Words</h3>
+        </div>
+        
+        <div className="flex flex-col gap-16">
+          {testimonials.map((testimonial, idx) => (
+            <div key={idx} className="testimonial-block text-center border-b border-[#FFFDF8]/10 pb-16 last:border-0 last:pb-0">
+              <p className="text-2xl md:text-3xl font-serif text-[#FFFDF8]/90 italic mb-8 leading-relaxed font-light">
+                "{testimonial.text}"
+              </p>
+              <div>
+                <h4 className="font-bold text-[#FFFDF8] tracking-widest uppercase text-xs mb-2">{testimonial.name}</h4>
+                <span className="text-[#C5A059] text-[10px] tracking-widest uppercase">{testimonial.role}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

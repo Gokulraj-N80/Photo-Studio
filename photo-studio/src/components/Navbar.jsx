@@ -13,26 +13,24 @@ const Navbar = () => {
       let mm = gsap.matchMedia();
       
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from('.nav-item', { y: -20, opacity: 0, duration: 0.8, stagger: 0.08, ease: "power2.out", delay: 2.2 });
-        gsap.from('.nav-logo', { opacity: 0, duration: 1, ease: "power2.out", delay: 2 });
+        gsap.from('.nav-item', { y: -20, opacity: 0, duration: 0.8, stagger: 0.08, ease: "power2.out", delay: 0.5 });
+        gsap.from('.nav-logo', { opacity: 0, duration: 1, ease: "power2.out", delay: 0.2 });
       });
     }, navRef);
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Toggle compact state
-      if (currentScrollY > 50) {
+      if (currentScrollY > 60) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
 
-      // Toggle hide/show on scroll direction
       if (currentScrollY > lastScrollY.current && currentScrollY > 200) {
-        setIsHidden(true); // Scrolling down
+        setIsHidden(true);
       } else {
-        setIsHidden(false); // Scrolling up
+        setIsHidden(false);
       }
       
       lastScrollY.current = currentScrollY;
@@ -45,50 +43,79 @@ const Navbar = () => {
     };
   }, []);
 
+  const navLinks = [
+    { name: 'Home', href: '#' },
+    { name: 'About', href: '#about' },
+    { name: 'Services', href: '#services' },
+    { name: 'Our Works', href: '#gallery' },
+    { name: 'Blog', href: '#blog' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
   return (
     <nav 
       ref={navRef}
-      className={`fixed w-full z-40 transition-all duration-500 ease-in-out ${
-        isScrolled ? 'py-4 bg-white/90 backdrop-blur-md shadow-sm' : 'py-6 bg-transparent'
+      className={`fixed w-full z-50 transition-all duration-500 ease-in-out ${
+        isScrolled 
+          ? 'py-3 bg-[#12100e]/90 backdrop-blur-[14px] border-b border-white/[0.08]' 
+          : 'py-6 bg-transparent border-b border-transparent'
       } ${isHidden ? '-translate-y-full' : 'translate-y-0'}`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <button 
-          className="md:hidden flex flex-col gap-[6px] z-50 p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <span className={`w-8 h-[1px] transition-all duration-300 ${isMobileMenuOpen ? 'bg-ink rotate-45 translate-y-[7px]' : (isScrolled ? 'bg-ink' : 'bg-white')}`}></span>
-          <span className={`w-8 h-[1px] transition-all duration-300 ${isMobileMenuOpen ? 'bg-ink opacity-0' : (isScrolled ? 'bg-ink' : 'bg-white')}`}></span>
-          <span className={`w-8 h-[1px] transition-all duration-300 ${isMobileMenuOpen ? 'bg-ink -rotate-45 -translate-y-[7px]' : (isScrolled ? 'bg-ink' : 'bg-white')}`}></span>
-        </button>
-
-        <a href="#" className={`nav-logo text-2xl font-serif font-bold tracking-widest uppercase transition-colors ${isScrolled ? 'text-ink' : 'text-white'}`}>
-          Studio
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
+        <a href="#" className="nav-logo flex items-center gap-3 group">
+          <img 
+            src="/logo.png" 
+            alt="Pixelbees Photography Logo" 
+            className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 ${isScrolled ? 'h-10' : 'h-14'}`}
+          />
+          <span className={`font-serif uppercase tracking-[0.15em] font-bold transition-all duration-500 hidden sm:block ${isScrolled ? 'text-[#FFFDF8] text-sm' : 'text-[#FFFDF8] text-base'}`}>
+            Pixelbees
+            <span className="block text-[8px] tracking-[0.3em] font-sans font-normal text-[#C5A059] -mt-1">Photography</span>
+          </span>
         </a>
         
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#about" className={`nav-item text-xs font-semibold tracking-[0.2em] uppercase transition-colors ${isScrolled ? 'text-inkLight hover:text-ink' : 'text-white/70 hover:text-white'}`}>ABOUT</a>
-          <a href="#services" className={`nav-item text-xs font-semibold tracking-[0.2em] uppercase transition-colors ${isScrolled ? 'text-inkLight hover:text-ink' : 'text-white/70 hover:text-white'}`}>SERVICES</a>
-          <a href="#portfolio" className={`nav-item text-xs font-semibold tracking-[0.2em] uppercase transition-colors ${isScrolled ? 'text-inkLight hover:text-ink' : 'text-white/70 hover:text-white'}`}>PORTFOLIO</a>
-          <a href="#blog" className={`nav-item text-xs font-semibold tracking-[0.2em] uppercase transition-colors ${isScrolled ? 'text-inkLight hover:text-ink' : 'text-white/70 hover:text-white'}`}>JOURNAL</a>
-          <a href="#contact" className={`nav-item text-xs font-semibold tracking-[0.2em] uppercase transition-colors ${isScrolled ? 'text-inkLight hover:text-ink' : 'text-white/70 hover:text-white'}`}>CONTACT</a>
+          {navLinks.map((link) => (
+            <a 
+              key={link.name}
+              href={link.href} 
+              className="nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] text-softWhite hover:text-champagneGold transition-colors relative group py-2"
+            >
+              {link.name}
+              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-champagneGold transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          ))}
         </div>
         
-        <button className={`nav-item hidden md:block px-6 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${isScrolled ? 'bg-ink text-white hover:bg-accent' : 'bg-white text-ink hover:bg-accent hover:text-white'}`}>
+        <a href="#booking" className="nav-btn hidden md:flex items-center justify-center bg-[#C5A059] hover:bg-[#D4AF37] text-[#12100E] px-6 py-[10px] rounded-full text-xs font-bold tracking-[0.15em] uppercase transition-colors duration-300 shadow-md">
           Book a Session
+        </a>
+
+        <button 
+          className="md:hidden flex flex-col gap-[6px] z-50 p-2 relative"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <span className={`w-8 h-[2px] transition-all duration-300 ${isMobileMenuOpen ? 'bg-champagneGold rotate-45 translate-y-[8px]' : 'bg-softWhite'}`}></span>
+          <span className={`w-8 h-[2px] transition-all duration-300 ${isMobileMenuOpen ? 'bg-champagneGold opacity-0' : 'bg-softWhite'}`}></span>
+          <span className={`w-8 h-[2px] transition-all duration-300 ${isMobileMenuOpen ? 'bg-champagneGold -rotate-45 -translate-y-[8px]' : 'bg-softWhite'}`}></span>
         </button>
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`md:hidden fixed inset-0 bg-base z-30 transition-all duration-500 ease-in-out flex flex-col justify-center items-center gap-8 ${isMobileMenuOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}`}>
-        <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif text-ink uppercase tracking-widest">About</a>
-        <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif text-ink uppercase tracking-widest">Services</a>
-        <a href="#portfolio" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif text-ink uppercase tracking-widest">Portfolio</a>
-        <a href="#blog" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif text-ink uppercase tracking-widest">Journal</a>
-        <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-serif text-ink uppercase tracking-widest">Contact</a>
-        <button className="bg-ink text-white px-8 py-4 rounded-full text-xs font-bold tracking-widest uppercase mt-4">
+      <div className={`md:hidden fixed inset-0 bg-espresso/95 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out flex flex-col justify-center items-center gap-8 ${isMobileMenuOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}`}>
+        {navLinks.map((link) => (
+          <a 
+            key={link.name}
+            href={link.href} 
+            onClick={() => setIsMobileMenuOpen(false)} 
+            className="text-2xl font-serif text-softWhite hover:text-champagneGold uppercase tracking-widest transition-colors"
+          >
+            {link.name}
+          </a>
+        ))}
+        <a href="#booking" onClick={() => setIsMobileMenuOpen(false)} className="bg-champagneGold text-espresso px-8 py-4 rounded-full text-xs font-bold tracking-widest uppercase mt-6 text-center">
           Book a Session
-        </button>
+        </a>
       </div>
     </nav>
   );

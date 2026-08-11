@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+// Force Tailwind to reload config (variables mapped)
 export default {
   content: [
     "./index.html",
@@ -7,18 +8,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        base: '#FAF8F4', // Warm paper
-        surface: '#F2ECE3', // Alternating bands
-        ink: '#1C1917', // Headings
-        inkLight: '#57534E', // Body
-        accent: '#B08544', // Deep antique gold
-        secondary: '#7A6A55', // Muted bronze
+        espresso: 'var(--color-espresso)',
+        charcoal: 'var(--color-charcoal)',
+        warmIvory: 'var(--color-warm-ivory)',
+        champagneGold: 'var(--color-champagne-gold)',
+        lightChampagne: 'var(--color-light-champagne)',
+        dustyRose: 'var(--color-dusty-rose)',
+        softWhite: 'var(--color-soft-white)',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        serif: ['Playfair Display', 'serif']
+        sans: ['Inter', 'Manrope', 'DM Sans', 'sans-serif'],
+        serif: ['Playfair Display', 'Cormorant Garamond', 'DM Serif Display', 'serif']
       }
     },
   },
   plugins: [],
 }
+ 

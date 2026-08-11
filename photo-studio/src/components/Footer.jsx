@@ -52,31 +52,31 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-ink pt-32 pb-12 px-8">
+    <footer ref={footerRef} className="bg-[#12100E] pt-32 pb-12 px-8 w-full">
       <div className="max-w-7xl mx-auto">
         
         {/* Massive final statement */}
         <div className="mb-32 overflow-hidden">
-          <h2 className="text-5xl md:text-7xl lg:text-[7rem] font-serif font-bold text-white leading-[1.05] tracking-tight">
+          <h2 className="text-5xl md:text-7xl lg:text-[7rem] font-serif font-bold text-[#FFFDF8] leading-[1.05] tracking-tight">
             <span className="block overflow-hidden"><span className="footer-title-line inline-block">YOUR STORY</span></span>
-            <span className="block overflow-hidden"><span className="footer-title-line inline-block italic text-accent">DESERVES TO BE</span></span>
+            <span className="block overflow-hidden"><span className="footer-title-line inline-block italic text-[#C5A059]">DESERVES TO BE</span></span>
             <span className="block overflow-hidden"><span className="footer-title-line inline-block">REMEMBERED.</span></span>
           </h2>
         </div>
         
         {/* Meta links */}
-        <div className="footer-meta-container flex flex-col md:flex-row justify-between items-start md:items-end border-t border-white/10 pt-12 gap-8">
+        <div className="footer-meta-container flex flex-col md:flex-row justify-between items-start md:items-end border-t border-[#FFFDF8]/10 pt-12 gap-8">
           
           <div className="flex flex-wrap gap-8">
-            <a href="#" className="footer-meta text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] hover:text-white transition-colors">Instagram</a>
-            <a href="mailto:hello@studio.com" className="footer-meta text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] hover:text-white transition-colors">Email</a>
-            <a href="#contact" className="footer-meta text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] hover:text-white transition-colors">Contact</a>
-            <a href="#" className="footer-meta text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] hover:text-white transition-colors">Privacy</a>
+            <a href="#" className="footer-meta text-[10px] font-bold text-[#FFFDF8]/50 uppercase tracking-[0.2em] hover:text-[#FFFDF8] transition-colors">Instagram</a>
+            <a href="mailto:hello@pixelbees.com" className="footer-meta text-[10px] font-bold text-[#FFFDF8]/50 uppercase tracking-[0.2em] hover:text-[#FFFDF8] transition-colors">Email</a>
+            <a href="#contact" className="footer-meta text-[10px] font-bold text-[#FFFDF8]/50 uppercase tracking-[0.2em] hover:text-[#FFFDF8] transition-colors">Contact</a>
+            <a href="#" className="footer-meta text-[10px] font-bold text-[#FFFDF8]/50 uppercase tracking-[0.2em] hover:text-[#FFFDF8] transition-colors">Privacy</a>
           </div>
           
           <div className="footer-meta">
-            <p className="text-white/30 text-[10px] tracking-widest uppercase">
-              &copy; {new Date().getFullYear()} Studio. All Rights Reserved.
+            <p className="text-[#FFFDF8]/30 text-[10px] tracking-widest uppercase">
+              &copy; {new Date().getFullYear()} Pixelbees Photography. All Rights Reserved.
             </p>
           </div>
           

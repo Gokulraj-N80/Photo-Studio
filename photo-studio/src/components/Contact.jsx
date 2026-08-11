@@ -1,6 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
+
+const InstagramIcon = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,48 +60,37 @@ const Contact = () => {
   }, []);
 
   return (
-    <section id="contact" ref={sectionRef} className="py-32 px-8 max-w-7xl mx-auto border-t border-secondary/10">
-      <div className="flex flex-col lg:flex-row gap-20">
+    <section id="contact" ref={sectionRef} className="py-24 md:py-32 px-6 w-full bg-[#FFFDF8] border-t border-[#12100E]/5">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20">
         
         {/* Form Area */}
         <div className="w-full lg:w-7/12 contact-form-container">
           <div className="form-element mb-12">
-            <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-secondary mb-4">LET'S CREATE</h2>
-            <h3 className="text-4xl md:text-6xl font-serif font-bold text-ink leading-tight">
+            <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059] mb-4">LET'S CREATE</h2>
+            <h3 className="text-4xl md:text-6xl font-serif font-bold text-[#12100E] leading-tight">
               Something Worth<br/>Remembering.
             </h3>
-            <p className="text-inkLight text-lg font-light mt-6 max-w-md">
+            <p className="text-[#201D19]/80 text-lg font-light mt-6 max-w-md">
               Tell us about your story, your vision, and the moments you want us to capture.
             </p>
           </div>
           
           <form className="flex flex-col gap-8">
-            <div className="form-element border-b border-inkLight/30 pb-4">
-              <input type="text" placeholder="Name" className="w-full bg-transparent text-ink placeholder-inkLight focus:outline-none text-sm tracking-wide" />
+            <div className="form-element border-b border-[#12100E]/20 pb-4">
+              <input type="text" placeholder="Name" className="w-full bg-transparent text-[#12100E] placeholder-[#12100E]/40 focus:outline-none text-sm tracking-wide" />
             </div>
-            <div className="form-element border-b border-inkLight/30 pb-4">
-              <input type="email" placeholder="Email" className="w-full bg-transparent text-ink placeholder-inkLight focus:outline-none text-sm tracking-wide" />
+            <div className="form-element border-b border-[#12100E]/20 pb-4">
+              <input type="email" placeholder="Email" className="w-full bg-transparent text-[#12100E] placeholder-[#12100E]/40 focus:outline-none text-sm tracking-wide" />
             </div>
-            <div className="form-element border-b border-inkLight/30 pb-4">
-              <input type="tel" placeholder="Phone" className="w-full bg-transparent text-ink placeholder-inkLight focus:outline-none text-sm tracking-wide" />
+            <div className="form-element border-b border-[#12100E]/20 pb-4">
+              <input type="text" placeholder="Subject" className="w-full bg-transparent text-[#12100E] placeholder-[#12100E]/40 focus:outline-none text-sm tracking-wide" />
             </div>
-            <div className="form-element border-b border-inkLight/30 pb-4">
-              <select className="w-full bg-transparent text-ink focus:outline-none text-sm tracking-wide appearance-none cursor-pointer">
-                <option value="" disabled selected className="text-inkLight">Photography Type</option>
-                <option value="wedding">Wedding</option>
-                <option value="portrait">Portrait</option>
-                <option value="commercial">Commercial</option>
-              </select>
-            </div>
-            <div className="form-element border-b border-inkLight/30 pb-4">
-              <input type="text" placeholder="Preferred Date" className="w-full bg-transparent text-ink placeholder-inkLight focus:outline-none text-sm tracking-wide" />
-            </div>
-            <div className="form-element border-b border-inkLight/30 pb-4">
-              <textarea placeholder="Message" rows="4" className="w-full bg-transparent text-ink placeholder-inkLight focus:outline-none text-sm tracking-wide resize-none"></textarea>
+            <div className="form-element border-b border-[#12100E]/20 pb-4">
+              <textarea placeholder="Message" rows="5" className="w-full bg-transparent text-[#12100E] placeholder-[#12100E]/40 focus:outline-none text-sm tracking-wide resize-none"></textarea>
             </div>
             
             <div className="form-element mt-4">
-              <button type="submit" className="bg-ink hover:bg-accent text-white px-10 py-4 font-bold tracking-[0.2em] uppercase text-xs transition-colors duration-300 flex items-center justify-between w-max gap-8 group">
+              <button type="submit" className="bg-[#12100E] hover:bg-[#C5A059] text-[#FFFDF8] hover:text-[#12100E] px-10 py-4 font-bold tracking-[0.2em] uppercase text-xs transition-colors duration-300 flex items-center justify-between w-max gap-8 group rounded-sm">
                 SEND INQUIRY <span className="transform group-hover:translate-x-2 transition-transform">&rarr;</span>
               </button>
             </div>
@@ -100,27 +98,47 @@ const Contact = () => {
         </div>
 
         {/* Sidebar */}
-        <div className="w-full lg:w-5/12 sidebar-container lg:border-l border-secondary/10 lg:pl-20 pt-4 flex flex-col gap-12">
+        <div className="w-full lg:w-5/12 sidebar-container lg:border-l border-[#12100E]/10 lg:pl-20 pt-4 flex flex-col gap-10">
           
           <div className="sidebar-info">
-            <h4 className="text-[10px] font-bold text-secondary uppercase tracking-[0.2em] mb-4">STUDIO</h4>
-            <p className="text-ink font-serif text-2xl mb-2">Salem · Tamil Nadu</p>
-            <p className="text-inkLight font-light italic">Available Worldwide</p>
+            <div className="flex items-center gap-3 mb-4">
+              <MapPin className="text-[#C5A059] w-4 h-4" />
+              <h4 className="text-[10px] font-bold text-[#C5A059] uppercase tracking-[0.2em] pt-[2px]">STUDIO</h4>
+            </div>
+            <p className="text-[#12100E] font-serif text-2xl mb-2">Salem · Tamil Nadu</p>
+            <p className="text-[#201D19]/60 font-light italic">Available Worldwide</p>
           </div>
           
           <div className="sidebar-info">
-            <h4 className="text-[10px] font-bold text-secondary uppercase tracking-[0.2em] mb-4">EMAIL</h4>
-            <a href="mailto:hello@studio.com" className="text-ink font-serif text-2xl hover:text-accent transition-colors">hello@studio.com</a>
+            <div className="flex items-center gap-3 mb-4">
+              <Mail className="text-[#C5A059] w-4 h-4" />
+              <h4 className="text-[10px] font-bold text-[#C5A059] uppercase tracking-[0.2em] pt-[2px]">EMAIL</h4>
+            </div>
+            <a href="mailto:hello@pixelbees.com" className="text-[#12100E] font-serif text-2xl hover:text-[#C5A059] transition-colors">hello@pixelbees.com</a>
           </div>
           
           <div className="sidebar-info">
-            <h4 className="text-[10px] font-bold text-secondary uppercase tracking-[0.2em] mb-4">PHONE</h4>
-            <p className="text-ink font-serif text-2xl">+91 XXXXX XXXXX</p>
+            <div className="flex items-center gap-3 mb-4">
+              <Phone className="text-[#C5A059] w-4 h-4" />
+              <h4 className="text-[10px] font-bold text-[#C5A059] uppercase tracking-[0.2em] pt-[2px]">PHONE</h4>
+            </div>
+            <p className="text-[#12100E] font-serif text-2xl">+91 XXXXX XXXXX</p>
           </div>
           
           <div className="sidebar-info">
-            <h4 className="text-[10px] font-bold text-secondary uppercase tracking-[0.2em] mb-4">SOCIAL</h4>
-            <a href="#" className="text-ink font-serif text-2xl hover:text-accent transition-colors">Instagram</a>
+            <div className="flex items-center gap-3 mb-4">
+              <MessageCircle className="text-[#C5A059] w-4 h-4" />
+              <h4 className="text-[10px] font-bold text-[#C5A059] uppercase tracking-[0.2em] pt-[2px]">WHATSAPP</h4>
+            </div>
+            <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" className="text-[#12100E] font-serif text-2xl hover:text-[#C5A059] transition-colors">+91 XXXXX XXXXX</a>
+          </div>
+          
+          <div className="sidebar-info">
+            <div className="flex items-center gap-3 mb-4">
+              <InstagramIcon className="text-[#C5A059] w-4 h-4" />
+              <h4 className="text-[10px] font-bold text-[#C5A059] uppercase tracking-[0.2em] pt-[2px]">SOCIAL</h4>
+            </div>
+            <a href="#" className="text-[#12100E] font-serif text-2xl hover:text-[#C5A059] transition-colors">@pixelbees</a>
           </div>
           
         </div>
