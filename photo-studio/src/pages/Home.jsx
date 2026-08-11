@@ -4,10 +4,6 @@ import Hero from '../components/Hero';
 import About from '../components/About';
 import PullQuote from '../components/PullQuote';
 import Services from '../components/Services';
-import Gallery from '../components/Gallery';
-import HorizontalGallery from '../components/HorizontalGallery';
-import Blog from '../components/Blog';
-import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import BookingSection from '../components/BookingSection';
 
@@ -23,11 +19,7 @@ const Home = () => {
           <About />
           <PullQuote />
           <Services onBook={(category) => setBookingCategory(category)} />
-          <Gallery />
-          <HorizontalGallery />
-          <Blog />
           <BookingSection selectedCategory={bookingCategory} onCategoryChange={setBookingCategory} />
-          <Contact />
         </main>
         <Footer />
       </div>

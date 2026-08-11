@@ -60,26 +60,11 @@ const Blog = () => {
             scrollTrigger: { trigger: '.grid', start: "top 80%" }
           }
         );
-
-        // Scrubbed dramatic Parallax + Blur on the images inside
-        cards.forEach((card) => {
-          const img = card.querySelector('.journal-img');
-          gsap.fromTo(img,
-            { scale: 1.5, y: -30, filter: 'grayscale(100%) blur(15px)' },
-            { 
-              scale: 1, y: 30, filter: 'grayscale(0%) blur(0px)',
-              ease: 'none',
-              scrollTrigger: { trigger: card, start: "top 95%", end: "bottom 20%", scrub: 1 } 
-            }
-          );
-        });
       });
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
         cards.forEach((card) => {
-          const img = card.querySelector('.journal-img');
-          const text = card.querySelector('.journal-text');
-          gsap.fromTo([img, text], { opacity: 0 }, { opacity: 1, duration: 1, stagger: 0.2, scrollTrigger: { trigger: card, start: "top 85%" } });
+          gsap.fromTo(card, { opacity: 0 }, { opacity: 1, duration: 1, stagger: 0.2, scrollTrigger: { trigger: card, start: "top 85%" } });
         });
       });
     }, sectionRef);

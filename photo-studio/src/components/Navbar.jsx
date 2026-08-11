@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 
 const Navbar = () => {
@@ -43,13 +44,15 @@ const Navbar = () => {
     };
   }, []);
 
+  const location = useLocation();
+
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Our Works', href: '#gallery' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/#about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Our Works', href: '/portfolio' },
+    { name: 'Blog', href: '/journal' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -62,7 +65,7 @@ const Navbar = () => {
       } ${isHidden ? '-translate-y-full' : 'translate-y-0'}`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
-        <a href="#" className="nav-logo flex items-center gap-3 group">
+        <Link to="/" className="nav-logo flex items-center gap-3 group">
           <img 
             src="/logo.png" 
             alt="Pixelbees Photography Logo" 
@@ -72,22 +75,40 @@ const Navbar = () => {
             Pixelbees
             <span className="block text-[8px] tracking-[0.3em] font-sans font-normal text-[#C5A059] -mt-1">Photography</span>
           </span>
-        </a>
+        </Link>
         
         <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name}
-              href={link.href} 
-              className="nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] text-softWhite hover:text-champagneGold transition-colors relative group py-2"
-            >
-              {link.name}
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-champagneGold transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.href || (link.href === '/#about' && location.hash === '#about');
+            
+            // For hash links on the same page, we can use an anchor tag. Otherwise use Link.
+            if (link.href.includes('#')) {
+              return (
+                <a 
+                  key={link.name}
+                  href={link.href} 
+                  className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-champagneGold transition-colors relative group py-2 ${isActive ? 'text-champagneGold' : 'text-softWhite'}`}
+                >
+                  {link.name}
+                  <span className={`absolute bottom-0 left-0 h-[1px] bg-champagneGold transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                </a>
+              );
+            }
+
+            return (
+              <Link 
+                key={link.name}
+                to={link.href} 
+                className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-champagneGold transition-colors relative group py-2 ${isActive ? 'text-champagneGold' : 'text-softWhite'}`}
+              >
+                {link.name}
+                <span className={`absolute bottom-0 left-0 h-[1px] bg-champagneGold transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </Link>
+            );
+          })}
         </div>
         
-        <a href="#booking" className="nav-btn hidden md:flex items-center justify-center bg-[#C5A059] hover:bg-[#D4AF37] text-[#12100E] px-6 py-[10px] rounded-full text-xs font-bold tracking-[0.15em] uppercase transition-colors duration-300 shadow-md">
+        <a href="/#booking" className="nav-btn hidden md:flex items-center justify-center bg-[#C5A059] hover:bg-[#D4AF37] text-[#12100E] px-6 py-[10px] rounded-full text-xs font-bold tracking-[0.15em] uppercase transition-colors duration-300 shadow-md">
           Book a Session
         </a>
 
@@ -104,16 +125,27 @@ const Navbar = () => {
       {/* Mobile Menu Overlay */}
       <div className={`md:hidden fixed inset-0 bg-espresso/95 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out flex flex-col justify-center items-center gap-8 ${isMobileMenuOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}`}>
         {navLinks.map((link) => (
-          <a 
-            key={link.name}
-            href={link.href} 
-            onClick={() => setIsMobileMenuOpen(false)} 
-            className="text-2xl font-serif text-softWhite hover:text-champagneGold uppercase tracking-widest transition-colors"
-          >
-            {link.name}
-          </a>
+          link.href.includes('#') ? (
+            <a 
+              key={link.name}
+              href={link.href} 
+              onClick={() => setIsMobileMenuOpen(false)} 
+              className="text-2xl font-serif text-softWhite hover:text-champagneGold uppercase tracking-widest transition-colors"
+            >
+              {link.name}
+            </a>
+          ) : (
+            <Link 
+              key={link.name}
+              to={link.href} 
+              onClick={() => setIsMobileMenuOpen(false)} 
+              className="text-2xl font-serif text-softWhite hover:text-champagneGold uppercase tracking-widest transition-colors"
+            >
+              {link.name}
+            </Link>
+          )
         ))}
-        <a href="#booking" onClick={() => setIsMobileMenuOpen(false)} className="bg-champagneGold text-espresso px-8 py-4 rounded-full text-xs font-bold tracking-widest uppercase mt-6 text-center">
+        <a href="/#booking" onClick={() => setIsMobileMenuOpen(false)} className="bg-champagneGold text-espresso px-8 py-4 rounded-full text-xs font-bold tracking-widest uppercase mt-6 text-center">
           Book a Session
         </a>
       </div>
