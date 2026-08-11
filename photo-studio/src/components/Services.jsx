@@ -66,28 +66,28 @@ const ServiceCard = ({ svc, onBook }) => {
 
   return (
     <div 
-      className="service-card relative w-full aspect-[4/5] cursor-pointer [perspective:1500px]"
+      className="service-card relative w-full aspect-[4/5] cursor-pointer [perspective:1500px] z-10 hover:z-50"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
       {/* Back face (Text & Button) */}
-      <div className="absolute inset-0 bg-[#FFFDF8] shadow-[0_10px_30px_rgba(0,0,0,0.05)] p-6 pt-12 flex flex-col items-center justify-start text-center rounded-sm">
-        <h4 className="text-5xl font-serif font-bold text-[#12100E] mb-2">{svc.title}</h4>
-        <p className="text-[#12100E]/70 text-lg leading-relaxed mb-6 font-light px-2">{svc.desc}</p>
+      <div className="absolute inset-0 bg-[#FFFDF8] shadow-[0_10px_30px_rgba(0,0,0,0.05)] p-2 md:p-6 pt-4 md:pt-12 flex flex-col items-center justify-start text-center rounded-sm">
+        <h4 className="text-[1.2rem] md:text-5xl font-serif font-bold text-[#12100E] mb-1 md:mb-2 leading-tight">{svc.title}</h4>
+        <p className="text-[#12100E]/70 text-[9px] md:text-lg leading-snug md:leading-relaxed mb-2 md:mb-6 font-light px-1 md:px-2">{svc.desc}</p>
         <a 
           href="#booking"
           onClick={() => onBook && onBook(svc.id)}
-          className="bg-[#C5A059] hover:bg-[#12100E] text-[#FFFDF8] px-10 py-4 rounded-sm transition-colors duration-300 uppercase tracking-[0.2em] text-sm font-bold"
+          className="bg-[#C5A059] hover:bg-[#12100E] text-[#FFFDF8] px-3 md:px-10 py-1.5 md:py-4 rounded-sm transition-colors duration-300 uppercase tracking-[0.1em] md:tracking-[0.2em] text-[8px] md:text-sm font-bold mt-2 md:mt-4 mb-2 md:mb-0"
         >
-          Book Session
+          Book
         </a>
       </div>
 
       {/* Front face (Image) */}
       <div ref={frontRef} className="absolute inset-0 transform-style-3d origin-bottom z-10 bg-[#12100E] rounded-sm shadow-lg overflow-hidden">
         <img src={svc.image} className="w-full h-full object-cover opacity-80" alt={svc.title} />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-transparent to-transparent flex items-end justify-center pb-8 pointer-events-none px-4 text-center">
-          <h4 className="text-4xl font-serif text-[#FFFDF8] font-bold">{svc.title}</h4>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-transparent to-transparent flex items-end justify-center pb-4 md:pb-8 pointer-events-none px-2 md:px-4 text-center">
+          <h4 className="text-[1.1rem] leading-tight md:text-4xl font-serif text-[#FFFDF8] font-bold drop-shadow-md">{svc.title}</h4>
         </div>
       </div>
     </div>
@@ -133,16 +133,16 @@ const Services = ({ onBook }) => {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="py-24 md:py-32 px-6 w-full bg-[#FFFDF8]">
+    <section id="services" ref={sectionRef} className="py-16 md:py-32 px-4 md:px-6 w-full bg-[#FFFDF8]">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 md:mb-20">
           <h2 className="services-header-text text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059] mb-4">OUR EXPERTISE</h2>
-          <h3 className="services-header-text text-4xl md:text-5xl font-serif font-bold text-[#12100E] mb-0 leading-tight">Tailored Services for<br/>Your Unique Story.</h3>
+          <h3 className="services-header-text text-3xl md:text-5xl font-serif font-bold text-[#12100E] mb-0 leading-tight">Tailored Services for<br/>Your Unique Story.</h3>
         </div>
 
-        {/* Scaled down by 10% to reduce component footprint */}
-        <div className="transform scale-90 origin-top">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* Scaled down slightly to reduce component footprint */}
+        <div className="transform md:scale-90 origin-top">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {servicesData.map((svc, idx) => (
               <ServiceCard key={idx} svc={svc} onBook={onBook} />
             ))}

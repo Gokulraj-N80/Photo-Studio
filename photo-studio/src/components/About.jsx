@@ -113,11 +113,11 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 md:py-32 px-6 w-full bg-[#FFFDF8] overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+    <section id="about" ref={sectionRef} className="py-16 md:py-32 px-4 md:px-6 w-full bg-[#FFFDF8] overflow-hidden">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
 
         {/* ── Left — Asymmetric Image ── */}
-        <div ref={imageRef} className="w-full lg:w-5/12 relative" style={{ transformStyle: 'preserve-3d' }}>
+        <div ref={imageRef} className="w-full relative px-6 md:px-0 max-w-sm mx-auto lg:max-w-none" style={{ transformStyle: 'preserve-3d' }}>
           {/* Corner decoration lines */}
           <div className="corner-tl absolute -top-4 -left-4 w-0 h-0 border-t-2 border-l-2 border-[#C5A059] z-10 pointer-events-none" />
           <div className="corner-br absolute -bottom-4 -right-4 w-0 h-0 border-b-2 border-r-2 border-[#C5A059] z-10 pointer-events-none" />
@@ -140,14 +140,14 @@ const About = () => {
         </div>
 
         {/* ── Right — Content ── */}
-        <div className="w-full lg:w-7/12 about-text-container">
+        <div className="w-full about-text-container">
 
           <div className="about-text flex items-center gap-4 mb-6">
             <div ref={lineRef} className="h-[1px] w-12 bg-[#C5A059]" />
             <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059]">BEHIND THE LENS</h2>
           </div>
 
-          <h3 className="about-text text-4xl md:text-5xl font-serif font-bold text-[#12100E] mb-8 leading-tight">
+          <h3 className="about-text text-3xl md:text-5xl font-serif font-bold text-[#12100E] mb-6 md:mb-8 leading-tight">
             Capturing Authentic <br className="hidden md:block" />Emotions &amp; Stories.
           </h3>
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -113,7 +114,7 @@ const Hero = () => {
       </div>
 
       {/* Content - Increased top margin heavily so it absolutely clears the logo */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-32 md:pt-24 pb-12">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-12 pt-24 md:pt-32 pb-8 md:pb-12">
         <div ref={contentRef} className="max-w-[700px] text-center lg:text-left mx-auto lg:mx-0 flex flex-col items-center lg:items-start" style={{ opacity: 1 }}>
           
           {/* Eyebrow - Changed to white for max visibility, added a gold line next to it for the premium feel */}
@@ -125,7 +126,7 @@ const Hero = () => {
           </div>
           
           {/* Main Heading */}
-          <h1 className="font-serif text-[clamp(3rem,8vw,6.5rem)] font-normal leading-[0.95] text-[#FFFDF8] mb-5 max-w-[650px] drop-shadow-lg">
+          <h1 className="font-serif text-[clamp(2.5rem,8vw,6.5rem)] font-normal leading-[0.95] text-[#FFFDF8] mb-4 md:mb-5 max-w-[650px] drop-shadow-lg">
             <span className="block overflow-hidden"><span className="hero-line-inner block opacity-0">Every <span className="text-[#C5A059] italic">Moment</span></span></span>
             <span className="block overflow-hidden"><span className="hero-line-inner block opacity-0">Deserves</span></span>
             <span className="block overflow-hidden"><span className="hero-line-inner block opacity-0">To Be <span className="text-[#C5A059]">Remembered.</span></span></span>
@@ -138,9 +139,9 @@ const Hero = () => {
           
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto">
-            <a href="#gallery" className="hero-cta opacity-0 bg-[#C5A059] hover:bg-[#D4AF37] text-[#12100E] px-8 py-3.5 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase transition-all duration-300 w-full sm:w-auto shadow-xl hover:-translate-y-1 flex items-center justify-center gap-3">
+            <Link to="/portfolio" className="hero-cta opacity-0 bg-[#C5A059] hover:bg-[#D4AF37] text-[#12100E] px-8 py-3.5 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase transition-all duration-300 w-full sm:w-auto shadow-xl hover:-translate-y-1 flex items-center justify-center gap-3">
               Explore Our Work <span className="text-lg leading-none">&rarr;</span>
-            </a>
+            </Link>
             <a href="#booking" className="hero-cta opacity-0 group bg-transparent text-[#FFFDF8] hover:text-[#C5A059] text-[11px] font-bold tracking-[0.15em] uppercase transition-colors duration-300 w-full sm:w-auto flex items-center justify-center gap-3 border border-[#FFFDF8]/30 hover:border-[#C5A059] px-8 py-3.5 rounded-full backdrop-blur-sm">
               Book a Session <span className="text-lg leading-none transform transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
             </a>

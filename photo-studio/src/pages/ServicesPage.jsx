@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Services from '../components/Services';
+import BookingSection from '../components/BookingSection';
 
 const ServicesPage = () => {
+  const [bookingCategory, setBookingCategory] = useState("wedding");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -12,7 +15,8 @@ const ServicesPage = () => {
     <div className="min-h-screen bg-[#12100E] selection:bg-[#C5A059] selection:text-[#12100E]">
       <Navbar />
       <div className="pt-24">
-        <Services />
+        <Services onBook={(category) => setBookingCategory(category)} />
+        <BookingSection selectedCategory={bookingCategory} onCategoryChange={setBookingCategory} />
       </div>
       <Footer />
     </div>

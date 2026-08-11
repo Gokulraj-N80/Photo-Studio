@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Home, X } from 'lucide-react';
 import gsap from 'gsap';
 
 const Navbar = () => {
@@ -112,42 +113,70 @@ const Navbar = () => {
           Book a Session
         </a>
 
-        <button 
-          className="md:hidden flex flex-col gap-[6px] z-50 p-2 relative"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <span className={`w-8 h-[2px] transition-all duration-300 ${isMobileMenuOpen ? 'bg-champagneGold rotate-45 translate-y-[8px]' : 'bg-softWhite'}`}></span>
-          <span className={`w-8 h-[2px] transition-all duration-300 ${isMobileMenuOpen ? 'bg-champagneGold opacity-0' : 'bg-softWhite'}`}></span>
-          <span className={`w-8 h-[2px] transition-all duration-300 ${isMobileMenuOpen ? 'bg-champagneGold -rotate-45 -translate-y-[8px]' : 'bg-softWhite'}`}></span>
-        </button>
+        {/* Mobile Navbar Controls */}
+        <div className="md:hidden flex items-center gap-4 z-50">
+          <Link to="/" className={`flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 ${isScrolled ? 'border-[#FFFDF8]/20 bg-[#FFFDF8]/5 text-[#FFFDF8] hover:bg-[#C5A059] hover:border-[#C5A059]' : 'border-[#12100E]/20 bg-black/10 text-[#FFFDF8] hover:bg-[#C5A059] hover:border-[#C5A059]'}`}>
+            <Home className="w-4 h-4" />
+          </Link>
+          
+          <button 
+            className={`flex flex-col justify-center items-center w-10 h-10 rounded-full border transition-all duration-300 relative ${isScrolled ? 'border-[#FFFDF8]/20 bg-[#FFFDF8]/5 hover:bg-[#C5A059] hover:border-[#C5A059]' : 'border-[#12100E]/20 bg-black/10 hover:bg-[#C5A059] hover:border-[#C5A059]'}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] rotate-45' : 'bg-[#FFFDF8] -translate-y-[5px]'}`}></span>
+            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] opacity-0' : 'bg-[#FFFDF8]'}`}></span>
+            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] -rotate-45' : 'bg-[#FFFDF8] translate-y-[5px]'}`}></span>
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`md:hidden fixed inset-0 bg-espresso/95 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out flex flex-col justify-center items-center gap-8 ${isMobileMenuOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}`}>
-        {navLinks.map((link) => (
-          link.href.includes('#') ? (
-            <a 
-              key={link.name}
-              href={link.href} 
-              onClick={() => setIsMobileMenuOpen(false)} 
-              className="text-2xl font-serif text-softWhite hover:text-champagneGold uppercase tracking-widest transition-colors"
-            >
-              {link.name}
-            </a>
-          ) : (
-            <Link 
-              key={link.name}
-              to={link.href} 
-              onClick={() => setIsMobileMenuOpen(false)} 
-              className="text-2xl font-serif text-softWhite hover:text-champagneGold uppercase tracking-widest transition-colors"
-            >
-              {link.name}
-            </Link>
-          )
-        ))}
-        <a href="/#booking" onClick={() => setIsMobileMenuOpen(false)} className="bg-champagneGold text-espresso px-8 py-4 rounded-full text-xs font-bold tracking-widest uppercase mt-6 text-center">
-          Book a Session
-        </a>
+      {/* Mobile Menu Overlay - Redesigned */}
+      <div className={`md:hidden fixed top-0 left-0 w-screen h-[100dvh] bg-[#12100E] z-40 transition-transform duration-700 ease-in-out flex flex-col pt-24 pb-10 px-8 ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+        
+        {/* Background Decorative Pattern */}
+        <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none"
+             style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+
+        <div className="flex-grow flex flex-col justify-center">
+          <div className="grid grid-cols-1 gap-y-6 w-full relative z-10">
+            {navLinks.map((link, idx) => {
+              const delay = isMobileMenuOpen ? `${0.2 + idx * 0.05}s` : '0s';
+              return link.href.includes('#') ? (
+                <a 
+                  key={link.name}
+                  href={link.href} 
+                  onClick={() => setIsMobileMenuOpen(false)} 
+                  className={`text-3xl font-serif text-[#FFFDF8] hover:text-[#C5A059] transition-all duration-500 ease-out ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                  style={{ transitionDelay: delay }}
+                >
+                  <span className="text-[#C5A059] text-xs font-sans mr-4 opacity-50">0{idx + 1}</span>
+                  {link.name}
+                </a>
+              ) : (
+                <Link 
+                  key={link.name}
+                  to={link.href} 
+                  onClick={() => setIsMobileMenuOpen(false)} 
+                  className={`text-3xl font-serif text-[#FFFDF8] hover:text-[#C5A059] transition-all duration-500 ease-out ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                  style={{ transitionDelay: delay }}
+                >
+                  <span className="text-[#C5A059] text-xs font-sans mr-4 opacity-50">0{idx + 1}</span>
+                  {link.name}
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+
+        <div className={`mt-auto relative z-10 transition-all duration-700 ease-out ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: isMobileMenuOpen ? '0.6s' : '0s' }}>
+          <a href="/#booking" onClick={() => setIsMobileMenuOpen(false)} className="block w-full bg-[#C5A059] hover:bg-[#D4AF37] text-[#12100E] px-8 py-4 rounded-sm text-xs font-bold tracking-[0.2em] uppercase text-center transition-colors">
+            Book a Session
+          </a>
+          <div className="flex justify-between items-center mt-8 pt-6 border-t border-[#FFFDF8]/10">
+            <a href="mailto:hello@pixelbees.com" className="text-[10px] uppercase tracking-widest text-[#FFFDF8]/60 hover:text-[#C5A059]">hello@pixelbees.com</a>
+            <span className="text-[10px] uppercase tracking-widest text-[#FFFDF8]/60">Salem, TN</span>
+          </div>
+        </div>
       </div>
     </nav>
   );

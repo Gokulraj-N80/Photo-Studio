@@ -45,22 +45,22 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-32 px-6 w-full bg-[#12100E]">
+    <section ref={sectionRef} className="py-16 md:py-32 px-4 md:px-6 w-full bg-[#12100E]">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 md:mb-20">
           <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059] mb-4">Testimonials</h2>
-          <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#FFFDF8] mb-0 leading-tight">Kind Words</h3>
+          <h3 className="text-3xl md:text-5xl font-serif font-bold text-[#FFFDF8] mb-0 leading-tight">Kind Words</h3>
         </div>
         
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col gap-10 md:gap-16">
           {testimonials.map((testimonial, idx) => (
-            <div key={idx} className="testimonial-block text-center border-b border-[#FFFDF8]/10 pb-16 last:border-0 last:pb-0">
-              <p className="text-2xl md:text-3xl font-serif text-[#FFFDF8]/90 italic mb-8 leading-relaxed font-light">
+            <div key={idx} className="testimonial-block text-center border-b border-[#FFFDF8]/10 pb-10 md:pb-16 last:border-0 last:pb-0">
+              <p className="text-xl md:text-3xl font-serif text-[#FFFDF8]/90 italic mb-6 md:mb-8 leading-relaxed font-light">
                 "{testimonial.text}"
               </p>
               <div>
-                <h4 className="font-bold text-[#FFFDF8] tracking-widest uppercase text-xs mb-2">{testimonial.name}</h4>
-                <span className="text-[#C5A059] text-[10px] tracking-widest uppercase">{testimonial.role}</span>
+                <h4 className="font-bold text-[#FFFDF8] tracking-widest uppercase text-[10px] md:text-xs mb-1 md:mb-2">{testimonial.name}</h4>
+                <span className="text-[#C5A059] text-[9px] md:text-[10px] tracking-widest uppercase">{testimonial.role}</span>
               </div>
             </div>
           ))}

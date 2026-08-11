@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,76 +14,94 @@ const Footer = () => {
       let mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // Large typography line-by-line reveal
-        gsap.fromTo('.footer-title-line',
-          { y: 60, opacity: 0 },
-          { 
-            y: 0, opacity: 1, 
-            duration: 1, 
-            stagger: 0.15, 
-            ease: "power3.out",
-            scrollTrigger: { 
-              trigger: footerRef.current, 
-              start: "top 90%" 
-            } 
-          }
-        );
-        
-        // Meta items fade in
-        gsap.fromTo('.footer-meta',
-          { y: 20, opacity: 0 },
+        gsap.fromTo('.footer-col',
+          { y: 30, opacity: 0 },
           { 
             y: 0, opacity: 1, 
             duration: 0.8, 
             stagger: 0.1, 
             ease: "power2.out",
             scrollTrigger: { 
-              trigger: '.footer-meta-container', 
-              start: "top 95%" 
+              trigger: footerRef.current, 
+              start: "top 85%" 
             } 
           }
         );
       });
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set('.footer-title-line', { y: 0, opacity: 1 });
-        gsap.set('.footer-meta', { y: 0, opacity: 1 });
+        gsap.set('.footer-col', { y: 0, opacity: 1 });
       });
     }, footerRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-[#12100E] pt-32 pb-12 px-8 w-full">
+    <footer ref={footerRef} className="bg-[#12100E] pt-32 pb-12 px-6 lg:px-12 w-full border-t border-[#FFFDF8]/5">
       <div className="max-w-7xl mx-auto">
-        
-        {/* Massive final statement */}
-        <div className="mb-32 overflow-hidden">
-          <h2 className="text-5xl md:text-7xl lg:text-[7rem] font-serif font-bold text-[#FFFDF8] leading-[1.05] tracking-tight">
-            <span className="block overflow-hidden"><span className="footer-title-line inline-block">YOUR STORY</span></span>
-            <span className="block overflow-hidden"><span className="footer-title-line inline-block italic text-[#C5A059]">DESERVES TO BE</span></span>
-            <span className="block overflow-hidden"><span className="footer-title-line inline-block">REMEMBERED.</span></span>
-          </h2>
-        </div>
-        
-        {/* Meta links */}
-        <div className="footer-meta-container flex flex-col md:flex-row justify-between items-start md:items-end border-t border-[#FFFDF8]/10 pt-12 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-12 mb-20">
           
-          <div className="flex flex-wrap gap-8">
-            <a href="#" className="footer-meta text-[10px] font-bold text-[#FFFDF8]/50 uppercase tracking-[0.2em] hover:text-[#FFFDF8] transition-colors">Instagram</a>
-            <a href="mailto:hello@pixelbees.com" className="footer-meta text-[10px] font-bold text-[#FFFDF8]/50 uppercase tracking-[0.2em] hover:text-[#FFFDF8] transition-colors">Email</a>
-            <a href="#contact" className="footer-meta text-[10px] font-bold text-[#FFFDF8]/50 uppercase tracking-[0.2em] hover:text-[#FFFDF8] transition-colors">Contact</a>
-            <a href="#" className="footer-meta text-[10px] font-bold text-[#FFFDF8]/50 uppercase tracking-[0.2em] hover:text-[#FFFDF8] transition-colors">Privacy</a>
-          </div>
-          
-          <div className="footer-meta">
-            <p className="text-[#FFFDF8]/30 text-[10px] tracking-widest uppercase">
-              &copy; {new Date().getFullYear()} Pixelbees Photography. All Rights Reserved.
+          {/* Column 1: Brand */}
+          <div className="footer-col opacity-0">
+            <Link to="/" className="inline-block mb-8">
+              <span className="font-serif uppercase tracking-[0.15em] font-bold text-[#FFFDF8] text-2xl md:text-3xl">
+                Pixelbees
+                <span className="block text-[12px] tracking-[0.3em] font-sans font-normal text-[#C5A059] mt-1">Photography</span>
+              </span>
+            </Link>
+            <p className="text-[#FFFDF8]/60 text-base font-light leading-relaxed mb-8 max-w-sm">
+              Capturing cinematic moments and preserving your most precious memories with elegance and artistic vision.
             </p>
+            <div className="flex gap-5">
+              <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full bg-[#FFFDF8]/5 flex items-center justify-center text-[#FFFDF8]/70 hover:bg-[#C5A059] hover:text-[#12100E] transition-colors text-xs font-bold tracking-wider">IG</a>
+              <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full bg-[#FFFDF8]/5 flex items-center justify-center text-[#FFFDF8]/70 hover:bg-[#C5A059] hover:text-[#12100E] transition-colors text-xs font-bold tracking-wider">FB</a>
+              <a href="#" aria-label="Twitter" className="w-10 h-10 rounded-full bg-[#FFFDF8]/5 flex items-center justify-center text-[#FFFDF8]/70 hover:bg-[#C5A059] hover:text-[#12100E] transition-colors text-xs font-bold tracking-wider">X</a>
+            </div>
           </div>
-          
+
+          {/* Column 2: Quick Links */}
+          <div className="footer-col opacity-0">
+            <h4 className="text-sm font-bold tracking-[0.2em] text-[#C5A059] uppercase mb-8">Quick Links</h4>
+            <ul className="flex flex-col gap-4">
+              <li><Link to="/" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors inline-block">Home</Link></li>
+              <li><a href="/#about" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors inline-block">About Us</a></li>
+              <li><Link to="/services" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors inline-block">Services</Link></li>
+              <li><Link to="/portfolio" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors inline-block">Our Works</Link></li>
+              <li><Link to="/contact" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors inline-block">Contact</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 3: Contact Info */}
+          <div className="footer-col opacity-0">
+            <h4 className="text-sm font-bold tracking-[0.2em] text-[#C5A059] uppercase mb-8">Contact Us</h4>
+            <ul className="flex flex-col gap-5">
+              <li className="flex items-start gap-4">
+                <MapPin className="w-5 h-5 text-[#C5A059] shrink-0 mt-0.5" />
+                <span className="text-[#FFFDF8]/70 text-base leading-relaxed">123 Photography Studio,<br/>Salem, Tamil Nadu 636001</span>
+              </li>
+              <li className="flex items-center gap-4">
+                <Phone className="w-5 h-5 text-[#C5A059] shrink-0" />
+                <span className="text-[#FFFDF8]/70 text-base">+91 98765 43210</span>
+              </li>
+              <li className="flex items-center gap-4">
+                <Mail className="w-5 h-5 text-[#C5A059] shrink-0" />
+                <a href="mailto:hello@pixelbees.com" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors break-all">hello@pixelbees.com</a>
+              </li>
+            </ul>
+          </div>
+
         </div>
-        
+
+        {/* Bottom Bar */}
+        <div className="footer-col opacity-0 border-t border-[#FFFDF8]/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[#FFFDF8]/40 text-xs text-center md:text-left tracking-wide">
+            &copy; {new Date().getFullYear()} Pixelbees Photography. All Rights Reserved.
+          </p>
+          <div className="flex gap-6">
+            <a href="#" className="text-[#FFFDF8]/40 hover:text-[#FFFDF8] text-xs transition-colors tracking-wide">Privacy Policy</a>
+            <a href="#" className="text-[#FFFDF8]/40 hover:text-[#FFFDF8] text-xs transition-colors tracking-wide">Terms of Service</a>
+          </div>
+        </div>
       </div>
     </footer>
   );
