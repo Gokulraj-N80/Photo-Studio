@@ -10,21 +10,21 @@ const blogPosts = [
     category: "WEDDINGS",
     title: "THE ART OF UNSCRIPTED MOMENTS",
     excerpt: "Why the photographs we don't plan are often the ones we treasure most.",
-    img: "https://images.unsplash.com/photo-1538356111053-748a48e1acb8?q=80&w=800&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=800&auto=format&fit=crop"
   },
   {
     date: "28 APR 2026",
     category: "PORTRAITS",
     title: "LIGHT, SHADOW & PORTRAIT",
     excerpt: "How natural light can transform a simple portrait.",
-    img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop"
   },
   {
     date: "09 APR 2026",
     category: "STUDIO",
     title: "BEHIND THE FRAME",
     excerpt: "A look inside our creative process and visual language.",
-    img: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop"
   }
 ];
 
@@ -37,18 +37,40 @@ const Blog = () => {
       const cards = gsap.utils.toArray('.journal-card');
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        cards.forEach((card, i) => {
+        // Extraordinary 3D Stagger Reveal for the Cards
+        gsap.fromTo(cards,
+          { 
+            y: 150, 
+            opacity: 0, 
+            rotationY: 30, 
+            rotationX: -20,
+            scale: 0.85,
+            transformPerspective: 1200,
+            transformOrigin: "bottom center"
+          },
+          {
+            y: 0,
+            opacity: 1,
+            rotationY: 0,
+            rotationX: 0,
+            scale: 1,
+            duration: 1.4,
+            stagger: 0.2,
+            ease: "back.out(1.2)",
+            scrollTrigger: { trigger: '.grid', start: "top 80%" }
+          }
+        );
+
+        // Scrubbed dramatic Parallax + Blur on the images inside
+        cards.forEach((card) => {
           const img = card.querySelector('.journal-img');
-          const text = card.querySelector('.journal-text');
-          
           gsap.fromTo(img,
-            { clipPath: 'inset(10% 10% 10% 10%)' },
-            { clipPath: 'inset(0% 0% 0% 0%)', duration: 1, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 85%" } }
-          );
-          
-          gsap.fromTo(text,
-            { y: 40, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.9, delay: 0.2, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 85%" } }
+            { scale: 1.5, y: -30, filter: 'grayscale(100%) blur(15px)' },
+            { 
+              scale: 1, y: 30, filter: 'grayscale(0%) blur(0px)',
+              ease: 'none',
+              scrollTrigger: { trigger: card, start: "top 95%", end: "bottom 20%", scrub: 1 } 
+            }
           );
         });
       });
