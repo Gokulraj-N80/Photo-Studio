@@ -7,6 +7,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const filters = ["ALL", "WEDDINGS", "PORTRAITS", "EVENTS", "PRE-WEDDING", "CANDID", "FASHION"];
 
+import PixelTransition from './PixelTransition';
+
 const works = [
   { src: "/images/wedding/wedding-28.jpg", category: "WEDDINGS", title: "The Vows", subtitle: "Sacred moments, eternal bonds" },
   { src: "/images/portraits/portraits-8.jpg", category: "PORTRAITS", title: "Luminous", subtitle: "Light carved from within" },
@@ -136,6 +138,43 @@ const OurWorks = () => {
             </button>
           ))}
         </div>
+
+        {/* Featured Spotlight Section with Pixel Transition */}
+        {activeFilter === "ALL" && (
+          <div className="mb-16 w-full flex flex-col md:flex-row gap-8 items-center justify-center">
+            <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+              <PixelTransition
+                firstContent={
+                  <div className="w-full h-full bg-[#12100E] flex items-center justify-center">
+                    <img
+                      src="/images/featured-story.jpg"
+                      alt="Featured Story"
+                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+                    />
+                  </div>
+                }
+                secondContent={
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-[#1a1714] border border-[#C5A059]/20 p-6 text-center">
+                    <p className="text-[10px] text-[#C5A059] font-bold uppercase tracking-[0.3em] mb-4">Behind the Lens</p>
+                    <p className="font-serif text-2xl md:text-3xl text-[#FFFDF8] mb-3">Pure Joy</p>
+                    <p className="text-xs text-[#FFFDF8]/60 max-w-xs">We captured the raw emotion of their special day. Real smiles, unscripted joy, and the priceless reactions of best friends.</p>
+                  </div>
+                }
+                gridSize={12}
+                pixelColor='#1a1714'
+                animationStepDuration={0.4}
+                className="w-full max-w-[550px] h-auto border-2 border-[#C5A059] shadow-2xl rounded-none md:rounded-lg"
+                aspectRatio="62%"
+              />
+            </div>
+            <div className="w-full md:w-1/2 text-center md:text-left px-4 md:px-8">
+              <h4 className="font-serif text-3xl font-bold text-[#FFFDF8] mb-4">Featured Story: The Bridal Party</h4>
+              <p className="text-sm text-[#FFFDF8]/70 leading-relaxed max-w-md mx-auto md:mx-0">
+                Hover over (or tap) the image to reveal the story behind this unscripted moment. The best photos aren't posed; they are the genuine reactions, the inside jokes, and the shared laughter between friends.
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* Masonry Grid */}
         <div className="masonry-grid">
