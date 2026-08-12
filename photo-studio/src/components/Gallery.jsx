@@ -121,12 +121,12 @@ const OurWorks = () => {
         </div>
 
         {/* Filter Pills */}
-        <div className="filters-row flex flex-wrap justify-center gap-3 mb-12">
+        <div className="filters-row flex overflow-x-auto snap-x md:flex-wrap justify-start md:justify-center gap-2 md:gap-3 mb-8 md:mb-12 pb-4 md:pb-0 scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {filters.map(f => (
             <button
               key={f}
               onClick={() => handleFilter(f)}
-              className={`works-filter text-[10px] font-bold tracking-[0.2em] uppercase px-5 py-2 rounded-full border transition-all duration-300 ${
+              className={`works-filter flex-shrink-0 snap-center whitespace-nowrap text-[9px] md:text-[10px] font-bold tracking-[0.2em] uppercase px-4 md:px-5 py-2 rounded-full border transition-all duration-300 ${
                 activeFilter === f
                   ? 'bg-[#C5A059] text-[#12100E] border-[#C5A059]'
                   : 'bg-transparent text-[#FFFDF8]/50 border-white/10 hover:text-[#FFFDF8] hover:border-white/30'
@@ -156,13 +156,13 @@ const OurWorks = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-[#12100E]/80 via-[#12100E]/10 to-transparent" />
 
               {/* Bottom text — visible always, enhanced on hover */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <div className="w-8 h-[1.5px] bg-[#C5A059] mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100" />
-                <span className="text-[9px] text-[#C5A059] font-bold uppercase tracking-[0.3em] block mb-1">
+              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="w-6 md:w-8 h-[1.5px] bg-[#C5A059] mb-2 md:mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100" />
+                <span className="text-[8px] md:text-[9px] text-[#C5A059] font-bold uppercase tracking-[0.3em] block mb-1">
                   {work.category}
                 </span>
-                <h4 className="text-[#FFFDF8] font-serif text-xl md:text-2xl font-bold">{work.title}</h4>
-                <p className="text-[#FFFDF8]/60 text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
+                <h4 className="text-[#FFFDF8] font-serif text-lg md:text-2xl font-bold">{work.title}</h4>
+                <p className="text-[#FFFDF8]/60 text-[10px] md:text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
                   {work.subtitle}
                 </p>
               </div>

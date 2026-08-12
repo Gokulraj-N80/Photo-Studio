@@ -142,7 +142,7 @@ const Services = ({ onBook }) => {
 
         {/* Scaled down slightly to reduce component footprint */}
         <div className="transform md:scale-90 origin-top">
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {servicesData.map((svc, idx) => (
               <ServiceCard key={idx} svc={svc} onBook={onBook} />
             ))}

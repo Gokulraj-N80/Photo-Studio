@@ -66,7 +66,7 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
           <img 
             src="/images/wedding/wedding-32.jpg" 
             alt="Booking Inspiration" 
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-top md:object-center"
           />
           <div className="absolute inset-0 bg-[#12100E]/20"></div>
           <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 text-[#FFFDF8]">
