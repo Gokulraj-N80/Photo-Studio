@@ -65,7 +65,12 @@ const Footer = () => {
           
           {/* Column 1: Brand */}
           <div className="footer-col opacity-0">
-            <Link to="/" className="inline-block mb-8">
+            <Link to="/" className="inline-flex items-center gap-4 mb-8 group">
+              <img 
+                src="/logo.png" 
+                alt="Pixelbees Photography Logo" 
+                className="w-auto h-12 md:h-16 object-contain transition-transform duration-500 group-hover:scale-105"
+              />
               <span className="font-serif uppercase tracking-[0.15em] font-bold text-[#FFFDF8] text-2xl md:text-3xl">
                 Pixelbees
                 <span className="block text-[12px] tracking-[0.3em] font-sans font-normal text-[#C5A059] mt-1">Photography</span>
