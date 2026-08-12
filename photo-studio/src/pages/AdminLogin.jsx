@@ -117,6 +117,15 @@ const AdminLogin = () => {
           </form>
         </div>
 
+        {/* Admin Credentials Hint */}
+        <div className="mt-6 flex justify-center">
+          <div className="bg-white/[0.02] border border-white/[0.05] rounded-lg px-6 py-3 backdrop-blur-sm shadow-lg text-center">
+            <p className="text-[10px] text-[#C5A059] uppercase tracking-[0.2em] font-bold mb-1">Demo Credentials</p>
+            <p className="text-xs text-[#FFFDF8]/70">Username: <span className="text-[#FFFDF8] font-bold tracking-wider">admin</span></p>
+            <p className="text-xs text-[#FFFDF8]/70">Password: <span className="text-[#FFFDF8] font-bold tracking-wider">pixelbees2026</span></p>
+          </div>
+        </div>
+
         {/* Back to Site */}
         <div className="flex justify-center mt-10">
           <button 
