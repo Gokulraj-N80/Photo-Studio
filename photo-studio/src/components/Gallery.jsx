@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -174,12 +175,12 @@ const OurWorks = () => {
 
         {/* CTA */}
         <div className="text-center mt-14">
-          <a
-            href="#booking"
+          <Link
+            to="/#booking"
             className="inline-flex items-center gap-3 bg-transparent text-[#FFFDF8] hover:text-[#C5A059] text-[11px] font-bold tracking-[0.2em] uppercase border border-[#FFFDF8]/20 hover:border-[#C5A059] px-10 py-4 rounded-full transition-all duration-300"
           >
             Book Your Session <span className="text-base">→</span>
-          </a>
+          </Link>
         </div>
 
       </div>
