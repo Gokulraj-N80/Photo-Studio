@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 const servicesData = [
   {
     id: "wedding",
-    image: "/images/wedding/wedding-27.jpg",
+    image: "/images/wedding/wedding-17.jpg",
     title: "Wedding Photography",
     desc: "Cinematic documentation of your most important day, capturing every vow, tear, and joyful moment.",
   },
@@ -37,7 +37,7 @@ const servicesData = [
   },
   {
     id: "fashion",
-    image: "/images/portraits/portraits-9.jpg",
+    image: "/images/wedding/wedding-10.jpg",
     title: "Fashion Photography",
     desc: "High-end commercial and fashion shoots focused on aesthetic perfection and brand identity.",
   }

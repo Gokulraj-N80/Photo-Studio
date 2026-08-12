@@ -20,23 +20,23 @@ const About = () => {
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         
-        /* ── 1. CINEMATIC IMAGE REVEAL ── */
+        /* ── 1. SCROLL-SCRUBBED CINEMATIC REVEAL ── */
         gsap.fromTo(
           '.about-image-wrapper',
-          { clipPath: 'inset(100% 0% 0% 0%)', scale: 0.9, filter: 'grayscale(100%) blur(10px)' },
+          { clipPath: 'inset(45% 15% 45% 15%)', filter: 'grayscale(100%) blur(10px)' },
           {
-            clipPath: 'inset(0% 0% 0% 0%)', scale: 1, filter: 'grayscale(0%) blur(0px)',
-            duration: 1.8, ease: 'power4.inOut',
-            scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
+            clipPath: 'inset(0% 0% 0% 0%)', filter: 'grayscale(0%) blur(0px)',
+            ease: 'none',
+            scrollTrigger: { trigger: sectionRef.current, start: 'top bottom', end: 'center center', scrub: 1 }
           }
         );
 
         /* ── 2. IMAGE INNER PARALLAX (Scrubbed) ── */
         gsap.fromTo(
           imgInnerRef.current,
-          { scale: 1.15, y: -30 },
+          { scale: 1.25, y: -40 },
           {
-            scale: 1, y: 30,
+            scale: 1, y: 40,
             ease: 'none',
             scrollTrigger: { trigger: sectionRef.current, start: 'top bottom', end: 'bottom top', scrub: 1 }
           }
@@ -50,24 +50,24 @@ const About = () => {
             scrollTrigger: { trigger: sectionRef.current, start: 'top 60%' } }
         );
 
-        /* ── 4. TEXT BLOCKS — Elegant Wipe Reveal ── */
+        /* ── 4. TEXT BLOCKS — Blur Reveal ── */
         gsap.fromTo(
           '.about-text',
-          { y: 30, opacity: 0 },
+          { y: 40, opacity: 0, filter: 'blur(8px)' },
           {
-            y: 0, opacity: 1,
-            duration: 1.2, stagger: 0.2, ease: 'power3.out',
+            y: 0, opacity: 1, filter: 'blur(0px)',
+            duration: 1.4, stagger: 0.15, ease: 'power3.out',
             scrollTrigger: { trigger: '.about-text-container', start: 'top 80%' },
           }
         );
 
-        /* ── 4b. HEADING REVEAL ── */
+        /* ── 4b. HEADING REVEAL — Kinetic ── */
         gsap.fromTo(
           '.about-heading-line',
-          { y: 100, opacity: 0 },
+          { y: 100, opacity: 0, filter: 'blur(10px)', rotate: 3 },
           {
-            y: 0, opacity: 1,
-            duration: 1.2, stagger: 0.15, ease: 'power4.out',
+            y: 0, opacity: 1, filter: 'blur(0px)', rotate: 0,
+            duration: 1.4, stagger: 0.2, ease: 'power4.out',
             scrollTrigger: { trigger: '.about-text-container', start: 'top 80%' }
           }
         );
@@ -90,15 +90,6 @@ const About = () => {
             scrollTrigger: { trigger: '.stat-grid', start: 'top 95%' } }
         );
 
-        /* ── 6. CONTINUOUS FLOATING ANIMATION ── */
-        gsap.to('.about-image-wrapper', {
-          y: -12,
-          duration: 4,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: -1
-        });
-
       });
 
       /* Reduced-motion fallback */
@@ -111,24 +102,8 @@ const About = () => {
 
     }, sectionRef);
 
-    /* ── 9. MAGNETIC HOVER on image block ── */
-    const el = imageRef.current;
-    const handleMove = (e) => {
-      const rect = el.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width  - 0.5) * 18;
-      const y = ((e.clientY - rect.top)  / rect.height - 0.5) * 18;
-      gsap.to(el, { rotateY: x, rotateX: -y, duration: 0.4, ease: 'power2.out', transformPerspective: 800 });
-    };
-    const handleLeave = () => {
-      gsap.to(el, { rotateY: 0, rotateX: 0, duration: 0.7, ease: 'elastic.out(1,0.5)' });
-    };
-    el.addEventListener('mousemove', handleMove);
-    el.addEventListener('mouseleave', handleLeave);
-
     return () => {
       ctx.revert();
-      el.removeEventListener('mousemove', handleMove);
-      el.removeEventListener('mouseleave', handleLeave);
     };
   }, []);
 
