@@ -7,37 +7,37 @@ gsap.registerPlugin(ScrollTrigger);
 const servicesData = [
   {
     id: "wedding",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/wedding/wedding-27.jpg",
     title: "Wedding Photography",
     desc: "Cinematic documentation of your most important day, capturing every vow, tear, and joyful moment.",
   },
   {
     id: "pre-wedding",
-    image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/wedding/wedding-30.jpg",
     title: "Pre-Wedding",
     desc: "Artistic and conceptual storytelling of your journey before the big day, set in beautiful locations.",
   },
   {
     id: "portrait",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/portraits/portraits-10.jpg",
     title: "Portrait Photography",
     desc: "Editorial-style portraits that bring out your authentic self with striking lighting and composition.",
   },
   {
     id: "event",
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/events/events-6.jpg",
     title: "Event Photography",
     desc: "Unobtrusive coverage of your celebrations, ensuring every important memory is preserved.",
   },
   {
     id: "candid",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/kids/kids-4.jpg",
     title: "Candid Photography",
     desc: "Catching those raw, unscripted emotions and fleeting interactions that define true stories.",
   },
   {
     id: "fashion",
-    image: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/portraits/portraits-9.jpg",
     title: "Fashion Photography",
     desc: "High-end commercial and fashion shoots focused on aesthetic perfection and brand identity.",
   }
@@ -85,7 +85,7 @@ const ServiceCard = ({ svc, onBook }) => {
 
       {/* Front face (Image) */}
       <div ref={frontRef} className="absolute inset-0 transform-style-3d origin-bottom z-10 bg-[#12100E] rounded-sm shadow-lg overflow-hidden">
-        <img src={svc.image} className="w-full h-full object-cover opacity-80" alt={svc.title} />
+        <img src={svc.image} className="w-full h-full object-cover object-center" alt={svc.title} />
         <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-transparent to-transparent flex items-end justify-center pb-4 md:pb-8 pointer-events-none px-2 md:px-4 text-center">
           <h4 className="text-[1.1rem] leading-tight md:text-4xl font-serif text-[#FFFDF8] font-bold drop-shadow-md">{svc.title}</h4>
         </div>

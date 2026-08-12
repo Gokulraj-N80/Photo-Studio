@@ -64,7 +64,7 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
         {/* Left Side - Image */}
         <div className="relative min-h-[200px] md:min-h-[300px]">
           <img 
-            src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=900&auto=format&fit=crop" 
+            src="/images/wedding/wedding-32.jpg" 
             alt="Booking Inspiration" 
             className="absolute inset-0 w-full h-full object-cover"
           />

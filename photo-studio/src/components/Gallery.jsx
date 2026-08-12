@@ -7,16 +7,26 @@ gsap.registerPlugin(ScrollTrigger);
 const filters = ["ALL", "WEDDINGS", "PORTRAITS", "EVENTS", "PRE-WEDDING", "CANDID", "FASHION"];
 
 const works = [
-  // Row 1 — 2x2 hero + 1x1 + 1x1
-  { src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1800&auto=format&fit=crop", category: "WEDDINGS",    title: "The Vows",         subtitle: "Sacred moments, eternal bonds",          span: "col-span-2 row-span-2" },
-  { src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=900&auto=format&fit=crop",  category: "PORTRAITS",   title: "Luminous",         subtitle: "Light carved from within",               span: "col-span-1 row-span-1" },
-  { src: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=900&auto=format&fit=crop",  category: "FASHION",     title: "Editorial",        subtitle: "Bold. Expressive. Fearless.",            span: "col-span-1 row-span-1" },
-  // Row 2 — 1x2 tall + 1x1 + 1x1
-  { src: "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=900&auto=format&fit=crop",  category: "PRE-WEDDING", title: "Love Story",       subtitle: "Before the forever begins",              span: "col-span-1 row-span-2" },
-  { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=900&auto=format&fit=crop",  category: "EVENTS",      title: "Celebration",      subtitle: "Every detail remembered",                span: "col-span-1 row-span-1" },
-  { src: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=900&auto=format&fit=crop",  category: "CANDID",      title: "Unscripted Joy",   subtitle: "Real moments, real feelings",            span: "col-span-1 row-span-1" },
-  { src: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=900&auto=format&fit=crop",  category: "WEDDINGS",    title: "First Look",       subtitle: "The breath before forever",              span: "col-span-1 row-span-1" },
-  { src: "https://images.unsplash.com/photo-1492446845049-9c50cc313f00?q=80&w=900&auto=format&fit=crop",  category: "PORTRAITS",   title: "Solitude",         subtitle: "A quiet conversation with light",        span: "col-span-1 row-span-1" }
+  { src: "/images/wedding/wedding-28.jpg", category: "WEDDINGS", title: "The Vows", subtitle: "Sacred moments, eternal bonds" },
+  { src: "/images/portraits/portraits-8.jpg", category: "PORTRAITS", title: "Luminous", subtitle: "Light carved from within" },
+  { src: "/images/portraits/portraits-12.jpg", category: "FASHION", title: "Editorial", subtitle: "Bold. Expressive. Fearless." },
+  { src: "/images/wedding/wedding-30.jpg", category: "PRE-WEDDING", title: "Love Story", subtitle: "Before the forever begins" },
+  { src: "/images/events/events-6.jpg", category: "EVENTS", title: "Celebration", subtitle: "Every detail remembered" },
+  { src: "/images/kids/kids-4.jpg", category: "CANDID", title: "Unscripted Joy", subtitle: "Real moments, real feelings" },
+  { src: "/images/wedding/wedding-2.jpg", category: "WEDDINGS", title: "First Look", subtitle: "The breath before forever" },
+  { src: "/images/portraits/portraits-11.jpg", category: "PORTRAITS", title: "Solitude", subtitle: "A quiet conversation with light" },
+  { src: "/images/wedding/wedding-27.jpg", category: "WEDDINGS", title: "Tradition", subtitle: "Rooted in love and custom" },
+  { src: "/images/wedding/wedding-24.jpg", category: "PRE-WEDDING", title: "Elegance", subtitle: "A vision of grace" },
+  { src: "/images/kids/kids-1.jpg", category: "CANDID", title: "Innocence", subtitle: "The purest joy" },
+  { src: "/images/kids/kids-5.jpg", category: "CANDID", title: "Playful", subtitle: "Lost in the moment" },
+  { src: "/images/festivals/festivals-1.jpg", category: "EVENTS", title: "Festive Joy", subtitle: "Lights, love, laughter" },
+  { src: "/images/portraits/portraits-5.jpg", category: "FASHION", title: "Vogue", subtitle: "Striking and fearless" },
+  { src: "/images/events/events-5.jpg", category: "EVENTS", title: "The Crowd", subtitle: "Energy of the celebration" },
+  { src: "/images/wedding/wedding-23.jpg", category: "WEDDINGS", title: "New Beginnings", subtitle: "The start of a family" },
+  { src: "/images/wedding/wedding-34.jpg", category: "WEDDINGS", title: "Expression", subtitle: "Art and passion" },
+  { src: "/images/portraits/portraits-6.webp", category: "PORTRAITS", title: "Glow", subtitle: "Radiant beauty" },
+  { src: "/images/others/others-13.jpg", category: "PORTRAITS", title: "Imagination", subtitle: "Creating reality" },
+  { src: "/images/wedding/wedding-25.webp", category: "WEDDINGS", title: "Joy", subtitle: "Smiles that last forever" },
 ];
 
 
@@ -85,25 +95,7 @@ const OurWorks = () => {
         );
       });
 
-      /* Image Parallax */
-      gsap.utils.toArray('.work-card').forEach(card => {
-        const wrapper = card.querySelector('.parallax-wrapper');
-        if (wrapper) {
-          gsap.fromTo(wrapper,
-            { yPercent: -15 },
-            {
-              yPercent: 15,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: card,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true
-              }
-            }
-          );
-        }
-      });
+      /* Images are now Masonry, removed Parallax wrapper to avoid cropping */
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -113,23 +105,22 @@ const OurWorks = () => {
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="works-header flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
-          <div>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-[1px] bg-[#C5A059]" />
-              <h2 className="text-xs font-bold tracking-[0.25em] uppercase text-[#C5A059]">OUR WORKS</h2>
-            </div>
-            <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#FFFDF8] leading-tight">
-              Stories We've<br className="hidden md:block" /> Had the Honor to Tell.
-            </h3>
+        <div className="works-header flex flex-col items-center text-center justify-center mb-14 gap-6">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-12 h-[1px] bg-[#C5A059]" />
+            <h2 className="text-xs font-bold tracking-[0.25em] uppercase text-[#C5A059]">OUR WORKS</h2>
+            <div className="w-12 h-[1px] bg-[#C5A059]" />
           </div>
-          <p className="text-[#FFFDF8]/50 text-sm font-light max-w-xs leading-relaxed text-right hidden md:block">
-            Every image is a chapter.<br />Every session, a complete story.
+          <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#FFFDF8] leading-tight">
+            Stories We've Had the Honor to Tell.
+          </h3>
+          <p className="text-[#FFFDF8]/50 text-sm font-light max-w-md leading-relaxed text-center hidden md:block">
+            Every image is a chapter. Every session, a complete story.
           </p>
         </div>
 
         {/* Filter Pills */}
-        <div className="filters-row flex flex-wrap gap-3 mb-12">
+        <div className="filters-row flex flex-wrap justify-center gap-3 mb-12">
           {filters.map(f => (
             <button
               key={f}
@@ -145,24 +136,20 @@ const OurWorks = () => {
           ))}
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 auto-rows-[280px] gap-4">
+        {/* Masonry Grid */}
+        <div className="masonry-grid">
           {filteredWorks.map((work, idx) => (
             <div
-              key={`${work.title}-${activeFilter}`}
-              className={`work-card group relative overflow-hidden rounded-sm cursor-pointer ${work.span}`}
+              key={`${work.title}-${activeFilter}-${idx}`}
+              className={`work-card group relative overflow-hidden rounded-sm cursor-pointer masonry-item`}
             >
-              {/* Image with Parallax Wrapper */}
-              <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="parallax-wrapper absolute w-full h-[130%] -top-[15%]">
-                  <img
-                    src={work.src}
-                    alt={work.title}
-                    className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-[1.15]"
-                    style={{ willChange: 'transform' }}
-                  />
-                </div>
-              </div>
+              {/* Uncropped Image */}
+              <img
+                src={work.src}
+                alt={work.title}
+                className="w-full h-auto block transition-transform duration-[2000ms] ease-out group-hover:scale-[1.05]"
+                style={{ willChange: 'transform' }}
+              />
 
               {/* Gradient overlay always-on */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#12100E]/80 via-[#12100E]/10 to-transparent" />

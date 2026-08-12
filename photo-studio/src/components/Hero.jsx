@@ -91,20 +91,14 @@ const Hero = () => {
         {/* Main Image */}
         <img 
           ref={bgRef}
-          src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?q=80&w=2000&auto=format&fit=crop" 
+          src="/images/portraits/portraits-8.jpg" 
           alt="Luxury Cinematic Wedding Photography" 
           className="absolute inset-0 w-full h-full object-cover origin-center"
           style={{ opacity: 1, scale: 1.08 }}
         />
         
-        {/* Gradients & Vignette - Darkened the top gradient for better contrast */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(to bottom, rgba(18, 16, 14, 0.7) 0%, rgba(18, 16, 14, 0.3) 40%, rgba(18, 16, 14, 0.85) 100%)`,
-          }}
-        />
-        <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(18,16,14,0.7)]"></div>
+        {/* Slightly dim overlay for text readability, as requested */}
+        <div className="absolute inset-0 bg-black/20" />
         
         {/* Film Grain */}
         <div 
@@ -133,7 +127,7 @@ const Hero = () => {
           </h1>
           
           {/* Description */}
-          <p className="hero-desc opacity-0 font-sans text-[#FFFDF8]/90 text-base md:text-xl leading-[1.5] mb-8 max-w-[500px] font-light drop-shadow-md">
+          <p className="hero-desc opacity-0 font-sans text-[#FFFDF8] text-base md:text-xl leading-[1.5] mb-8 max-w-[500px] font-medium" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.9)' }}>
             Stories captured with emotion, elegance, and cinematic beauty.
           </p>
           
@@ -142,7 +136,7 @@ const Hero = () => {
             <Link to="/portfolio" className="hero-cta opacity-0 bg-[#C5A059] hover:bg-[#D4AF37] text-[#12100E] px-8 py-3.5 rounded-full text-[11px] font-bold tracking-[0.15em] uppercase transition-all duration-300 w-full sm:w-auto shadow-xl hover:-translate-y-1 flex items-center justify-center gap-3">
               Explore Our Work <span className="text-lg leading-none">&rarr;</span>
             </Link>
-            <a href="#booking" className="hero-cta opacity-0 group bg-transparent text-[#FFFDF8] hover:text-[#C5A059] text-[11px] font-bold tracking-[0.15em] uppercase transition-colors duration-300 w-full sm:w-auto flex items-center justify-center gap-3 border border-[#FFFDF8]/30 hover:border-[#C5A059] px-8 py-3.5 rounded-full backdrop-blur-sm">
+            <a href="#booking" className="hero-cta opacity-0 group bg-[#12100E]/50 text-[#FFFDF8] hover:bg-[#12100E]/80 hover:text-[#C5A059] text-[11px] font-bold tracking-[0.15em] uppercase transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-3 border border-[#FFFDF8]/30 hover:border-[#C5A059] px-8 py-3.5 rounded-full backdrop-blur-md shadow-[0_4px_15px_rgba(0,0,0,0.5)]">
               Book a Session <span className="text-lg leading-none transform transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
             </a>
           </div>

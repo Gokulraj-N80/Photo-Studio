@@ -47,13 +47,13 @@ const HorizontalGallery = () => {
   }, []);
 
   const images = [
-    { src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=1400&auto=format&fit=crop", label: "The Vows" },
-    { src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1400&auto=format&fit=crop", label: "Golden Moment" },
-    { src: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=1400&auto=format&fit=crop", label: "Love Story" },
-    { src: "https://images.unsplash.com/photo-1529636798458-92182e662485?q=80&w=1400&auto=format&fit=crop", label: "First Dance" },
-    { src: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1400&auto=format&fit=crop", label: "Candid Joy" },
-    { src: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?q=80&w=1400&auto=format&fit=crop", label: "Editorial" },
-    { src: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1400&auto=format&fit=crop", label: "Forever Begins" },
+    { src: "/images/wedding/wedding-10.jpg", label: "Grand Ceremony" },
+    { src: "/images/wedding/wedding-11.jpg", label: "The Bride" },
+    { src: "/images/wedding/wedding-12.jpg", label: "Together" },
+    { src: "/images/wedding/wedding-17.jpg", label: "Special Day" },
+    { src: "/images/portraits/portraits-10.jpg", label: "Elegance" },
+    { src: "/images/kids/kids-6.jpg", label: "Little Smiles" },
+    { src: "/images/festivals/festivals-2.jpg", label: "Celebrations" },
   ];
 
   return (
@@ -88,7 +88,7 @@ const HorizontalGallery = () => {
                 <img
                   src={img.src}
                   alt={img.label}
-                  className="w-full h-full object-cover transition-transform duration-[1500ms] ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover object-top transition-transform duration-[1500ms] ease-out group-hover:scale-105"
                   style={{ willChange: 'transform' }}
                 />
                 {/* Overlay label */}

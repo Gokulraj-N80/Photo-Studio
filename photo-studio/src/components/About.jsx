@@ -53,11 +53,22 @@ const About = () => {
         /* ── 4. TEXT BLOCKS — Elegant Wipe Reveal ── */
         gsap.fromTo(
           '.about-text',
-          { y: 50, opacity: 0, clipPath: 'inset(0% 0% 100% 0%)' },
+          { y: 30, opacity: 0 },
           {
-            y: 0, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)',
-            duration: 1.4, stagger: 0.2, ease: 'power3.out',
+            y: 0, opacity: 1,
+            duration: 1.2, stagger: 0.2, ease: 'power3.out',
             scrollTrigger: { trigger: '.about-text-container', start: 'top 80%' },
+          }
+        );
+
+        /* ── 4b. HEADING REVEAL ── */
+        gsap.fromTo(
+          '.about-heading-line',
+          { y: 100, opacity: 0 },
+          {
+            y: 0, opacity: 1,
+            duration: 1.2, stagger: 0.15, ease: 'power4.out',
+            scrollTrigger: { trigger: '.about-text-container', start: 'top 80%' }
           }
         );
 
@@ -74,10 +85,19 @@ const About = () => {
 
         gsap.fromTo(
           '.stat-card',
-          { scale: 0.5, opacity: 0, y: 50 },
-          { scale: 1, opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: 'back.out(1.7)',
-            scrollTrigger: { trigger: '.stat-grid', start: 'top 90%' } }
+          { scale: 0.8, opacity: 0, y: 30 },
+          { scale: 1, opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: 'back.out(1.5)',
+            scrollTrigger: { trigger: '.stat-grid', start: 'top 95%' } }
         );
+
+        /* ── 6. CONTINUOUS FLOATING ANIMATION ── */
+        gsap.to('.about-image-wrapper', {
+          y: -12,
+          duration: 4,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1
+        });
 
       });
 
@@ -113,8 +133,8 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-16 md:py-32 px-4 md:px-6 w-full bg-[#FFFDF8] overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+    <section id="about" ref={sectionRef} className="py-12 md:py-24 px-4 md:px-6 w-full bg-[#FFFDF8] overflow-hidden">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         {/* ── Left — Asymmetric Image ── */}
         <div ref={imageRef} className="w-full relative px-6 md:px-0 max-w-sm mx-auto lg:max-w-none" style={{ transformStyle: 'preserve-3d' }}>
@@ -129,8 +149,8 @@ const About = () => {
           <div className="about-image-wrapper relative z-10 overflow-hidden rounded-sm aspect-[3/4] shadow-2xl">
             <img
               ref={imgInnerRef}
-              src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=900&auto=format&fit=crop"
-              alt="Authentic Emotion"
+              src="/images/portraits/portraits-11.jpg"
+              alt="Pixelbees Photography"
               className="w-full h-full object-cover"
               style={{ willChange: 'transform' }}
             />
@@ -147,8 +167,9 @@ const About = () => {
             <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059]">BEHIND THE LENS</h2>
           </div>
 
-          <h3 className="about-text text-3xl md:text-5xl font-serif font-bold text-[#12100E] mb-6 md:mb-8 leading-tight">
-            Capturing Authentic <br className="hidden md:block" />Emotions &amp; Stories.
+          <h3 className="text-3xl md:text-5xl font-serif font-bold text-[#12100E] mb-6 md:mb-8 leading-tight">
+            <span className="block overflow-hidden pb-2"><span className="about-heading-line block">Capturing Authentic</span></span>
+            <span className="block overflow-hidden"><span className="about-heading-line block">Emotions &amp; Stories.</span></span>
           </h3>
 
           <div className="about-text relative mb-12 pl-6 md:pl-10">

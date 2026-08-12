@@ -22,7 +22,11 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     if (!hash) {
+      document.documentElement.style.scrollBehavior = 'auto';
       window.scrollTo(0, 0);
+      setTimeout(() => {
+        document.documentElement.style.scrollBehavior = '';
+      }, 10);
     } else {
       setTimeout(() => {
         const id = hash.replace('#', '');
