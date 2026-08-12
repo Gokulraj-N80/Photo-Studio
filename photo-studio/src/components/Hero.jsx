@@ -34,26 +34,26 @@ const Hero = () => {
       // Heading lines
       .fromTo('.hero-line-inner',
         { y: "110%", opacity: 0 },
-        { y: "0%", opacity: 1, duration: 1.2, stagger: 0.15, ease: "power3.out" },
-        "-=0.8"
+        { y: "0%", opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out" },
+        "-=0.9"
       )
       // Description
       .fromTo('.hero-desc',
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-        "-=0.8"
+        "-=0.7"
       )
       // CTAs
       .fromTo('.hero-cta',
         { opacity: 0, y: 15 },
         { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power2.out" },
-        "-=0.8"
+        "<0.2" // Start 0.2s after the description starts, much faster!
       )
       // Scroll indicator
       .fromTo(scrollRef.current,
         { opacity: 0 },
         { opacity: 0.7, duration: 1 },
-        "-=0.5"
+        "<0.4"
       );
 
       // Scroll Indicator Bounce

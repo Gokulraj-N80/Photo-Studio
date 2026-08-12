@@ -79,6 +79,9 @@ const Navbar = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
+  const isLightPage = location.pathname === '/services' || location.pathname === '/contact';
+  const useDarkText = isLightPage && !isScrolled;
+
   return (
     <nav 
       ref={navRef}
@@ -95,7 +98,7 @@ const Navbar = () => {
             alt="Pixelbees Photography Logo" 
             className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 ${isScrolled ? 'h-10' : 'h-14'}`}
           />
-          <span className={`font-serif uppercase tracking-[0.15em] font-bold transition-all duration-500 hidden sm:block ${isScrolled ? 'text-[#FFFDF8] text-sm' : 'text-[#FFFDF8] text-base'}`}>
+          <span className={`font-serif uppercase tracking-[0.15em] font-bold transition-all duration-500 hidden sm:block ${isScrolled ? 'text-[#FFFDF8] text-sm' : (useDarkText ? 'text-[#12100E] text-base' : 'text-[#FFFDF8] text-base')}`}>
             Pixelbees
             <span className="block text-[8px] tracking-[0.3em] font-sans font-normal text-[#C5A059] -mt-1">Photography</span>
           </span>
@@ -112,10 +115,10 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-champagneGold transition-colors relative group py-2 ${isActive ? 'text-champagneGold' : 'text-softWhite'}`}
+                  className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : (useDarkText ? 'text-[#12100E]' : 'text-[#FFFDF8]')}`}
                 >
                   {link.name}
-                  <span className={`absolute bottom-0 left-0 h-[1px] bg-champagneGold transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                  <span className={`absolute bottom-0 left-0 h-[1px] bg-[#C5A059] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                 </a>
               );
             }
@@ -124,7 +127,7 @@ const Navbar = () => {
               <Link 
                 key={link.name}
                 to={link.href} 
-                className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-champagneGold transition-colors relative group py-2 ${isActive ? 'text-champagneGold' : 'text-softWhite'}`}
+                className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : (useDarkText ? 'text-[#12100E]' : 'text-[#FFFDF8]')}`}
               >
                 {link.name}
                 <span className={`absolute bottom-0 left-0 h-[1px] bg-champagneGold transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
@@ -139,17 +142,17 @@ const Navbar = () => {
 
         {/* Mobile Navbar Controls */}
         <div className="md:hidden flex items-center gap-4 z-50">
-          <Link to="/" className={`flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 ${isScrolled ? 'border-[#FFFDF8]/20 bg-[#FFFDF8]/5 text-[#FFFDF8] hover:bg-[#C5A059] hover:border-[#C5A059]' : 'border-[#12100E]/20 bg-black/10 text-[#FFFDF8] hover:bg-[#C5A059] hover:border-[#C5A059]'}`}>
+          <Link to="/" className={`flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 ${isScrolled ? 'border-[#FFFDF8]/20 bg-[#FFFDF8]/5 text-[#FFFDF8] hover:bg-[#C5A059] hover:border-[#C5A059]' : (useDarkText ? 'border-[#12100E]/20 bg-black/5 text-[#12100E] hover:bg-[#C5A059] hover:border-[#C5A059] hover:text-[#12100E]' : 'border-[#12100E]/20 bg-black/10 text-[#FFFDF8] hover:bg-[#C5A059] hover:border-[#C5A059]')}`}>
             <Home className="w-4 h-4" />
           </Link>
           
           <button 
-            className={`flex flex-col justify-center items-center w-10 h-10 rounded-full border transition-all duration-300 relative ${isScrolled ? 'border-[#FFFDF8]/20 bg-[#FFFDF8]/5 hover:bg-[#C5A059] hover:border-[#C5A059]' : 'border-[#12100E]/20 bg-black/10 hover:bg-[#C5A059] hover:border-[#C5A059]'}`}
+            className={`flex flex-col justify-center items-center w-10 h-10 rounded-full border transition-all duration-300 relative ${isScrolled ? 'border-[#FFFDF8]/20 bg-[#FFFDF8]/5 hover:bg-[#C5A059] hover:border-[#C5A059]' : (useDarkText ? 'border-[#12100E]/20 bg-black/5 hover:bg-[#C5A059] hover:border-[#C5A059]' : 'border-[#12100E]/20 bg-black/10 hover:bg-[#C5A059] hover:border-[#C5A059]')}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] rotate-45' : 'bg-[#FFFDF8] -translate-y-[5px]'}`}></span>
-            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] opacity-0' : 'bg-[#FFFDF8]'}`}></span>
-            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] -rotate-45' : 'bg-[#FFFDF8] translate-y-[5px]'}`}></span>
+            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] rotate-45' : (useDarkText ? 'bg-[#12100E] -translate-y-[5px]' : 'bg-[#FFFDF8] -translate-y-[5px]')}`}></span>
+            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] opacity-0' : (useDarkText ? 'bg-[#12100E]' : 'bg-[#FFFDF8]')}`}></span>
+            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] -rotate-45' : (useDarkText ? 'bg-[#12100E] translate-y-[5px]' : 'bg-[#FFFDF8] translate-y-[5px]')}`}></span>
           </button>
         </div>
       </div>

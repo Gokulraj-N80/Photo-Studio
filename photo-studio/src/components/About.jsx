@@ -20,25 +20,25 @@ const About = () => {
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         
-        /* ── 1. SCROLL-SCRUBBED CINEMATIC REVEAL ── */
+        /* ── 1. ELEGANT MASK REVEAL ── */
         gsap.fromTo(
           '.about-image-wrapper',
-          { clipPath: 'inset(45% 15% 45% 15%)', filter: 'grayscale(100%) blur(10px)' },
+          { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)', scale: 1.05 },
           {
-            clipPath: 'inset(0% 0% 0% 0%)', filter: 'grayscale(0%) blur(0px)',
-            ease: 'none',
-            scrollTrigger: { trigger: sectionRef.current, start: 'top bottom', end: 'center center', scrub: 1 }
+            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', scale: 1,
+            duration: 1.5, ease: 'power3.inOut',
+            scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
           }
         );
 
-        /* ── 2. IMAGE INNER PARALLAX (Scrubbed) ── */
+        /* ── 2. IMAGE INNER ZOOM ── */
         gsap.fromTo(
           imgInnerRef.current,
-          { scale: 1.25, y: -40 },
+          { scale: 1.2 },
           {
-            scale: 1, y: 40,
-            ease: 'none',
-            scrollTrigger: { trigger: sectionRef.current, start: 'top bottom', end: 'bottom top', scrub: 1 }
+            scale: 1,
+            duration: 1.5, ease: 'power3.inOut',
+            scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
           }
         );
 
@@ -50,24 +50,24 @@ const About = () => {
             scrollTrigger: { trigger: sectionRef.current, start: 'top 60%' } }
         );
 
-        /* ── 4. TEXT BLOCKS — Blur Reveal ── */
+        /* ── 4. TEXT BLOCKS — Fade Up ── */
         gsap.fromTo(
           '.about-text',
-          { y: 40, opacity: 0, filter: 'blur(8px)' },
+          { y: 30, opacity: 0 },
           {
-            y: 0, opacity: 1, filter: 'blur(0px)',
-            duration: 1.4, stagger: 0.15, ease: 'power3.out',
+            y: 0, opacity: 1,
+            duration: 1.2, stagger: 0.15, ease: 'power2.out',
             scrollTrigger: { trigger: '.about-text-container', start: 'top 80%' },
           }
         );
 
-        /* ── 4b. HEADING REVEAL — Kinetic ── */
+        /* ── 4b. HEADING REVEAL ── */
         gsap.fromTo(
           '.about-heading-line',
-          { y: 100, opacity: 0, filter: 'blur(10px)', rotate: 3 },
+          { y: 80, opacity: 0, rotate: 2 },
           {
-            y: 0, opacity: 1, filter: 'blur(0px)', rotate: 0,
-            duration: 1.4, stagger: 0.2, ease: 'power4.out',
+            y: 0, opacity: 1, rotate: 0,
+            duration: 1.2, stagger: 0.15, ease: 'power3.out',
             scrollTrigger: { trigger: '.about-text-container', start: 'top 80%' }
           }
         );

@@ -10,9 +10,9 @@ const PortfolioPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#12100E] selection:bg-[#C5A059] selection:text-[#12100E]">
+    <div className="min-h-screen bg-[#12100E] selection:bg-[#C5A059] selection:text-[#12100E] flex flex-col">
       <Navbar />
-      <div className="pt-24">
+      <div className="flex-grow pt-4 md:pt-8">
         <Gallery />
         <HorizontalGallery />
       </div>
