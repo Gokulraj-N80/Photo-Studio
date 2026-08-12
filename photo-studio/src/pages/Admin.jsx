@@ -18,7 +18,7 @@ const Admin = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('adminToken');
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const response = await fetch('https://photo-studio-1nvn.onrender.com/api/bookings', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -43,7 +43,7 @@ const Admin = () => {
     
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await fetch(`http://localhost:5000/api/bookings/${id}`, {
+      const response = await fetch(`https://photo-studio-1nvn.onrender.com/api/bookings/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -66,7 +66,7 @@ const Admin = () => {
   const confirmBooking = async (id) => {
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await fetch(`http://localhost:5000/api/bookings/${id}/confirm`, {
+      const response = await fetch(`https://photo-studio-1nvn.onrender.com/api/bookings/${id}/confirm`, {
         method: 'PATCH',
         headers: { 'Authorization': `Bearer ${token}` }
       });
