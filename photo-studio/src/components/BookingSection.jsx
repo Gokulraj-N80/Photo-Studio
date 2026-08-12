@@ -62,11 +62,11 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 bg-[#FFFDF8] rounded-sm overflow-hidden shadow-2xl">
         
         {/* Left Side - Image */}
-        <div className="relative min-h-[200px] md:min-h-[300px]">
+        <div className="relative min-h-[250px] md:min-h-[400px]">
           <img 
             src="/images/wedding/wedding-32.jpg" 
             alt="Booking Inspiration" 
-            className="absolute inset-0 w-full h-full object-cover object-top md:object-center"
+            className="absolute inset-0 w-full h-full object-cover object-[center_25%] md:object-center"
           />
           <div className="absolute inset-0 bg-[#12100E]/20"></div>
           <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 text-[#FFFDF8]">
