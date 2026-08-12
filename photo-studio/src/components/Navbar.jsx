@@ -79,8 +79,8 @@ const Navbar = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
-  const isLightPage = false; // Background is actually dark on these pages
-  const useDarkText = false;
+  const isLightPage = location.pathname === '/services' || location.pathname === '/contact';
+  const useDarkText = isLightPage && !isScrolled;
 
   return (
     <nav 
@@ -98,7 +98,7 @@ const Navbar = () => {
             alt="Pixelbees Photography Logo" 
             className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 ${isScrolled ? 'h-10' : 'h-14'}`}
           />
-          <span className={`font-serif uppercase tracking-[0.15em] font-bold transition-all duration-500 hidden sm:block ${isScrolled ? 'text-[#FFFDF8] text-sm' : 'text-[#FFFDF8] text-base'}`}>
+          <span className={`font-serif uppercase tracking-[0.15em] font-bold transition-all duration-500 hidden sm:block ${isScrolled ? 'text-[#FFFDF8] text-sm' : (useDarkText ? 'text-[#12100E] text-base' : 'text-[#FFFDF8] text-base')}`}>
             Pixelbees
             <span className="block text-[8px] tracking-[0.3em] font-sans font-normal text-[#C5A059] -mt-1">Photography</span>
           </span>
@@ -115,7 +115,7 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : 'text-[#FFFDF8]'}`}
+                  className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : (useDarkText ? 'text-[#12100E]' : 'text-[#FFFDF8]')}`}
                 >
                   {link.name}
                   <span className={`absolute bottom-0 left-0 h-[1px] bg-[#C5A059] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
@@ -127,7 +127,7 @@ const Navbar = () => {
               <Link 
                 key={link.name}
                 to={link.href} 
-                className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : 'text-[#FFFDF8]'}`}
+                className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : (useDarkText ? 'text-[#12100E]' : 'text-[#FFFDF8]')}`}
               >
                 {link.name}
                 <span className={`absolute bottom-0 left-0 h-[1px] bg-champagneGold transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>

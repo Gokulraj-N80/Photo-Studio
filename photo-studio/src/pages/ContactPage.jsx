@@ -9,9 +9,9 @@ const ContactPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#12100E] selection:bg-[#C5A059] selection:text-[#12100E] flex flex-col">
+    <div className="min-h-screen bg-[#FFFDF8] selection:bg-[#C5A059] selection:text-[#12100E] flex flex-col">
       <Navbar />
-      <div className="flex-grow pt-4 md:pt-8">
+      <div className="flex-grow">
         <Contact />
       </div>
       <Footer />
