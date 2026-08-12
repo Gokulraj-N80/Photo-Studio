@@ -102,7 +102,7 @@ const OurWorks = () => {
   }, []);
 
   return (
-    <section id="gallery" ref={sectionRef} className="py-24 md:py-32 px-6 w-full bg-[#12100E]">
+    <section id="gallery" ref={sectionRef} className="py-12 md:py-16 px-6 w-full bg-[#12100E]">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}

@@ -22,38 +22,38 @@ const Hero = () => {
       
       // Image Entrance - Snaps down from 1.08 simulating the camera focal settle
       tl.fromTo(bgRef.current,
-        { opacity: 1, scale: 1.08 },
-        { scale: 1, duration: 1.5, ease: "power2.out" }
+        { opacity: 1, scale: 1.04 },
+        { scale: 1, duration: 1, ease: "power2.out" }
       )
       // Eyebrow
       .fromTo('.hero-eyebrow',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 1.2, ease: "power2.out" },
-        "-=0.8"
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+        "-=0.7"
       )
       // Heading lines
       .fromTo('.hero-line-inner',
         { y: "110%", opacity: 0 },
-        { y: "0%", opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out" },
-        "-=0.9"
+        { y: "0%", opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" },
+        "-=0.6"
       )
       // Description
       .fromTo('.hero-desc',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-        "-=0.7"
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" },
+        "-=0.6"
       )
       // CTAs
       .fromTo('.hero-cta',
-        { opacity: 0, y: 15 },
-        { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power2.out" },
-        "<0.2" // Start 0.2s after the description starts, much faster!
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" },
+        "-=0.5"
       )
       // Scroll indicator
       .fromTo(scrollRef.current,
         { opacity: 0 },
-        { opacity: 0.7, duration: 1 },
-        "<0.4"
+        { opacity: 0.7, duration: 0.7 },
+        "-=0.4"
       );
 
       // Scroll Indicator Bounce

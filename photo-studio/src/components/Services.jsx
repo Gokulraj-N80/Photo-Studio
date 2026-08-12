@@ -133,7 +133,7 @@ const Services = ({ onBook }) => {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="py-16 md:py-32 px-4 md:px-6 w-full bg-[#FFFDF8]">
+    <section id="services" ref={sectionRef} className="py-12 md:py-16 px-4 md:px-6 w-full bg-[#FFFDF8]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 md:mb-20">
           <h2 className="services-header-text text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059] mb-4">OUR EXPERTISE</h2>

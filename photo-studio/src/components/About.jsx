@@ -20,13 +20,13 @@ const About = () => {
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         
-        /* ── 1. ELEGANT MASK REVEAL ── */
+        /* ── 1. ELEGANT IMAGE REVEAL ── */
         gsap.fromTo(
           '.about-image-wrapper',
-          { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)', scale: 1.05 },
+          { opacity: 0, y: 50, scale: 1.05 },
           {
-            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', scale: 1,
-            duration: 1.5, ease: 'power3.inOut',
+            opacity: 1, y: 0, scale: 1,
+            duration: 1.5, ease: 'power3.out',
             scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
           }
         );
@@ -34,10 +34,10 @@ const About = () => {
         /* ── 2. IMAGE INNER ZOOM ── */
         gsap.fromTo(
           imgInnerRef.current,
-          { scale: 1.2 },
+          { scale: 1.15 },
           {
             scale: 1,
-            duration: 1.5, ease: 'power3.inOut',
+            duration: 1.5, ease: 'power3.out',
             scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
           }
         );
@@ -108,7 +108,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-12 md:py-24 px-4 md:px-6 w-full bg-[#FFFDF8] overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-8 md:py-16 px-4 md:px-6 w-full bg-[#FFFDF8] overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         {/* ── Left — Asymmetric Image ── */}
@@ -164,7 +164,7 @@ const About = () => {
               { ref: counterRef2, target: 500,  label: 'Happy Clients' },
               { ref: counterRef3, target: 10,   label: 'Years of Experience', span: 'col-span-2 md:col-span-1' },
             ].map(({ ref, label, span = '' }) => (
-              <div key={label} className={`stat-card about-text ${span}`}>
+              <div key={label} className={`stat-card ${span}`}>
                 <span className="block text-[#C5A059] text-4xl font-serif font-bold mb-2">
                   <span ref={ref}>0</span>+
                 </span>
