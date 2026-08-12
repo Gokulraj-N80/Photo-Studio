@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MapPin, Phone, Mail } from 'lucide-react';
@@ -8,6 +8,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
   const footerRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = (e, href) => {
+    if (href.includes('#')) {
+      e.preventDefault();
+      
+      const [path, hash] = href.split('#');
+      const targetHash = '#' + hash;
+      const targetPath = path || '/';
+
+      if (location.pathname === targetPath) {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          window.history.pushState(null, '', href);
+        }
+      } else {
+        navigate(href);
+      }
+    }
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -64,7 +86,7 @@ const Footer = () => {
             <h4 className="text-sm font-bold tracking-[0.2em] text-[#C5A059] uppercase mb-8">Quick Links</h4>
             <ul className="flex flex-col gap-4">
               <li><Link to="/" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors inline-block">Home</Link></li>
-              <li><a href="/#about" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors inline-block">About Us</a></li>
+              <li><a href="/#about" onClick={(e) => handleNavClick(e, '/#about')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors inline-block">About Us</a></li>
               <li><Link to="/services" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors inline-block">Services</Link></li>
               <li><Link to="/portfolio" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors inline-block">Our Works</Link></li>
               <li><Link to="/contact" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-base transition-colors inline-block">Contact</Link></li>

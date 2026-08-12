@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Home, X } from 'lucide-react';
 import gsap from 'gsap';
 
@@ -46,6 +46,29 @@ const Navbar = () => {
   }, []);
 
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = (e, href) => {
+    if (href.includes('#')) {
+      e.preventDefault();
+      
+      const [path, hash] = href.split('#');
+      const targetHash = '#' + hash;
+      const targetPath = path || '/';
+
+      if (location.pathname === targetPath) {
+        // Already on the target page, scroll smoothly
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          window.history.pushState(null, '', href);
+        }
+      } else {
+        // Navigate to the new page with the hash
+        navigate(href);
+      }
+    }
+  };
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -87,7 +110,8 @@ const Navbar = () => {
               return (
                 <a 
                   key={link.name}
-                  href={link.href} 
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-champagneGold transition-colors relative group py-2 ${isActive ? 'text-champagneGold' : 'text-softWhite'}`}
                 >
                   {link.name}
@@ -109,7 +133,7 @@ const Navbar = () => {
           })}
         </div>
         
-        <a href="/#booking" className="nav-btn hidden md:flex items-center justify-center bg-[#C5A059] hover:bg-[#D4AF37] text-[#12100E] px-6 py-[10px] rounded-full text-xs font-bold tracking-[0.15em] uppercase transition-colors duration-300 shadow-md">
+        <a href="/#booking" onClick={(e) => handleNavClick(e, '/#booking')} className="nav-btn hidden md:flex items-center justify-center bg-[#C5A059] hover:bg-[#D4AF37] text-[#12100E] px-6 py-[10px] rounded-full text-xs font-bold tracking-[0.15em] uppercase transition-colors duration-300 shadow-md">
           Book a Session
         </a>
 
@@ -145,7 +169,10 @@ const Navbar = () => {
                 <a 
                   key={link.name}
                   href={link.href} 
-                  onClick={() => setIsMobileMenuOpen(false)} 
+                  onClick={(e) => {
+                    setIsMobileMenuOpen(false);
+                    handleNavClick(e, link.href);
+                  }} 
                   className={`text-3xl font-serif text-[#FFFDF8] hover:text-[#C5A059] transition-all duration-500 ease-out ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                   style={{ transitionDelay: delay }}
                 >
@@ -169,7 +196,7 @@ const Navbar = () => {
         </div>
 
         <div className={`mt-auto relative z-10 transition-all duration-700 ease-out ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: isMobileMenuOpen ? '0.6s' : '0s' }}>
-          <a href="/#booking" onClick={() => setIsMobileMenuOpen(false)} className="block w-full bg-[#C5A059] hover:bg-[#D4AF37] text-[#12100E] px-8 py-4 rounded-sm text-xs font-bold tracking-[0.2em] uppercase text-center transition-colors">
+          <a href="/#booking" onClick={(e) => { setIsMobileMenuOpen(false); handleNavClick(e, '/#booking'); }} className="block w-full bg-[#C5A059] hover:bg-[#D4AF37] text-[#12100E] px-8 py-4 rounded-sm text-xs font-bold tracking-[0.2em] uppercase text-center transition-colors">
             Book a Session
           </a>
           <div className="flex justify-between items-center mt-8 pt-6 border-t border-[#FFFDF8]/10">
