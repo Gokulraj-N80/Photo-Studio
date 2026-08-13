@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, memo } from 'react';
 import gsap from 'gsap';
 import './DepthCarousel.css';
 
@@ -364,13 +364,25 @@ const DepthCarousel = ({
             key={i}
             className="depth-carousel__card"
             ref={el => (cardRefs.current[i] = el)}
-            style={{ width: cardWidth, height: cardHeight, borderRadius: radius }}
+            style={{ 
+              width: cardWidth, 
+              height: cardHeight, 
+              borderRadius: radius,
+              willChange: 'transform, opacity, filter'
+            }}
             aria-roledescription="slide"
             aria-label={`${i + 1} of ${count}`}
             aria-hidden={active !== i}
             onClick={() => onCardClick(i)}
           >
-            <img className="depth-carousel__img" src={item.image} alt={item.alt || ''} draggable={false} />
+            <img 
+              className="depth-carousel__img" 
+              src={item.image} 
+              alt={item.alt || ''} 
+              draggable={false} 
+              loading="lazy"
+              decoding="async"
+            />
             <span
               className="depth-carousel__tint"
               ref={el => (overlayRefs.current[i] = el)}
@@ -438,4 +450,4 @@ const DepthCarousel = ({
   );
 };
 
-export default DepthCarousel;
+export default memo(DepthCarousel);

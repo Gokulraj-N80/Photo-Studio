@@ -3,11 +3,11 @@ import DepthCarousel from './DepthCarousel';
 
 const HorizontalGallery = () => {
   const images = [
-    { image: "/images/wedding/wedding-28.jpg", alt: "The Vows" },
-    { image: "/images/portraits/portraits-8.jpg", alt: "Stunning Portraits" },
-    { image: "/images/kids/kids-4.jpg", alt: "Pure Joy" },
-    { image: "/images/wedding/wedding-24.jpg", alt: "Pre-Wedding Romance" },
-    { image: "/images/portraits/portraits-5.jpg", alt: "Fashion & Vogue" },
+    { image: "/images/wedding/wedding-28.webp", alt: "The Vows" },
+    { image: "/images/portraits/portraits-8.webp", alt: "Stunning Portraits" },
+    { image: "/images/kids/kids-4.webp", alt: "Pure Joy" },
+    { image: "/images/wedding/wedding-24.webp", alt: "Pre-Wedding Romance" },
+    { image: "/images/portraits/portraits-5.webp", alt: "Fashion & Vogue" },
   ];
 
   return (

@@ -7,37 +7,37 @@ gsap.registerPlugin(ScrollTrigger);
 const servicesData = [
   {
     id: "wedding",
-    image: "/images/wedding/wedding-17.jpg",
+    image: "/images/wedding/wedding-17.webp",
     title: "Wedding Photography",
     desc: "Cinematic documentation of your most important day, capturing every vow, tear, and joyful moment.",
   },
   {
     id: "pre-wedding",
-    image: "/images/wedding/wedding-30.jpg",
+    image: "/images/wedding/wedding-30.webp",
     title: "Pre-Wedding",
     desc: "Artistic and conceptual storytelling of your journey before the big day, set in beautiful locations.",
   },
   {
     id: "portrait",
-    image: "/images/portraits/portraits-10.jpg",
+    image: "/images/portraits/portraits-10.webp",
     title: "Portrait Photography",
     desc: "Editorial-style portraits that bring out your authentic self with striking lighting and composition.",
   },
   {
     id: "event",
-    image: "/images/events/events-6.jpg",
+    image: "/images/events/events-6.webp",
     title: "Event Photography",
     desc: "Unobtrusive coverage of your celebrations, ensuring every important memory is preserved.",
   },
   {
     id: "candid",
-    image: "/images/kids/kids-4.jpg",
+    image: "/images/kids/kids-4.webp",
     title: "Candid Photography",
     desc: "Catching those raw, unscripted emotions and fleeting interactions that define true stories.",
   },
   {
     id: "fashion",
-    image: "/images/wedding/wedding-10.jpg",
+    image: "/images/wedding/wedding-10.webp",
     title: "Fashion Photography",
     desc: "High-end commercial and fashion shoots focused on aesthetic perfection and brand identity.",
   }

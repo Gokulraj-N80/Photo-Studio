@@ -124,7 +124,7 @@ const About = () => {
           <div className="about-image-wrapper relative z-10 overflow-hidden rounded-sm aspect-[3/4] shadow-2xl">
             <img
               ref={imgInnerRef}
-              src="/images/portraits/portraits-11.jpg"
+              src="/images/portraits/portraits-11.webp"
               alt="Pixelbees Photography"
               className="w-full h-full object-cover"
               style={{ willChange: 'transform' }}

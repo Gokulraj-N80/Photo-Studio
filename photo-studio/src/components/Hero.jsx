@@ -90,7 +90,7 @@ const Hero = () => {
         {/* Main Image */}
         <img 
           ref={bgRef}
-          src="/images/portraits/portraits-8.jpg" 
+          src="/images/portraits/portraits-8.webp" 
           alt="Luxury Cinematic Wedding Photography" 
           className="absolute inset-0 w-full h-full object-cover origin-center object-[75%_top] md:object-center"
           style={{ opacity: 1, scale: 1.08 }}

@@ -6,6 +6,7 @@ import PullQuote from '../components/PullQuote';
 import Services from '../components/Services';
 import Footer from '../components/Footer';
 import BookingSection from '../components/BookingSection';
+import SEO from '../components/SEO';
 
 const Home = () => {
   const [bookingCategory, setBookingCategory] = useState("wedding");
@@ -15,6 +16,7 @@ const Home = () => {
       <div className="">
         <Navbar />
         <main>
+      <SEO title="Professional Photography Studio in Salem" description="PixelBees Photography is a professional photography studio in Salem, Tamil Nadu, offering wedding, candid, portrait, pre-wedding and event photography." path="/" />
           <Hero />
           <About />
           <PullQuote />
