@@ -25,6 +25,27 @@ const blogPosts = [
     title: "BEHIND THE FRAME",
     excerpt: "A look inside our creative process and visual language.",
     img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    date: "21 MAR 2026",
+    category: "EVENTS",
+    title: "CAPTURING THE ENERGY",
+    excerpt: "Tips on freezing the perfect high-energy moments in corporate and private events.",
+    img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    date: "14 FEB 2026",
+    category: "PRE-WEDDING",
+    title: "CHOOSING THE RIGHT LOCATION",
+    excerpt: "How the environment you select shapes the entire narrative of your pre-wedding shoot.",
+    img: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    date: "05 JAN 2026",
+    category: "EQUIPMENT",
+    title: "LENSES THAT TELL STORIES",
+    excerpt: "A breakdown of our favorite lenses and why we choose them for specific shots.",
+    img: "https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=800&auto=format&fit=crop"
   }
 ];
 
