@@ -94,25 +94,25 @@ const ServiceCard = ({ svc, onBook }) => {
       {/* Threads from the exact top corners */}
       <div 
         ref={leftThreadRef} 
-        className="absolute top-0 left-0 w-[3px] h-full bg-[#C5A059] origin-top z-20 pointer-events-none"
+        className="absolute top-0 left-0 w-[3px] h-full bg-[#007BFF] origin-top z-20 pointer-events-none"
         style={{ transform: 'scaleY(0)' }}
       >
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[50%] flex items-center justify-center">
-           <div className="absolute right-[50%] w-5 h-3 border-[3px] border-[#C5A059] rounded-full origin-right rotate-[25deg]" />
-           <div className="absolute left-[50%] w-5 h-3 border-[3px] border-[#C5A059] rounded-full origin-left -rotate-[25deg]" />
-           <div className="w-3 h-3 rounded-full bg-[#C5A059] z-10" />
+           <div className="absolute right-[50%] w-5 h-3 border-[3px] border-[#007BFF] rounded-full origin-right rotate-[25deg]" />
+           <div className="absolute left-[50%] w-5 h-3 border-[3px] border-[#007BFF] rounded-full origin-left -rotate-[25deg]" />
+           <div className="w-3 h-3 rounded-full bg-[#007BFF] z-10" />
         </div>
       </div>
       
       <div 
         ref={rightThreadRef} 
-        className="absolute top-0 right-0 w-[3px] h-full bg-[#C5A059] origin-top z-20 pointer-events-none"
+        className="absolute top-0 right-0 w-[3px] h-full bg-[#007BFF] origin-top z-20 pointer-events-none"
         style={{ transform: 'scaleY(0)' }}
       >
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[50%] flex items-center justify-center">
-           <div className="absolute right-[50%] w-5 h-3 border-[3px] border-[#C5A059] rounded-full origin-right rotate-[25deg]" />
-           <div className="absolute left-[50%] w-5 h-3 border-[3px] border-[#C5A059] rounded-full origin-left -rotate-[25deg]" />
-           <div className="w-3 h-3 rounded-full bg-[#C5A059] z-10" />
+           <div className="absolute right-[50%] w-5 h-3 border-[3px] border-[#007BFF] rounded-full origin-right rotate-[25deg]" />
+           <div className="absolute left-[50%] w-5 h-3 border-[3px] border-[#007BFF] rounded-full origin-left -rotate-[25deg]" />
+           <div className="w-3 h-3 rounded-full bg-[#007BFF] z-10" />
         </div>
       </div>
 
