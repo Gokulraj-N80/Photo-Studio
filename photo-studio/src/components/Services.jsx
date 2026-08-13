@@ -118,12 +118,12 @@ const ServiceCard = ({ svc, onBook }) => {
 
       {/* Back face (Text & Button) */}
       <div className="absolute inset-0 bg-[#FFFDF8] shadow-[0_10px_30px_rgba(0,0,0,0.05)] p-2 md:p-6 pt-4 md:pt-12 flex flex-col items-center justify-start text-center rounded-sm">
-        <h4 className="text-[1.2rem] md:text-5xl font-serif font-bold text-[#12100E] mb-1 md:mb-2 leading-tight">{svc.title}</h4>
-        <p className="text-[#12100E]/70 text-[9px] md:text-lg leading-snug md:leading-relaxed mb-2 md:mb-6 font-light px-1 md:px-2">{svc.desc}</p>
+        <h4 className="text-[1rem] sm:text-[1.2rem] md:text-5xl font-serif font-bold text-[#12100E] mb-1 md:mb-2 leading-tight">{svc.title}</h4>
+        <p className="text-[#12100E]/70 text-[7.5px] sm:text-[9px] md:text-lg leading-snug md:leading-relaxed mb-1 md:mb-6 font-light px-1 md:px-2">{svc.desc}</p>
         <a 
           href="#booking"
           onClick={() => onBook && onBook(svc.id)}
-          className="bg-[#C5A059] hover:bg-[#12100E] text-[#FFFDF8] px-3 md:px-10 py-1.5 md:py-4 rounded-sm transition-colors duration-300 uppercase tracking-[0.1em] md:tracking-[0.2em] text-[8px] md:text-sm font-bold mt-2 md:mt-4 mb-2 md:mb-0"
+          className="bg-[#C5A059] hover:bg-[#12100E] text-[#FFFDF8] px-3 md:px-10 py-1 md:py-4 rounded-sm transition-colors duration-300 uppercase tracking-[0.1em] md:tracking-[0.2em] text-[7px] md:text-sm font-bold mt-1 md:mt-4 mb-2 md:mb-0"
         >
           Book
         </a>
