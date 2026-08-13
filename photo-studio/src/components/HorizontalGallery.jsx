@@ -3,13 +3,11 @@ import DepthCarousel from './DepthCarousel';
 
 const HorizontalGallery = () => {
   const images = [
-    { image: "/images/wedding/wedding-10.jpg", alt: "Grand Ceremony" },
-    { image: "/images/wedding/wedding-11.jpg", alt: "The Bride" },
-    { image: "/images/wedding/wedding-12.jpg", alt: "Together" },
-    { image: "/images/wedding/wedding-17.jpg", alt: "Special Day" },
-    { image: "/images/portraits/portraits-10.jpg", alt: "Elegance" },
-    { image: "/images/kids/kids-6.jpg", alt: "Little Smiles" },
-    { image: "/images/festivals/festivals-2.jpg", alt: "Celebrations" },
+    { image: "/images/wedding/wedding-28.jpg", alt: "The Vows" },
+    { image: "/images/portraits/portraits-8.jpg", alt: "Stunning Portraits" },
+    { image: "/images/kids/kids-4.jpg", alt: "Pure Joy" },
+    { image: "/images/wedding/wedding-24.jpg", alt: "Pre-Wedding Romance" },
+    { image: "/images/portraits/portraits-5.jpg", alt: "Fashion & Vogue" },
   ];
 
   return (
