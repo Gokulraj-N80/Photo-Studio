@@ -69,7 +69,6 @@ const Hero = () => {
       mm.add("(min-width: 768px)", () => {
         gsap.to(contentRef.current, {
           y: -100,
-          opacity: 0,
           ease: "none",
           scrollTrigger: {
             trigger: heroRef.current,
