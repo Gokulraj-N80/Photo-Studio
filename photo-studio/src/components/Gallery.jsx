@@ -204,8 +204,24 @@ const OurWorks = () => {
           scrollTrigger: { trigger: '.filters-row', start: 'top 85%' } }
       );
     }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+
+    let timeoutId;
+    const observer = new ResizeObserver(() => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+    });
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      ctx.revert();
+      observer.disconnect();
+      clearTimeout(timeoutId);
+    };
+  }, [activeFilter]);
 
   useEffect(() => {
     // This context runs every time the filter changes (or initial mount)
@@ -228,12 +244,12 @@ const OurWorks = () => {
             opacity: 1, 
             rotationZ: 0,
             filter: 'blur(0px)',
+            duration: 1.2,
             ease: 'expo.out',
             scrollTrigger: {
               trigger: card,
-              start: 'top 100%', 
-              end: 'top 70%',    
-              scrub: 1.5,
+              start: 'top 95%',
+              toggleActions: 'play none none reverse',
             }
           }
         );
@@ -241,8 +257,24 @@ const OurWorks = () => {
 
       /* Images are now Masonry, removed Parallax wrapper to avoid cropping */
     }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+
+    let timeoutId;
+    const observer = new ResizeObserver(() => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+    });
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      ctx.revert();
+      observer.disconnect();
+      clearTimeout(timeoutId);
+    };
+  }, [activeFilter]);
 
   return (
     <section id="gallery" ref={sectionRef} className="py-12 md:py-16 px-6 w-full bg-[#12100E]">

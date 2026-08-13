@@ -45,23 +45,44 @@ const servicesData = [
 const ServiceCard = ({ svc, onBook }) => {
   const [isOpen, setIsOpen] = useState(false);
   const frontRef = useRef(null);
+  const leftThreadRef = useRef(null);
+  const rightThreadRef = useRef(null);
 
   useEffect(() => {
-    if (isOpen) {
-      gsap.to(frontRef.current, {
-        rotationX: 75,
-        transformOrigin: "bottom center",
-        duration: 0.6,
-        ease: "power2.inOut"
-      });
-    } else {
-      gsap.to(frontRef.current, {
-        rotationX: 0,
-        transformOrigin: "bottom center",
-        duration: 0.6,
-        ease: "power2.inOut"
-      });
-    }
+    const targetAngle = isOpen ? 75 : 0;
+    
+    const proxy = { angle: frontRef.current?._angle || 0 };
+    
+    gsap.to(proxy, {
+      angle: targetAngle,
+      duration: 0.6,
+      ease: "power2.inOut",
+      onUpdate: () => {
+        if (!frontRef.current) return;
+        frontRef.current._angle = proxy.angle;
+        
+        gsap.set(frontRef.current, { rotationX: proxy.angle, transformOrigin: "bottom center" });
+        
+        const thetaRad = proxy.angle * (Math.PI / 180);
+        const deltaY = 1 - Math.cos(thetaRad);
+        // Negative because rotationX is positive with bottom origin, meaning top swings backwards into screen (-Z)
+        const deltaZ = -Math.sin(thetaRad); 
+        
+        const scaleY = Math.sqrt(deltaY * deltaY + deltaZ * deltaZ);
+        
+        let threadAngleX = 0;
+        if (deltaY !== 0 || deltaZ !== 0) {
+          threadAngleX = Math.atan2(deltaZ, deltaY) * (180 / Math.PI);
+        }
+        
+        if (leftThreadRef.current) {
+          gsap.set(leftThreadRef.current, { rotationX: threadAngleX, scaleY: scaleY, z: 0 });
+        }
+        if (rightThreadRef.current) {
+          gsap.set(rightThreadRef.current, { rotationX: threadAngleX, scaleY: scaleY, z: 0 });
+        }
+      }
+    });
   }, [isOpen]);
 
   return (
@@ -70,6 +91,31 @@ const ServiceCard = ({ svc, onBook }) => {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
+      {/* Threads from the exact top corners */}
+      <div 
+        ref={leftThreadRef} 
+        className="absolute top-0 left-0 w-[3px] h-full bg-[#C5A059] origin-top z-20 pointer-events-none"
+        style={{ transform: 'scaleY(0)' }}
+      >
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[50%] flex items-center justify-center">
+           <div className="absolute right-[50%] w-5 h-3 border-[3px] border-[#C5A059] rounded-full origin-right rotate-[25deg]" />
+           <div className="absolute left-[50%] w-5 h-3 border-[3px] border-[#C5A059] rounded-full origin-left -rotate-[25deg]" />
+           <div className="w-3 h-3 rounded-full bg-[#C5A059] z-10" />
+        </div>
+      </div>
+      
+      <div 
+        ref={rightThreadRef} 
+        className="absolute top-0 right-0 w-[3px] h-full bg-[#C5A059] origin-top z-20 pointer-events-none"
+        style={{ transform: 'scaleY(0)' }}
+      >
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[50%] flex items-center justify-center">
+           <div className="absolute right-[50%] w-5 h-3 border-[3px] border-[#C5A059] rounded-full origin-right rotate-[25deg]" />
+           <div className="absolute left-[50%] w-5 h-3 border-[3px] border-[#C5A059] rounded-full origin-left -rotate-[25deg]" />
+           <div className="w-3 h-3 rounded-full bg-[#C5A059] z-10" />
+        </div>
+      </div>
+
       {/* Back face (Text & Button) */}
       <div className="absolute inset-0 bg-[#FFFDF8] shadow-[0_10px_30px_rgba(0,0,0,0.05)] p-2 md:p-6 pt-4 md:pt-12 flex flex-col items-center justify-start text-center rounded-sm">
         <h4 className="text-[1.2rem] md:text-5xl font-serif font-bold text-[#12100E] mb-1 md:mb-2 leading-tight">{svc.title}</h4>

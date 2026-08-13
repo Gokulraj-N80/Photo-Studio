@@ -90,7 +90,7 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
                   name="firstName"
                   required
                   className="w-full bg-transparent border-b border-[#12100E]/20 py-2 text-[#12100E] focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-[#12100E]/30"
-                  placeholder="Jane Doe"
+                  placeholder="Karthik Subramanian"
                 />
               </div>
               
@@ -101,7 +101,7 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
                   name="email"
                   required
                   className="w-full bg-transparent border-b border-[#12100E]/20 py-2 text-[#12100E] focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-[#12100E]/30"
-                  placeholder="jane@example.com"
+                  placeholder="karthik@example.in"
                 />
               </div>
 
@@ -111,7 +111,7 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
                   type="tel" 
                   name="phone"
                   className="w-full bg-transparent border-b border-[#12100E]/20 py-2 text-[#12100E] focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-[#12100E]/30"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder="+91 98765 43210"
                 />
               </div>
 
@@ -148,7 +148,7 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
                 <textarea 
                   name="notes"
                   className="w-full h-[260px] bg-transparent border border-[#12100E]/20 p-4 text-[#12100E] focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-[#12100E]/30 resize-none rounded-sm"
-                  placeholder="Tell us what you're dreaming of... How do you envision your shoot? Any specific locations or styles?"
+                  placeholder="Tell us what you're dreaming of... How do you envision your shoot? Any specific locations like Mahabalipuram or traditional styles?"
                 ></textarea>
               </div>
             </div>
