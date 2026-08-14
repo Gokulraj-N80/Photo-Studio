@@ -152,9 +152,17 @@ const About = () => {
             <p className="text-[#201D19]/80 mb-6 leading-relaxed text-lg font-light">
               At Pixelbees Photography, we believe that photography is more than just taking pictures. It's about freezing genuine feelings, unguarded smiles, and the invisible connections between people.
             </p>
-            <p className="text-[#201D19]/80 leading-relaxed text-lg font-light">
+            <p className="text-[#201D19]/80 mb-6 leading-relaxed text-lg font-light">
               We focus on telling your unique story through an artistic and cinematic lens, ensuring every moment is preserved beautifully for generations to come.
             </p>
+
+            <div className="mt-8 p-5 bg-[#C5A059]/10 border-l-2 border-[#C5A059] rounded-r-sm">
+              <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#12100E] mb-2">Visit Our Studio</h4>
+              <p className="text-[#201D19]/80 text-sm font-light leading-relaxed">
+                Pixelbees Photography<br />
+                Salem, Tamil Nadu, India
+              </p>
+            </div>
           </div>
 
           {/* Statistics */}

@@ -7,19 +7,19 @@ gsap.registerPlugin(ScrollTrigger);
 const packagesData = [
   {
     name: "Standard",
-    features: [],
+    features: ["Candid Photography", "High-Res Digital Images", "1 Lead Photographer", "Basic Retouching & Editing"],
     theme: "standard",
     desc: "Essential coverage for your special day."
   },
   {
     name: "Premium",
-    features: ["Candid", "Candid Video", "Drone Camera"],
+    features: ["Candid & Traditional", "Cinematic Highlights", "Drone Camera Coverage", "2 Professional Photographers", "Premium Photo Album", "Advanced Retouching"],
     theme: "premium",
     desc: "Elevated storytelling with aerial perspectives."
   },
   {
     name: "Elite",
-    features: ["Traditional", "Video", "Outdoor", "Pre-Wedding", "Album", "2 LED Screen"],
+    features: ["Full Event Coverage", "Cinematic Video Story", "Drone & Crane Camera", "Pre-Wedding Outdoor Shoot", "Luxury Photobook Album", "2 LED Screens Setup", "Priority Fast Delivery"],
     theme: "elite",
     desc: "The ultimate cinematic and comprehensive experience."
   }
@@ -62,72 +62,75 @@ const PricingPackages = ({ onBook }) => {
 
       <div className="flex flex-col lg:flex-row justify-center items-center gap-8 max-w-[1200px] mx-auto px-6">
         
-        {packagesData.map((pkg, idx) => (
-          <div 
-            key={idx} 
-            className={`tier-card relative flex flex-col w-full lg:w-1/3 rounded-sm transition-all duration-500 hover:-translate-y-3 ${
-              pkg.theme === 'standard' 
-                ? 'bg-white p-8 md:p-10 border border-black/5 shadow-md lg:h-[420px] hover:shadow-[0_15px_40px_rgba(0,0,0,0.1)]' 
-                : pkg.theme === 'premium'
-                ? 'bg-[#FAF7F0] p-10 md:p-12 border border-[#C5A059]/40 shadow-xl lg:h-[480px] z-10 hover:shadow-[0_15px_40px_rgba(197,160,89,0.25)]'
-                : 'bg-[#12100E] p-10 md:p-14 border border-[#C5A059] shadow-2xl lg:h-[550px] z-20 hover:shadow-[0_0_60px_rgba(197,160,89,0.35)]'
-            }`}
-          >
-            {pkg.theme === 'elite' && (
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C5A059] text-[#12100E] text-[9px] font-bold tracking-widest uppercase px-6 py-2 rounded-full shadow-lg whitespace-nowrap">
-                Most Popular
+        {packagesData.map((pkg, idx) => {
+          const isDark = pkg.theme === 'standard' || pkg.theme === 'elite';
+          return (
+            <div 
+              key={idx} 
+              className={`tier-card relative flex flex-col w-full lg:w-1/3 rounded-sm transition-all duration-500 hover:-translate-y-3 ${
+                pkg.theme === 'standard' 
+                  ? 'bg-[#12100E] p-8 md:p-10 border border-[#C5A059] shadow-xl lg:h-[420px] hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)] z-10' 
+                  : pkg.theme === 'premium'
+                  ? 'bg-white p-10 md:p-12 border border-[#C5A059] shadow-[0_8px_30px_rgba(0,0,0,0.06)] lg:h-[480px] z-20 hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)]'
+                  : 'bg-[#12100E] p-10 md:p-14 border border-[#C5A059] shadow-2xl lg:h-[550px] z-30 hover:shadow-[0_0_60px_rgba(197,160,89,0.35)]'
+              }`}
+            >
+              {/* Decorative Texture Pattern */}
+              <div 
+                className={`absolute inset-0 rounded-sm pointer-events-none opacity-[0.05]`}
+                style={{ 
+                  backgroundImage: 'radial-gradient(circle, #C5A059 1px, transparent 1px)',
+                  backgroundSize: '24px 24px'
+                }} 
+              />
+              {pkg.theme === 'elite' && (
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C5A059] text-[#12100E] text-[9px] font-bold tracking-widest uppercase px-6 py-2 rounded-full shadow-lg whitespace-nowrap">
+                  Most Popular
+                </div>
+              )}
+              
+              <div className={`text-center pb-6 mb-6 border-b ${
+                isDark ? 'border-[#C5A059]/30' : 'border-[#12100E]/10'
+              }`}>
+                <h4 className={`text-2xl md:text-3xl font-serif font-bold mb-3 ${
+                  pkg.theme === 'elite' ? 'text-[#C5A059]' : (isDark ? 'text-white' : 'text-[#12100E]')
+                }`}>
+                  {pkg.name}
+                </h4>
+                <p className={`text-xs font-light italic leading-relaxed ${
+                  isDark ? 'text-[#FFFDF8]/70' : 'text-[#12100E]/60'
+                }`}>
+                  {pkg.desc}
+                </p>
               </div>
-            )}
-            
-            <div className={`text-center pb-6 mb-6 border-b ${
-              pkg.theme === 'elite' ? 'border-[#C5A059]/30' : 'border-[#12100E]/10'
-            }`}>
-              <h4 className={`text-2xl md:text-3xl font-serif font-bold mb-3 ${
-                pkg.theme === 'elite' ? 'text-[#C5A059]' : 'text-[#12100E]'
-              }`}>
-                {pkg.name}
-              </h4>
-              <p className={`text-xs font-light italic leading-relaxed ${
-                pkg.theme === 'elite' ? 'text-[#FFFDF8]/70' : 'text-[#12100E]/60'
-              }`}>
-                {pkg.desc}
-              </p>
-            </div>
-            
-            <ul className="flex-grow flex flex-col gap-4 mb-8">
-              {pkg.features.length > 0 ? (
-                pkg.features.map((feature, fIdx) => (
+              
+              <ul className="flex-grow flex flex-col gap-4 mb-8">
+                {pkg.features.map((feature, fIdx) => (
                   <li key={fIdx} className={`flex items-center text-[13px] md:text-sm font-light ${
-                    pkg.theme === 'elite' ? 'text-[#FFFDF8]' : 'text-[#12100E]'
+                    isDark ? 'text-[#FFFDF8]' : 'text-[#12100E]'
                   }`}>
                     <CheckIcon theme={pkg.theme} />
                     {feature}
                   </li>
-                ))
-              ) : (
-                <li className={`flex items-center text-[13px] md:text-sm font-light italic opacity-70 ${
-                  pkg.theme === 'elite' ? 'text-[#FFFDF8]' : 'text-[#12100E]'
-                }`}>
-                  Core photography coverage
-                </li>
-              )}
-            </ul>
-            
-            <a 
-              href="#booking"
-              onClick={() => onBook && onBook(`package-${pkg.name.toLowerCase()}`)}
-              className={`mt-auto w-full py-4 rounded-sm font-bold uppercase tracking-widest text-[10px] transition-all duration-500 block text-center border ${
-                pkg.theme === 'elite' 
-                  ? 'bg-[#C5A059] border-[#C5A059] hover:bg-white hover:border-white text-[#12100E] hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]' 
-                  : pkg.theme === 'premium'
-                  ? 'bg-[#12100E] border-[#12100E] hover:bg-[#C5A059] hover:border-[#C5A059] text-white hover:shadow-[0_0_20px_rgba(197,160,89,0.4)]'
-                  : 'bg-transparent border-[#12100E]/20 hover:bg-[#12100E] hover:border-[#12100E] text-[#12100E] hover:text-white hover:shadow-lg'
-              }`}
-            >
-              Enquire
-            </a>
-          </div>
-        ))}
+                ))}
+              </ul>
+              
+              <a 
+                href="#booking"
+                onClick={() => onBook && onBook(`package-${pkg.name.toLowerCase()}`)}
+                className={`mt-auto w-full py-4 rounded-sm font-bold uppercase tracking-widest text-[10px] transition-all duration-500 block text-center border ${
+                  pkg.theme === 'elite' 
+                    ? 'bg-[#C5A059] border-[#C5A059] hover:bg-white hover:border-white text-[#12100E] hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]' 
+                    : pkg.theme === 'standard'
+                    ? 'bg-transparent border-[#C5A059]/50 hover:bg-[#C5A059] hover:border-[#C5A059] text-white hover:text-[#12100E]'
+                    : 'bg-[#12100E] border-[#12100E] hover:bg-[#C5A059] hover:border-[#C5A059] text-white hover:shadow-[0_0_20px_rgba(197,160,89,0.4)]'
+                }`}
+              >
+                Enquire
+              </a>
+            </div>
+          );
+        })}
       </div>
       
       <div className="text-center mt-16 md:mt-24">

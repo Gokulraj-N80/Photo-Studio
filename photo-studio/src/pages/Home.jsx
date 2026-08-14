@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import About from '../components/About';
 import PricingPackages from '../components/PricingPackages';
 import Footer from '../components/Footer';
 import BookingSection from '../components/BookingSection';
@@ -19,7 +18,6 @@ const Home = () => {
           <Hero />
           <PricingPackages onBook={(category) => setBookingCategory(category)} />
           <BookingSection selectedCategory={bookingCategory} onCategoryChange={setBookingCategory} />
-          <About />
         </main>
         <Footer />
       </div>

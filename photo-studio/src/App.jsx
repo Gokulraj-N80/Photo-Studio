@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Home from './pages/Home';
+import AboutPage from './pages/AboutPage';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
 import ServicesPage from './pages/ServicesPage';
@@ -54,6 +55,7 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/journal" element={<JournalPage />} />
