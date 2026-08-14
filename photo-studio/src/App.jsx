@@ -46,7 +46,7 @@ const ScrollToTop = () => {
 };
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(window.location.pathname === '/');
 
   return (
     <HelmetProvider>
