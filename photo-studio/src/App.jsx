@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Home from './pages/Home';
@@ -9,6 +9,7 @@ import PortfolioPage from './pages/PortfolioPage';
 import JournalPage from './pages/JournalPage';
 import ContactPage from './pages/ContactPage';
 import SEOServicePage from './pages/SEOServicePage';
+import Preloader from './components/Preloader';
 
 // Simple protected route wrapper
 const ProtectedRoute = ({ children }) => {
@@ -44,8 +45,11 @@ const ScrollToTop = () => {
 };
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <HelmetProvider>
+      {loading && <Preloader onComplete={() => setLoading(false)} />}
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
