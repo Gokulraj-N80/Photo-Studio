@@ -77,13 +77,12 @@ const PricingPackages = ({ onBook }) => {
             >
               {/* Decorative Texture Pattern */}
               <div 
-                className={`absolute inset-0 rounded-sm pointer-events-none opacity-[0.05]`}
+                className={`absolute inset-0 rounded-sm pointer-events-none ${isDark ? 'opacity-[0.12]' : 'opacity-[0.08]'}`}
                 style={{ 
-                  backgroundImage: 'radial-gradient(circle, #C5A059 1px, transparent 1px)',
-                  backgroundSize: '24px 24px'
+                  backgroundImage: 'repeating-linear-gradient(45deg, #C5A059 0, #C5A059 1px, transparent 1px, transparent 24px)'
                 }} 
               />
-              {pkg.theme === 'elite' && (
+              {pkg.theme === 'premium' && (
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C5A059] text-[#12100E] text-[9px] font-bold tracking-widest uppercase px-6 py-2 rounded-full shadow-lg whitespace-nowrap">
                   Most Popular
                 </div>
