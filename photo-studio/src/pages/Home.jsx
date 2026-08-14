@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
-import PullQuote from '../components/PullQuote';
-import Services from '../components/Services';
+import PricingPackages from '../components/PricingPackages';
 import Footer from '../components/Footer';
 import BookingSection from '../components/BookingSection';
 import SEO from '../components/SEO';
@@ -16,12 +15,11 @@ const Home = () => {
       <div className="">
         <Navbar />
         <main>
-      <SEO title="Professional Photography Studio in Salem" description="PixelBees Photography is a professional photography studio in Salem, Tamil Nadu, offering wedding, candid, portrait, pre-wedding and event photography." path="/" />
+          <SEO title="Professional Photography Studio in Salem" description="PixelBees Photography is a professional photography studio in Salem, Tamil Nadu, offering wedding, candid, portrait, pre-wedding and event photography." path="/" />
           <Hero />
-          <About />
-          <PullQuote />
-          <Services onBook={(category) => setBookingCategory(category)} />
+          <PricingPackages onBook={(category) => setBookingCategory(category)} />
           <BookingSection selectedCategory={bookingCategory} onCategoryChange={setBookingCategory} />
+          <About />
         </main>
         <Footer />
       </div>

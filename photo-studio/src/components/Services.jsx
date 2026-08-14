@@ -42,6 +42,7 @@ const servicesData = [
     desc: "High-end commercial and fashion shoots focused on aesthetic perfection and brand identity.",
   }
 ];
+
 const ServiceCard = ({ svc, onBook }) => {
   const [isOpen, setIsOpen] = useState(false);
   const frontRef = useRef(null);
@@ -87,7 +88,7 @@ const ServiceCard = ({ svc, onBook }) => {
 
   return (
     <div 
-      className="service-card relative w-full aspect-[4/5] cursor-pointer [perspective:1500px] z-10 hover:z-50"
+      className="service-card group relative w-full aspect-[4/5] cursor-pointer [perspective:1500px] z-10 hover:z-50"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
@@ -117,16 +118,18 @@ const ServiceCard = ({ svc, onBook }) => {
       </div>
 
       {/* Back face (Text & Button) */}
-      <div className="absolute inset-0 bg-[#FFFDF8] shadow-[0_10px_30px_rgba(0,0,0,0.05)] p-2 md:p-6 pt-4 md:pt-12 flex flex-col items-center justify-start text-center rounded-sm">
-        <h4 className="text-[1rem] sm:text-[1.2rem] md:text-5xl font-serif font-bold text-[#12100E] mb-1 md:mb-2 leading-tight">{svc.title}</h4>
-        <p className="text-[#12100E]/70 text-[7.5px] sm:text-[9px] md:text-lg leading-snug md:leading-relaxed mb-1 md:mb-6 font-light px-1 md:px-2">{svc.desc}</p>
-        <a 
-          href="#booking"
-          onClick={() => onBook && onBook(svc.id)}
-          className="bg-[#C5A059] hover:bg-[#12100E] text-[#FFFDF8] px-3 md:px-10 py-1 md:py-4 rounded-sm transition-colors duration-300 uppercase tracking-[0.1em] md:tracking-[0.2em] text-[7px] md:text-sm font-bold mt-1 md:mt-4 mb-2 md:mb-0"
-        >
-          Book
-        </a>
+      <div className="absolute inset-0 bg-[#FFFDF8] shadow-[0_10px_30px_rgba(0,0,0,0.05)] px-4 md:px-6 pt-6 md:pt-8 pb-10 flex flex-col items-center justify-start text-center rounded-sm">
+        <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-[#12100E] mb-2 leading-tight">{svc.title}</h4>
+        <p className="text-[#12100E]/70 text-[10px] sm:text-xs md:text-sm leading-snug md:leading-relaxed mb-3 font-light px-2">{svc.desc}</p>
+        <div className={`mt-2 w-full flex justify-center relative z-20 transition-all duration-500 ${isOpen ? 'opacity-100 translate-y-0 delay-[400ms]' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
+          <a 
+            href="#booking"
+            onClick={() => onBook && onBook(svc.id)}
+            className="bg-[#C5A059] hover:bg-[#12100E] text-[#FFFDF8] px-6 py-2 rounded-sm transition-colors duration-300 uppercase tracking-[0.1em] text-[10px] font-bold shadow-md"
+          >
+            Book
+          </a>
+        </div>
       </div>
 
       {/* Front face (Image) */}
@@ -155,7 +158,7 @@ const Services = ({ onBook }) => {
           { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } }
         );
 
-        // 3D card reveal on scroll (keep this for entry)
+        // 3D card reveal on scroll
         gsap.fromTo(serviceCards,
           { y: 100, opacity: 0, scale: 0.9 },
           { 
@@ -186,13 +189,21 @@ const Services = ({ onBook }) => {
           <h3 className="services-header-text text-3xl md:text-5xl font-serif font-bold text-[#12100E] mb-0 leading-tight">Tailored Services for<br/>Your Unique Story.</h3>
         </div>
 
-        {/* Scaled down slightly to reduce component footprint */}
-        <div className="transform md:scale-90 origin-top">
+        <div className="max-w-5xl mx-auto transform scale-85 origin-top">
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {servicesData.map((svc, idx) => (
               <ServiceCard key={idx} svc={svc} onBook={onBook} />
             ))}
           </div>
+        </div>
+
+        <div className="text-center mt-12 md:mt-24">
+          <a 
+            href="/portfolio"
+            className="inline-block px-10 py-4 border border-[#C5A059] text-[#12100E] font-bold uppercase tracking-widest text-[10px] md:text-xs hover:bg-[#C5A059] hover:text-[#FFFDF8] transition-all duration-500 rounded-sm"
+          >
+            View Our Works
+          </a>
         </div>
       </div>
     </section>

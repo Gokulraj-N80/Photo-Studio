@@ -130,6 +130,20 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
                   <option value="fashion">Fashion / Editorial</option>
                 </select>
               </div>
+
+              <div className="space-y-2">
+                <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#C5A059]">Package (Optional)</label>
+                <select 
+                  name="package"
+                  defaultValue=""
+                  className="w-full bg-transparent border-b border-[#12100E]/20 py-2 text-[#12100E] focus:outline-none focus:border-[#C5A059] transition-colors cursor-pointer"
+                >
+                  <option value="" disabled>Select a package</option>
+                  <option value="standard">Standard</option>
+                  <option value="premium">Premium</option>
+                  <option value="elite">Elite</option>
+                </select>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
