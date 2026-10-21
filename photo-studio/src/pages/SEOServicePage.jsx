@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 const SEOServicePage = ({ 
   serviceName, 
-  location = "Salem, Tamil Nadu", 
+  location = "New York, NY", 
   heroImage, 
   description, 
   features = [], 
@@ -22,17 +22,17 @@ const SEOServicePage = ({
     "serviceType": serviceName,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "PixelBees Photography",
+      "name": "Apex Studio",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Salem",
-        "addressRegion": "Tamil Nadu",
-        "addressCountry": "IN"
+        "addressLocality": "New York",
+        "addressRegion": "NY",
+        "addressCountry": "US"
       }
     },
     "areaServed": {
       "@type": "City",
-      "name": "Salem"
+      "name": "New York"
     },
     "description": description
   };
@@ -62,7 +62,7 @@ const SEOServicePage = ({
           <div className="w-full h-[40vh] md:h-[60vh] rounded-sm overflow-hidden mb-16 shadow-2xl">
             <img 
               src={heroImage} 
-              alt={`${serviceName} by PixelBees Photography in ${location}`}
+              alt={`${serviceName} by Apex Studio in ${location}`}
               className="w-full h-full object-cover object-center"
             />
           </div>
@@ -70,7 +70,7 @@ const SEOServicePage = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
           <div>
-            <h2 className="text-3xl font-serif font-bold mb-6">Why choose PixelBees for {serviceName}?</h2>
+            <h2 className="text-3xl font-serif font-bold mb-6">Why choose Apex Studio for {serviceName}?</h2>
             <ul className="space-y-4">
               {features.map((feature, idx) => (
                 <li key={idx} className="flex items-start">
@@ -96,8 +96,8 @@ const SEOServicePage = ({
           <h2 className="text-3xl font-serif font-bold mb-8 text-center">Frequently Asked Questions</h2>
           <div className="space-y-6">
             <div className="border-b border-[#12100E]/10 pb-6">
-              <h3 className="font-bold text-lg mb-2">Does PixelBees Photography provide {serviceName.toLowerCase()} in Salem?</h3>
-              <p className="font-light opacity-80">Yes, we specialize in professional {serviceName.toLowerCase()} for clients in and around Salem, Tamil Nadu.</p>
+              <h3 className="font-bold text-lg mb-2">Does Apex Studio provide {serviceName.toLowerCase()} in {location}?</h3>
+              <p className="font-light opacity-80">Yes, we specialize in professional {serviceName.toLowerCase()} for clients in and around {location}.</p>
             </div>
             <div className="border-b border-[#12100E]/10 pb-6">
               <h3 className="font-bold text-lg mb-2">How can I book a session?</h3>

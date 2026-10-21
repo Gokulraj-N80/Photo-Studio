@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Home, X } from 'lucide-react';
+import { Home, X, Camera } from 'lucide-react';
 import gsap from 'gsap';
 
 const Navbar = () => {
   const navRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -21,21 +19,7 @@ const Navbar = () => {
     }, navRef);
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > 60) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-
-      if (currentScrollY > lastScrollY.current && currentScrollY > 200) {
-        setIsHidden(true);
-      } else {
-        setIsHidden(false);
-      }
-      
-      lastScrollY.current = currentScrollY;
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -74,33 +58,29 @@ const Navbar = () => {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Services', href: '/services' },
-    { name: 'Our Works', href: '/portfolio' },
+    { name: 'Our Works', href: '/#gallery' },
     { name: 'Blog', href: '/journal' },
     { name: 'Contact', href: '/contact' },
   ];
 
-  const isLightPage = location.pathname === '/services' || location.pathname === '/contact';
-  const useDarkText = isLightPage && !isScrolled;
 
   return (
     <nav 
       ref={navRef}
-      className={`fixed w-full z-50 transition-all duration-500 ease-in-out ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
         isScrolled 
-          ? 'py-3 bg-[#12100e]/90 backdrop-blur-[14px] border-b border-white/[0.08]' 
-          : 'py-6 bg-transparent border-b border-transparent'
-      } ${isHidden ? '-translate-y-full' : 'translate-y-0'}`}
+          ? 'py-3.5 bg-[#12100E]/95 backdrop-blur-[14px] border-b border-white/[0.08] shadow-xl' 
+          : 'py-5 bg-[#12100E]/90 backdrop-blur-[12px] border-b border-white/[0.06]'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
-        <Link to="/" className="nav-logo flex items-center gap-3 group">
-          <img 
-            src="/logo.png" 
-            alt="Pixelbees Photography Logo" 
-            className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 ${isScrolled ? 'h-10' : 'h-14'}`}
-          />
-          <span className={`font-serif uppercase tracking-[0.15em] font-bold transition-all duration-500 hidden sm:block ${isScrolled ? 'text-[#FFFDF8] text-sm' : (useDarkText ? 'text-[#12100E] text-base' : 'text-[#FFFDF8] text-base')}`}>
-            Pixelbees
-            <span className="block text-[8px] tracking-[0.3em] font-sans font-normal text-[#C5A059] -mt-1">Photography</span>
+        <Link to="/" className="nav-logo flex items-center gap-3.5 group">
+          <div className="w-10 h-10 rounded-full bg-[#12100E] border border-[#C5A059]/40 shadow-[0_0_15px_rgba(197,160,89,0.2)] flex items-center justify-center transition-all duration-300 group-hover:border-[#C5A059] group-hover:scale-105">
+            <Camera className="w-5 h-5 text-[#C5A059]" />
+          </div>
+          <span className="font-serif uppercase tracking-[0.15em] font-bold text-[#FFFDF8] text-base hidden sm:block">
+            Apex Studio
+            <span className="block text-[8px] tracking-[0.3em] font-sans font-normal text-[#C5A059] -mt-1">Creative Photography</span>
           </span>
         </Link>
         
@@ -115,7 +95,7 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : (useDarkText ? 'text-[#12100E]' : 'text-[#FFFDF8]')}`}
+                  className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : 'text-[#FFFDF8]'}`}
                 >
                   {link.name}
                   <span className={`absolute bottom-0 left-0 h-[1px] bg-[#C5A059] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
@@ -127,10 +107,10 @@ const Navbar = () => {
               <Link 
                 key={link.name}
                 to={link.href} 
-                className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : (useDarkText ? 'text-[#12100E]' : 'text-[#FFFDF8]')}`}
+                className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : 'text-[#FFFDF8]'}`}
               >
                 {link.name}
-                <span className={`absolute bottom-0 left-0 h-[1px] bg-champagneGold transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                <span className={`absolute bottom-0 left-0 h-[1px] bg-[#C5A059] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
               </Link>
             );
           })}
@@ -142,17 +122,17 @@ const Navbar = () => {
 
         {/* Mobile Navbar Controls */}
         <div className="md:hidden flex items-center gap-4 z-50">
-          <Link to="/" className={`flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 ${isScrolled ? 'border-[#FFFDF8]/20 bg-[#FFFDF8]/5 text-[#FFFDF8] hover:bg-[#C5A059] hover:border-[#C5A059]' : (useDarkText ? 'border-[#12100E]/20 bg-black/5 text-[#12100E] hover:bg-[#C5A059] hover:border-[#C5A059] hover:text-[#12100E]' : 'border-[#12100E]/20 bg-black/10 text-[#FFFDF8] hover:bg-[#C5A059] hover:border-[#C5A059]')}`}>
+          <Link to="/" className="flex items-center justify-center w-10 h-10 rounded-full border border-[#FFFDF8]/20 bg-[#FFFDF8]/5 text-[#FFFDF8] hover:bg-[#C5A059] hover:border-[#C5A059] hover:text-[#12100E] transition-all duration-300">
             <Home className="w-4 h-4" />
           </Link>
           
           <button 
-            className={`flex flex-col justify-center items-center w-10 h-10 rounded-full border transition-all duration-300 relative ${isScrolled ? 'border-[#FFFDF8]/20 bg-[#FFFDF8]/5 hover:bg-[#C5A059] hover:border-[#C5A059]' : (useDarkText ? 'border-[#12100E]/20 bg-black/5 hover:bg-[#C5A059] hover:border-[#C5A059]' : 'border-[#12100E]/20 bg-black/10 hover:bg-[#C5A059] hover:border-[#C5A059]')}`}
+            className="flex flex-col justify-center items-center w-10 h-10 rounded-full border border-[#FFFDF8]/20 bg-[#FFFDF8]/5 hover:bg-[#C5A059] hover:border-[#C5A059] transition-all duration-300 relative"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] rotate-45' : (useDarkText ? 'bg-[#12100E] -translate-y-[5px]' : 'bg-[#FFFDF8] -translate-y-[5px]')}`}></span>
-            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] opacity-0' : (useDarkText ? 'bg-[#12100E]' : 'bg-[#FFFDF8]')}`}></span>
-            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] -rotate-45' : (useDarkText ? 'bg-[#12100E] translate-y-[5px]' : 'bg-[#FFFDF8] translate-y-[5px]')}`}></span>
+            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] rotate-45' : 'bg-[#FFFDF8] -translate-y-[5px]'}`}></span>
+            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] opacity-0' : 'bg-[#FFFDF8]'}`}></span>
+            <span className={`w-4 h-[1.5px] transition-all duration-300 absolute ${isMobileMenuOpen ? 'bg-[#FFFDF8] -rotate-45' : 'bg-[#FFFDF8] translate-y-[5px]'}`}></span>
           </button>
         </div>
       </div>
@@ -203,8 +183,8 @@ const Navbar = () => {
             Book a Session
           </a>
           <div className="flex justify-between items-center mt-8 pt-6 border-t border-[#FFFDF8]/10">
-            <a href="mailto:hello@pixelbees.com" className="text-[10px] uppercase tracking-widest text-[#FFFDF8]/60 hover:text-[#C5A059]">hello@pixelbees.com</a>
-            <span className="text-[10px] uppercase tracking-widest text-[#FFFDF8]/60">Salem, TN</span>
+            <a href="mailto:hello@apexstudio.com" className="text-[10px] uppercase tracking-widest text-[#FFFDF8]/60 hover:text-[#C5A059]">hello@apexstudio.com</a>
+            <span className="text-[10px] uppercase tracking-widest text-[#FFFDF8]/60">New York, NY</span>
           </div>
         </div>
       </div>

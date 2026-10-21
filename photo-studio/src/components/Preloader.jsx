@@ -1,10 +1,16 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import gsap from 'gsap';
 
-// A large pool of known images to randomly select from
+// A curated pool of high-performance demo imagery
 const imagePool = [
-  ...Array.from({length: 34}, (_, i) => `/images/wedding/wedding-${i+1}.webp`),
-  ...Array.from({length: 12}, (_, i) => `/images/portraits/portraits-${i+1}.webp`)
+  "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1200&q=80"
 ];
 
 const getRandomImages = (count) => {
@@ -148,13 +154,13 @@ const Preloader = ({ onComplete }) => {
           ref={textRef}
           className="text-5xl md:text-7xl lg:text-9xl font-serif text-[#FFFDF8] tracking-[0.15em] uppercase drop-shadow-2xl"
         >
-          Pixelbees
+          Apex Studio
         </h1>
         <p 
           ref={subTextRef}
           className="mt-4 text-xs md:text-sm font-sans text-[#C5A059] tracking-[0.4em] uppercase"
         >
-          Photography
+          Creative Photography
         </p>
       </div>
     </div>

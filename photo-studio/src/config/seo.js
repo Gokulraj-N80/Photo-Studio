@@ -1,25 +1,25 @@
 export const SEO_CONFIG = {
-  BUSINESS_NAME: "PixelBees Photography",
-  WEBSITE_NAME: "PixelBees Photography",
-  WEBSITE_URL: "[INSERT_ACTUAL_DOMAIN_HERE]", // e.g. https://www.pixelbees.in
-  BUSINESS_DESCRIPTION: "PixelBees Photography is a professional photography studio serving clients in Salem, Tamil Nadu, with services including wedding, candid, portrait and event photography.",
-  PHONE: "[INSERT_PHONE_HERE]", // e.g. +91 98765 43210
-  EMAIL: "[INSERT_EMAIL_HERE]", // e.g. hello@pixelbees.in
-  ADDRESS: "[INSERT_STREET_ADDRESS_HERE]",
-  CITY: "Salem",
-  STATE: "Tamil Nadu",
-  COUNTRY: "India",
-  POSTAL_CODE: "[INSERT_PINCODE_HERE]",
-  LATITUDE: "[INSERT_LATITUDE_HERE]",
-  LONGITUDE: "[INSERT_LONGITUDE_HERE]",
-  OPENING_HOURS: "Mo-Su 09:00-20:00", // Update if different
+  BUSINESS_NAME: "Apex Studio",
+  WEBSITE_NAME: "Apex Studio — Creative Photography",
+  WEBSITE_URL: "https://www.apexstudio-demo.com",
+  BUSINESS_DESCRIPTION: "Apex Studio is a luxury creative photography studio specializing in wedding, editorial portrait, candid, and commercial visual storytelling.",
+  PHONE: "+1 (555) 234-5678",
+  EMAIL: "hello@apexstudio.com",
+  ADDRESS: "450 Fashion Avenue, Suite 12",
+  CITY: "New York",
+  STATE: "NY",
+  COUNTRY: "United States",
+  POSTAL_CODE: "10001",
+  LATITUDE: "40.7505",
+  LONGITUDE: "-73.9934",
+  OPENING_HOURS: "Mo-Sa 09:00-19:00",
   SOCIAL_PROFILES: [
-    "[INSERT_INSTAGRAM_URL_HERE]",
-    "[INSERT_FACEBOOK_URL_HERE]",
-    "[INSERT_WHATSAPP_URL_HERE]"
+    "https://instagram.com/apexstudio",
+    "https://facebook.com/apexstudio",
+    "https://wa.me/15552345678"
   ],
-  LOGO_URL: "[INSERT_ACTUAL_DOMAIN_HERE]/logo.png",
-  PRIMARY_IMAGE: "[INSERT_ACTUAL_DOMAIN_HERE]/images/wedding/wedding-32.webp",
+  LOGO_URL: "/logo.png",
+  PRIMARY_IMAGE: "/images/wedding/wedding-32.webp",
   SERVICES: [
     "Wedding Photography",
     "Candid Photography",
@@ -28,6 +28,7 @@ export const SEO_CONFIG = {
     "Event Photography"
   ],
   SERVICE_AREAS: [
-    "Salem, Tamil Nadu"
+    "New York, NY",
+    "Available Worldwide"
   ]
 };

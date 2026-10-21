@@ -64,14 +64,16 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
         {/* Left Side - Image */}
         <div className="relative min-h-[250px] md:min-h-[400px]">
           <img 
-            src="/images/wedding/wedding-32.webp" 
-            alt="Booking Inspiration" 
+            src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80" 
+            alt="Apex Studio Session" 
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover object-[center_25%] md:object-center"
           />
           <div className="absolute inset-0 bg-[#12100E]/20"></div>
           <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 text-[#FFFDF8]">
             <h3 className="font-serif text-2xl md:text-3xl font-bold mb-2 drop-shadow-md">Let's Create Magic.</h3>
-            <p className="text-[10px] md:text-xs font-light tracking-widest uppercase opacity-90 drop-shadow-md">Pixelbees Studio</p>
+            <p className="text-[10px] md:text-xs font-light tracking-widest uppercase opacity-90 drop-shadow-md">Apex Studio</p>
           </div>
         </div>
 

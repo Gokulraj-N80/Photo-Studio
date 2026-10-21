@@ -14,7 +14,7 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen bg-[#FFFDF8] selection:bg-[#C5A059] selection:text-[#12100E] flex flex-col">
-      <SEO title="Photography Services in Salem" description="Explore our premium photography services in Salem including Wedding, Candid, Portrait, and Event photography." path="/services" />
+      <SEO title="Photography Services | Apex Studio" description="Explore our luxury photography services in New York including Wedding, Editorial, Portrait, and Event visual storytelling." path="/services" />
       <Navbar />
       <div className="flex-grow">
         <Services onBook={(category) => setBookingCategory(category)} />

@@ -90,14 +90,15 @@ const Hero = () => {
         {/* Main Image */}
         <img 
           ref={bgRef}
-          src="/images/portraits/portraits-8.webp" 
-          alt="Luxury Cinematic Wedding Photography" 
-          className="absolute inset-0 w-full h-full object-cover origin-center object-[75%_top] md:object-center"
+          src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=85" 
+          alt="Luxury Cinematic Photography" 
+          className="absolute inset-0 w-full h-full object-cover origin-center object-center"
           style={{ opacity: 1, scale: 1.08 }}
         />
         
-        {/* Slightly dim overlay for text readability, as requested */}
-        <div className="absolute inset-0 bg-black/20" />
+        {/* Cinematic dark overlay for flawless typography contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#12100E]/85 via-[#12100E]/45 to-transparent" />
+        <div className="absolute inset-0 bg-black/25" />
         
         {/* Film Grain */}
         <div 
@@ -114,7 +115,7 @@ const Hero = () => {
           <div className="hero-eyebrow flex items-center gap-4 mb-4 opacity-0">
             <div className="hidden lg:block w-12 h-[1px] bg-[#C5A059]"></div>
             <p className="font-sans text-[10px] md:text-xs tracking-[0.3em] uppercase text-[#FFFDF8] font-bold drop-shadow-md">
-              Pixelbees Photography · Emotion through Photos
+              Apex Studio · Creative Photography
             </p>
           </div>
           
