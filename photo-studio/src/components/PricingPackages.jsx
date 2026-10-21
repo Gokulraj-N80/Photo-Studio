@@ -60,7 +60,7 @@ const PricingPackages = ({ onBook }) => {
         <h3 className="text-3xl md:text-5xl font-serif font-bold text-[#12100E]">Signature Collections</h3>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-8 max-w-[1200px] mx-auto px-6">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-8 w-full max-w-[1550px] mx-auto px-6 sm:px-10 lg:px-14">
         
         {packagesData.map((pkg, idx) => {
           const isDark = pkg.theme === 'standard' || pkg.theme === 'elite';

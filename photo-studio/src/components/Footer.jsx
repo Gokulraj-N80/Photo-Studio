@@ -59,8 +59,8 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-[#12100E] pt-32 pb-12 px-6 lg:px-12 w-full border-t border-[#FFFDF8]/5">
-      <div className="max-w-7xl mx-auto">
+    <footer ref={footerRef} className="bg-[#12100E] pt-32 pb-12 px-6 lg:px-16 w-full border-t border-[#FFFDF8]/5">
+      <div className="w-full max-w-[1700px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-12 mb-20">
           
           {/* Column 1: Brand */}

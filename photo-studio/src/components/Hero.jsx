@@ -107,8 +107,8 @@ const Hero = () => {
         />
       </div>
 
-      {/* Content - Increased top margin heavily so it absolutely clears the logo */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-12 pt-24 md:pt-32 pb-8 md:pb-12">
+      {/* Content - Generous max-width to reduce excess margins on widescreen */}
+      <div className="relative z-10 w-full max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-16 pt-24 md:pt-32 pb-8 md:pb-12">
         <div ref={contentRef} className="max-w-[700px] text-center lg:text-left mx-auto lg:mx-0 flex flex-col items-center lg:items-start" style={{ opacity: 1 }}>
           
           {/* Eyebrow - Changed to white for max visibility, added a gold line next to it for the premium feel */}

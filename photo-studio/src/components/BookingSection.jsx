@@ -58,8 +58,8 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
   };
 
   return (
-    <section id="booking" className="py-12 md:py-16 px-4 md:px-6 w-full bg-[#12100E] border-t border-white/5">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 bg-[#FFFDF8] rounded-sm overflow-hidden shadow-2xl border-2 border-[#12100E]">
+    <section id="booking" className="py-12 md:py-16 px-4 sm:px-6 md:px-10 lg:px-14 w-full bg-[#12100E] border-t border-white/5">
+      <div className="w-full max-w-[1550px] mx-auto grid grid-cols-1 lg:grid-cols-2 bg-[#FFFDF8] rounded-sm overflow-hidden shadow-2xl border-2 border-[#12100E]">
         
         {/* Left Side - Image */}
         <div className="relative min-h-[250px] md:min-h-[400px]">

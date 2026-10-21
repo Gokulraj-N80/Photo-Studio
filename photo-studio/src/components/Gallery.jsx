@@ -159,8 +159,8 @@ const OurWorks = () => {
   }, [activeFilter]);
 
   return (
-    <section id="gallery" ref={sectionRef} className="py-12 md:py-16 px-6 w-full bg-[#12100E]">
-      <div className="max-w-7xl mx-auto">
+    <section id="gallery" ref={sectionRef} className="py-12 md:py-16 px-4 sm:px-6 md:px-10 lg:px-14 w-full bg-[#12100E]">
+      <div className="w-full max-w-[1700px] mx-auto">
 
         {/* Header */}
         <div className="works-header flex flex-col items-center text-center justify-center mb-14 gap-6">
