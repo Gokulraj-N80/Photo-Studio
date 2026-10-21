@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 const servicesData = [
   {
     id: "wedding",
-    image: "https://images.unsplash.com/photo-1519225429402-46a4891122a7?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=900&q=80",
     title: "Wedding Photography",
     desc: "Cinematic documentation of your most important day, capturing every vow, tear, and joyful moment.",
   },

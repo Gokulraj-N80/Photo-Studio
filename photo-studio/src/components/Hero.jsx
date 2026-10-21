@@ -87,13 +87,13 @@ const Hero = () => {
     <section id="hero" ref={heroRef} className="relative h-[100svh] min-h-[650px] w-full flex flex-col justify-center overflow-hidden bg-[#12100E] selection:bg-[#C5A059] selection:text-[#12100E]">
       {/* Background Wrapper */}
       <div ref={parallaxWrapper} className="absolute inset-0 w-full h-full pointer-events-none">
-        {/* Main Image */}
+        {/* Main Image - Horizontally framed with full faces and expressions in complete view */}
         <img 
           ref={bgRef}
-          src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=85" 
+          src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1920&q=85" 
           alt="Luxury Cinematic Photography" 
-          className="absolute inset-0 w-full h-full object-cover origin-center object-center"
-          style={{ opacity: 1, scale: 1.08 }}
+          className="absolute inset-0 w-full h-full object-cover object-[70%_center] md:object-[65%_center]"
+          style={{ opacity: 1, scale: 1.02 }}
         />
         
         {/* Cinematic dark overlay for flawless typography contrast */}

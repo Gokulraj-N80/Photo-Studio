@@ -13,7 +13,7 @@ const works = [
   // WEDDINGS
   { src: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "The Union", subtitle: "Sacred vows, eternal bonds" },
   { src: "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "Sunset Vows", subtitle: "Chasing the golden horizon" },
-  { src: "https://images.unsplash.com/photo-1519225429402-46a4891122a7?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "The Bridal Veil", subtitle: "Delicate lace and morning light" },
+  { src: "https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "The Bridal Veil", subtitle: "Delicate lace and morning light" },
   { src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "Golden Embrace", subtitle: "Warm reflections of two souls" },
   { src: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "The First Dance", subtitle: "Suspended in a timeless ballroom" },
   { src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "Starlight Banquet", subtitle: "Intimate celebrations under the canopy" },
@@ -108,30 +108,22 @@ const OurWorks = () => {
   useEffect(() => {
     // This context runs every time the filter changes (or initial mount)
     const ctx = gsap.context(() => {
-      /* Cards Extraordinary Scrub Reveal */
-      gsap.utils.toArray('.work-card').forEach((card, idx) => {
-        const rotDir = idx % 2 === 0 ? -12 : 12;
-        
+      /* Fast, clean card reveal without blur or distortion */
+      gsap.utils.toArray('.work-card').forEach((card) => {
         gsap.fromTo(card,
           { 
-            y: 200, 
-            scale: 0.5, 
-            opacity: 0, 
-            rotationZ: rotDir,
-            filter: 'blur(20px)' 
+            y: 25, 
+            opacity: 0 
           },
           { 
             y: 0, 
-            scale: 1, 
             opacity: 1, 
-            rotationZ: 0,
-            filter: 'blur(0px)',
-            duration: 1.2,
-            ease: 'expo.out',
+            duration: 0.5,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: card,
               start: 'top 95%',
-              toggleActions: 'play none none reverse',
+              once: true
             }
           }
         );
