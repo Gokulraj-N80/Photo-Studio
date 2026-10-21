@@ -41,11 +41,27 @@ const PricingPackages = ({ onBook }) => {
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.fromTo('.tier-card',
-          { y: 60, opacity: 0 },
+        gsap.fromTo('.pricing-header',
+          { y: 40, opacity: 0 },
           {
-            y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power2.out",
-            scrollTrigger: { trigger: containerRef.current, start: "top 75%" }
+            y: 0, opacity: 1, duration: 0.9, ease: "power3.out",
+            scrollTrigger: { 
+              trigger: containerRef.current, 
+              start: "top 80%",
+              toggleActions: "play reverse play reverse"
+            }
+          }
+        );
+
+        gsap.fromTo('.tier-card',
+          { y: 60, opacity: 0, scale: 0.95 },
+          {
+            y: 0, opacity: 1, scale: 1, duration: 1, stagger: 0.15, ease: "power2.out",
+            scrollTrigger: { 
+              trigger: containerRef.current, 
+              start: "top 72%",
+              toggleActions: "play reverse play reverse"
+            }
           }
         );
       });
@@ -55,7 +71,7 @@ const PricingPackages = ({ onBook }) => {
 
   return (
     <div ref={containerRef} className="w-full py-24 bg-[#FFFDF8]">
-      <div className="text-center mb-16 md:mb-24">
+      <div className="pricing-header text-center mb-16 md:mb-24">
         <h2 className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#C5A059] mb-4">Investment</h2>
         <h3 className="text-3xl md:text-5xl font-serif font-bold text-[#12100E]">Signature Collections</h3>
       </div>

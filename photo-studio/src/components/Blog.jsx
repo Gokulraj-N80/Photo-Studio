@@ -58,14 +58,26 @@ const Blog = () => {
       const cards = gsap.utils.toArray('.journal-card');
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // Extraordinary 3D Stagger Reveal for the Cards
+        // Animate section header
+        gsap.fromTo('.journal-header',
+          { y: 40, opacity: 0 },
+          {
+            y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+              toggleActions: "play reverse play reverse"
+            }
+          }
+        );
+
+        // 3D Stagger Reveal for the Cards
         gsap.fromTo(cards,
           { 
-            y: 150, 
+            y: 80, 
             opacity: 0, 
-            rotationY: 30, 
-            rotationX: -20,
-            scale: 0.85,
+            rotationY: 15, 
+            scale: 0.92,
             transformPerspective: 1200,
             transformOrigin: "bottom center"
           },
@@ -73,19 +85,29 @@ const Blog = () => {
             y: 0,
             opacity: 1,
             rotationY: 0,
-            rotationX: 0,
             scale: 1,
-            duration: 1.4,
-            stagger: 0.2,
-            ease: "back.out(1.2)",
-            scrollTrigger: { trigger: '.grid', start: "top 80%" }
+            duration: 1.1,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: { 
+              trigger: '.journal-grid', 
+              start: "top 85%",
+              toggleActions: "play reverse play reverse"
+            }
           }
         );
       });
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
         cards.forEach((card) => {
-          gsap.fromTo(card, { opacity: 0 }, { opacity: 1, duration: 1, stagger: 0.2, scrollTrigger: { trigger: card, start: "top 85%" } });
+          gsap.fromTo(card, { opacity: 0 }, { 
+            opacity: 1, duration: 1, stagger: 0.2, 
+            scrollTrigger: { 
+              trigger: card, 
+              start: "top 85%",
+              toggleActions: "play reverse play reverse"
+            } 
+          });
         });
       });
     }, sectionRef);
@@ -95,12 +117,12 @@ const Blog = () => {
   return (
     <section id="blog" ref={sectionRef} className="py-16 md:py-32 px-4 md:px-6 w-full bg-[#12100E]">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 md:mb-20">
+        <div className="journal-header text-center mb-12 md:mb-20">
           <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059] mb-4">JOURNAL</h2>
           <h3 className="text-3xl md:text-5xl font-serif font-bold text-[#FFFDF8] mb-0 leading-tight">Stories, Ideas &<br/>Behind the Lens</h3>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-12">
+        <div className="journal-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-12">
           {blogPosts.map((post, idx) => (
             <div key={idx} className="journal-card group cursor-pointer flex flex-col h-full">
               <div className="aspect-square md:aspect-[4/5] overflow-hidden mb-4 md:mb-8 rounded-sm">

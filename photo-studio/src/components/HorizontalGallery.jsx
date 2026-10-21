@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DepthCarousel from './DepthCarousel';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const HorizontalGallery = () => {
+  const sectionRef = useRef(null);
+
   const images = [
     { image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80", alt: "The Vows" },
     { image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80", alt: "Stunning Portraits" },
@@ -10,9 +16,38 @@ const HorizontalGallery = () => {
     { image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80", alt: "Fashion & Vogue" },
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.depth-header',
+        { y: 40, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+            toggleActions: 'play reverse play reverse'
+          }
+        }
+      );
+      gsap.fromTo('.depth-wrapper',
+        { y: 60, opacity: 0, scale: 0.95 },
+        {
+          y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+            toggleActions: 'play reverse play reverse'
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="w-full bg-[#FFFDF8] pt-20 pb-32">
-      <div className="text-center pb-12 px-8">
+    <section ref={sectionRef} className="w-full bg-[#FFFDF8] pt-16 md:pt-24 pb-24 md:pb-32 overflow-hidden">
+      <div className="depth-header text-center pb-10 md:pb-14 px-6">
         <h2 className="text-xs font-bold tracking-[0.3em] uppercase text-[#C5A059] mb-4">
           A COLLECTION OF MOMENTS
         </h2>
@@ -21,7 +56,7 @@ const HorizontalGallery = () => {
         </h3>
       </div>
 
-      <div style={{ height: '500px', position: 'relative', width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="depth-wrapper" style={{ height: '500px', position: 'relative', width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
         <DepthCarousel
           items={images}
           cardWidth={500}
@@ -38,7 +73,7 @@ const HorizontalGallery = () => {
           loop
         />
       </div>
-    </div>
+    </section>
   );
 };
 

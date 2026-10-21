@@ -11,6 +11,7 @@ import JournalPage from './pages/JournalPage';
 import ContactPage from './pages/ContactPage';
 import SEOServicePage from './pages/SEOServicePage';
 import Preloader from './components/Preloader';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Simple protected route wrapper
 const ProtectedRoute = ({ children }) => {
@@ -50,7 +51,16 @@ function App() {
 
   return (
     <HelmetProvider>
-      {loading && <Preloader onComplete={() => setLoading(false)} />}
+      {loading && (
+        <Preloader 
+          onComplete={() => {
+            setLoading(false);
+            setTimeout(() => {
+              ScrollTrigger.refresh();
+            }, 100);
+          }} 
+        />
+      )}
       <BrowserRouter>
         <ScrollToTop />
         <Routes>

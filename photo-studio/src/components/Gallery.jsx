@@ -77,13 +77,23 @@ const OurWorks = () => {
       gsap.fromTo('.works-header',
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } }
+          scrollTrigger: { 
+            trigger: sectionRef.current, 
+            start: 'top 75%',
+            toggleActions: 'play reverse play reverse'
+          } 
+        }
       );
       /* Filters slide in */
       gsap.fromTo('.works-filter',
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.06, ease: 'power2.out',
-          scrollTrigger: { trigger: '.filters-row', start: 'top 85%' } }
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.04, ease: 'power2.out',
+          scrollTrigger: { 
+            trigger: '.filters-row', 
+            start: 'top 85%',
+            toggleActions: 'play reverse play reverse'
+          } 
+        }
       );
     }, sectionRef);
 
@@ -108,22 +118,24 @@ const OurWorks = () => {
   useEffect(() => {
     // This context runs every time the filter changes (or initial mount)
     const ctx = gsap.context(() => {
-      /* Fast, clean card reveal without blur or distortion */
+      /* Fast, clean card reveal with bidirectional scroll / descroll support */
       gsap.utils.toArray('.work-card').forEach((card) => {
         gsap.fromTo(card,
           { 
-            y: 25, 
-            opacity: 0 
+            y: 35, 
+            opacity: 0,
+            scale: 0.98
           },
           { 
             y: 0, 
             opacity: 1, 
-            duration: 0.5,
+            scale: 1,
+            duration: 0.55,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: card,
-              start: 'top 95%',
-              once: true
+              start: 'top 92%',
+              toggleActions: 'play reverse play reverse'
             }
           }
         );

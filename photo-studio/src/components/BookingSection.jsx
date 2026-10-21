@@ -1,12 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BookingCalendar from './BookingCalendar';
 import './BookingCalendar.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
+  const sectionRef = useRef(null);
+  const cardRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(cardRef.current,
+        { y: 50, opacity: 0, scale: 0.97 },
+        {
+          y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+            toggleActions: 'play reverse play reverse'
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,8 +82,8 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
   };
 
   return (
-    <section id="booking" className="py-12 md:py-16 px-4 sm:px-6 md:px-10 lg:px-14 w-full bg-[#12100E] border-t border-white/5">
-      <div className="w-full max-w-[1550px] mx-auto grid grid-cols-1 lg:grid-cols-2 bg-[#FFFDF8] rounded-sm overflow-hidden shadow-2xl border-2 border-[#12100E]">
+    <section id="booking" ref={sectionRef} className="py-12 md:py-16 px-4 sm:px-6 md:px-10 lg:px-14 w-full bg-[#12100E] border-t border-white/5">
+      <div ref={cardRef} className="w-full max-w-[1550px] mx-auto grid grid-cols-1 lg:grid-cols-2 bg-[#FFFDF8] rounded-sm overflow-hidden shadow-2xl border-2 border-[#12100E]">
         
         {/* Left Side - Image */}
         <div className="relative min-h-[250px] md:min-h-[400px]">
@@ -92,7 +116,7 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
                   name="firstName"
                   required
                   className="w-full bg-transparent border-b border-[#12100E]/20 py-2 text-[#12100E] focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-[#12100E]/30"
-                  placeholder="Karthik Subramanian"
+                  placeholder="Julian Vance"
                 />
               </div>
               
@@ -103,7 +127,7 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
                   name="email"
                   required
                   className="w-full bg-transparent border-b border-[#12100E]/20 py-2 text-[#12100E] focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-[#12100E]/30"
-                  placeholder="karthik@example.in"
+                  placeholder="julian@example.com"
                 />
               </div>
 
@@ -113,7 +137,7 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
                   type="tel" 
                   name="phone"
                   className="w-full bg-transparent border-b border-[#12100E]/20 py-2 text-[#12100E] focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-[#12100E]/30"
-                  placeholder="+91 98765 43210"
+                  placeholder="+1 (212) 555-0198"
                 />
               </div>
 

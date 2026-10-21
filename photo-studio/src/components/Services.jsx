@@ -154,19 +154,30 @@ const Services = ({ onBook }) => {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         // Animate headers
         gsap.fromTo('.services-header-text', 
-          { y: 60, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } }
+          { y: 50, opacity: 0 },
+          { 
+            y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out", 
+            scrollTrigger: { 
+              trigger: sectionRef.current, 
+              start: "top 75%",
+              toggleActions: "play reverse play reverse"
+            } 
+          }
         );
 
-        // 3D card reveal on scroll
+        // 3D card reveal on scroll & descroll
         gsap.fromTo(serviceCards,
-          { y: 100, opacity: 0, scale: 0.9 },
+          { y: 80, opacity: 0, scale: 0.92 },
           { 
             y: 0, opacity: 1, scale: 1,
-            duration: 1.2, 
-            stagger: 0.15,
+            duration: 1, 
+            stagger: 0.12,
             ease: "expo.out",
-            scrollTrigger: { trigger: sectionRef.current, start: "top 70%" } 
+            scrollTrigger: { 
+              trigger: sectionRef.current, 
+              start: "top 72%",
+              toggleActions: "play reverse play reverse"
+            } 
           }
         );
       });
@@ -174,7 +185,14 @@ const Services = ({ onBook }) => {
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.fromTo(serviceCards, 
           { opacity: 0 }, 
-          { opacity: 1, duration: 1, stagger: 0.1, scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } }
+          { 
+            opacity: 1, duration: 1, stagger: 0.1, 
+            scrollTrigger: { 
+              trigger: sectionRef.current, 
+              start: "top 75%",
+              toggleActions: "play reverse play reverse"
+            } 
+          }
         );
       });
     }, sectionRef);
