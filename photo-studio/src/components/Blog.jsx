@@ -60,13 +60,13 @@ const Blog = () => {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         // Animate section header
         gsap.fromTo('.journal-header',
-          { y: 40, opacity: 0 },
+          { y: 30, opacity: 0 },
           {
-            y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+            y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
-              toggleActions: "play reverse play reverse"
+              start: "top 88%",
+              once: true
             }
           }
         );
@@ -74,10 +74,10 @@ const Blog = () => {
         // 3D Stagger Reveal for the Cards
         gsap.fromTo(cards,
           { 
-            y: 80, 
+            y: 50, 
             opacity: 0, 
-            rotationY: 15, 
-            scale: 0.92,
+            rotationY: 10, 
+            scale: 0.95,
             transformPerspective: 1200,
             transformOrigin: "bottom center"
           },
@@ -86,13 +86,13 @@ const Blog = () => {
             opacity: 1,
             rotationY: 0,
             scale: 1,
-            duration: 1.1,
-            stagger: 0.15,
+            duration: 0.9,
+            stagger: 0.1,
             ease: "power2.out",
             scrollTrigger: { 
               trigger: '.journal-grid', 
-              start: "top 85%",
-              toggleActions: "play reverse play reverse"
+              start: "top 88%",
+              once: true
             }
           }
         );
@@ -101,11 +101,11 @@ const Blog = () => {
       mm.add("(prefers-reduced-motion: reduce)", () => {
         cards.forEach((card) => {
           gsap.fromTo(card, { opacity: 0 }, { 
-            opacity: 1, duration: 1, stagger: 0.2, 
+            opacity: 1, duration: 0.8, stagger: 0.1, 
             scrollTrigger: { 
               trigger: card, 
-              start: "top 85%",
-              toggleActions: "play reverse play reverse"
+              start: "top 88%",
+              once: true
             } 
           });
         });

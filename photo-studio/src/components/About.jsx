@@ -23,14 +23,14 @@ const About = () => {
         /* ── 1. ELEGANT IMAGE REVEAL ── */
         gsap.fromTo(
           '.about-image-wrapper',
-          { opacity: 0, y: 40, scale: 1.04 },
+          { opacity: 0, y: 30, scale: 1.02 },
           {
             opacity: 1, y: 0, scale: 1,
-            duration: 1.2, ease: 'power3.out',
+            duration: 1, ease: 'power3.out',
             scrollTrigger: { 
               trigger: sectionRef.current, 
-              start: 'top 75%',
-              toggleActions: 'play reverse play reverse'
+              start: 'top 85%',
+              once: true
             }
           }
         );
@@ -38,14 +38,14 @@ const About = () => {
         /* ── 2. IMAGE INNER ZOOM ── */
         gsap.fromTo(
           imgInnerRef.current,
-          { scale: 1.15 },
+          { scale: 1.1 },
           {
             scale: 1,
             duration: 1.2, ease: 'power3.out',
             scrollTrigger: { 
               trigger: sectionRef.current, 
-              start: 'top 75%',
-              toggleActions: 'play reverse play reverse'
+              start: 'top 85%',
+              once: true
             }
           }
         );
@@ -55,11 +55,11 @@ const About = () => {
           ['.corner-tl', '.corner-br'],
           { width: 0, height: 0, opacity: 0 },
           { 
-            width: 96, height: 96, opacity: 1, duration: 1.2, ease: 'expo.out', stagger: 0.15,
+            width: 96, height: 96, opacity: 1, duration: 1, ease: 'expo.out', stagger: 0.15,
             scrollTrigger: { 
               trigger: sectionRef.current, 
-              start: 'top 65%',
-              toggleActions: 'play reverse play reverse'
+              start: 'top 80%',
+              once: true
             } 
           }
         );
@@ -67,14 +67,14 @@ const About = () => {
         /* ── 4. TEXT BLOCKS — Fade Up ── */
         gsap.fromTo(
           '.about-text',
-          { y: 30, opacity: 0 },
+          { y: 25, opacity: 0 },
           {
             y: 0, opacity: 1,
-            duration: 1, stagger: 0.12, ease: 'power2.out',
+            duration: 0.9, stagger: 0.1, ease: 'power2.out',
             scrollTrigger: { 
               trigger: '.about-text-container', 
-              start: 'top 80%',
-              toggleActions: 'play reverse play reverse'
+              start: 'top 88%',
+              once: true
             },
           }
         );
@@ -82,39 +82,28 @@ const About = () => {
         /* ── 4b. HEADING REVEAL ── */
         gsap.fromTo(
           '.about-heading-line',
-          { y: 50, opacity: 0 },
+          { y: 35, opacity: 0 },
           {
             y: 0, opacity: 1,
-            duration: 1, stagger: 0.12, ease: 'power3.out',
+            duration: 0.9, stagger: 0.1, ease: 'power3.out',
             scrollTrigger: { 
               trigger: '.about-text-container', 
-              start: 'top 80%',
-              toggleActions: 'play reverse play reverse'
+              start: 'top 88%',
+              once: true
             }
           }
         );
 
-        /* ── 5. STATS COUNTERS & CARDS (Bi-directional Scroll & Descroll) ── */
+        /* ── 5. STATS COUNTERS & CARDS ── */
         const animateCounter = (ref, target) => {
           ScrollTrigger.create({
             trigger: '.stat-grid',
-            start: 'top 90%',
-            toggleActions: 'play reverse play reverse',
+            start: 'top 92%',
+            once: true,
             onEnter: () => {
               gsap.fromTo(ref.current, { textContent: 0 }, {
                 textContent: target, duration: 2, ease: 'power2.out', snap: { textContent: 1 }
               });
-            },
-            onEnterBack: () => {
-              gsap.fromTo(ref.current, { textContent: 0 }, {
-                textContent: target, duration: 2, ease: 'power2.out', snap: { textContent: 1 }
-              });
-            },
-            onLeave: () => {
-              if (ref.current) ref.current.textContent = "0";
-            },
-            onLeaveBack: () => {
-              if (ref.current) ref.current.textContent = "0";
             }
           });
         };
@@ -124,13 +113,13 @@ const About = () => {
 
         gsap.fromTo(
           '.stat-card',
-          { scale: 0.9, opacity: 0, y: 30 },
+          { scale: 0.95, opacity: 0, y: 20 },
           { 
-            scale: 1, opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: 'back.out(1.4)',
+            scale: 1, opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'back.out(1.4)',
             scrollTrigger: { 
               trigger: '.stat-grid', 
               start: 'top 92%',
-              toggleActions: 'play reverse play reverse'
+              once: true
             } 
           }
         );

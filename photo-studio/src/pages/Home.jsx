@@ -17,12 +17,20 @@ const Home = () => {
   const [bookingCategory, setBookingCategory] = useState("wedding");
 
   useEffect(() => {
-    // Refresh ScrollTrigger calculations after initial mount and font/asset settlements
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 200);
+    // Refresh ScrollTrigger calculations as assets settle on initial visit
+    const t1 = setTimeout(() => ScrollTrigger.refresh(), 150);
+    const t2 = setTimeout(() => ScrollTrigger.refresh(), 600);
+    const t3 = setTimeout(() => ScrollTrigger.refresh(), 1500);
 
-    return () => clearTimeout(timer);
+    const handleLoad = () => ScrollTrigger.refresh();
+    window.addEventListener('load', handleLoad);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      window.removeEventListener('load', handleLoad);
+    };
   }, []);
 
   return (

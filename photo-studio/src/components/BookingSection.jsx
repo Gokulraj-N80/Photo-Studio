@@ -17,13 +17,13 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(cardRef.current,
-        { y: 50, opacity: 0, scale: 0.97 },
+        { y: 30, opacity: 0, scale: 0.98 },
         {
-          y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'power2.out',
+          y: 0, opacity: 1, scale: 1, duration: 0.9, ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 75%',
-            toggleActions: 'play reverse play reverse'
+            start: 'top 88%',
+            once: true
           }
         }
       );

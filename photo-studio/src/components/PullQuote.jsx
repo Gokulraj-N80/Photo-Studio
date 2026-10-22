@@ -14,13 +14,13 @@ const PullQuote = () => {
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         gsap.fromTo(textRef.current,
-          { opacity: 0, y: 40 },
+          { opacity: 0, y: 30 },
           { 
-            opacity: 1, y: 0, duration: 1.3, ease: "power2.out", 
+            opacity: 1, y: 0, duration: 0.9, ease: "power2.out", 
             scrollTrigger: { 
               trigger: quoteRef.current, 
-              start: "top 75%",
-              toggleActions: "play reverse play reverse"
+              start: "top 88%",
+              once: true
             } 
           }
         );
@@ -28,11 +28,11 @@ const PullQuote = () => {
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.fromTo(textRef.current, { opacity: 0 }, { 
-          opacity: 1, duration: 1, 
+          opacity: 1, duration: 0.8, 
           scrollTrigger: { 
             trigger: quoteRef.current, 
-            start: "top 75%",
-            toggleActions: "play reverse play reverse"
+            start: "top 90%",
+            once: true
           } 
         });
       });

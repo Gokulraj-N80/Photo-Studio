@@ -249,7 +249,6 @@ const OurWorks = () => {
                 alt={work.title}
                 loading="lazy"
                 decoding="async"
-                onLoad={() => ScrollTrigger.refresh()}
                 className="w-full h-auto block transition-transform duration-[2000ms] ease-out group-hover:scale-[1.05]"
                 style={{ willChange: 'transform' }}
               />

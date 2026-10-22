@@ -19,24 +19,24 @@ const HorizontalGallery = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo('.depth-header',
-        { y: 40, opacity: 0 },
+        { y: 30, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+          y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play reverse play reverse'
+            start: 'top 88%',
+            once: true
           }
         }
       );
       gsap.fromTo('.depth-wrapper',
-        { y: 60, opacity: 0, scale: 0.95 },
+        { y: 40, opacity: 0, scale: 0.96 },
         {
-          y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'power2.out',
+          y: 0, opacity: 1, scale: 1, duration: 0.9, ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 75%',
-            toggleActions: 'play reverse play reverse'
+            start: 'top 85%',
+            once: true
           }
         }
       );
