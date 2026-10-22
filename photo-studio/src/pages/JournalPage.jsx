@@ -10,7 +10,7 @@ const JournalPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#12100E] selection:bg-[#C5A059] selection:text-[#12100E] flex flex-col">
+    <div className="min-h-screen bg-[#FFFDF8] selection:bg-[#C5A059] selection:text-[#12100E] flex flex-col">
       <SEO title="Journal & Stories | Apex Studio" description="Read stories, tips, and behind-the-scenes insights from our latest creative photography sessions at Apex Studio." path="/journal" />
       <Navbar />
       <div className="flex-grow pt-4 md:pt-8">

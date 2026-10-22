@@ -115,17 +115,17 @@ const Blog = () => {
   }, []);
 
   return (
-    <section id="blog" ref={sectionRef} className="py-16 md:py-32 px-4 md:px-6 w-full bg-[#12100E]">
+    <section id="blog" ref={sectionRef} className="py-16 md:py-32 px-4 md:px-6 w-full bg-[#FFFDF8] border-t border-[#12100E]/5">
       <div className="max-w-7xl mx-auto">
         <div className="journal-header text-center mb-12 md:mb-20">
           <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059] mb-4">JOURNAL</h2>
-          <h3 className="text-3xl md:text-5xl font-serif font-bold text-[#FFFDF8] mb-0 leading-tight">Stories, Ideas &<br/>Behind the Lens</h3>
+          <h3 className="text-3xl md:text-5xl font-serif font-bold text-[#12100E] mb-0 leading-tight">Stories, Ideas &<br/>Behind the Lens</h3>
         </div>
         
         <div className="journal-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-12">
           {blogPosts.map((post, idx) => (
             <div key={idx} className="journal-card group cursor-pointer flex flex-col h-full">
-              <div className="aspect-square md:aspect-[4/5] overflow-hidden mb-4 md:mb-8 rounded-sm">
+              <div className="aspect-square md:aspect-[4/5] overflow-hidden mb-4 md:mb-8 rounded-sm shadow-[0_4px_20px_rgba(0,0,0,0.06)] group-hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-shadow duration-500">
                 <img 
                   src={post.img} 
                   alt={post.title} 
@@ -134,13 +134,13 @@ const Blog = () => {
               </div>
               <div className="journal-text flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-2 md:mb-4">
-                  <span className="text-[9px] md:text-[10px] text-[#FFFDF8] font-bold uppercase tracking-widest">{post.date}</span>
+                  <span className="text-[9px] md:text-[10px] text-[#12100E]/70 font-bold uppercase tracking-widest">{post.date}</span>
                   <span className="text-[#C5A059]/50">•</span>
                   <span className="text-[9px] md:text-[10px] text-[#C5A059] font-bold uppercase tracking-widest">{post.category}</span>
                 </div>
-                <h4 className="text-xl md:text-2xl font-serif font-bold text-[#FFFDF8] mb-2 md:mb-4 leading-snug group-hover:text-[#C5A059] transition-colors">{post.title}</h4>
-                <p className="text-[#FFFDF8]/70 text-xs md:text-sm font-light leading-relaxed mb-4 md:mb-6 flex-grow">{post.excerpt}</p>
-                <span className="inline-flex items-center gap-2 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] text-[#FFFDF8] group-hover:text-[#C5A059] transition-colors mt-auto">
+                <h4 className="text-xl md:text-2xl font-serif font-bold text-[#12100E] mb-2 md:mb-4 leading-snug group-hover:text-[#C5A059] transition-colors">{post.title}</h4>
+                <p className="text-[#12100E]/70 text-xs md:text-sm font-light leading-relaxed mb-4 md:mb-6 flex-grow">{post.excerpt}</p>
+                <span className="inline-flex items-center gap-2 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] text-[#12100E] group-hover:text-[#C5A059] transition-colors mt-auto">
                   Read Story <span className="transform group-hover:translate-x-2 transition-transform">&rarr;</span>
                 </span>
               </div>

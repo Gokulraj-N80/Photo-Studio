@@ -58,6 +58,9 @@ function App() {
             setTimeout(() => {
               ScrollTrigger.refresh();
             }, 100);
+            setTimeout(() => {
+              ScrollTrigger.refresh();
+            }, 400);
           }} 
         />
       )}

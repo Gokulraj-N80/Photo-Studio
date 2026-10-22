@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
@@ -52,15 +52,20 @@ const works = [
   { src: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=900&q=80", category: "EVENTS", title: "Grand Symphony", subtitle: "Living music and live crowd energy" }
 ];
 
-
-
-
-
 const OurWorks = () => {
   const [activeFilter, setActiveFilter] = useState("DISCOVER");
   const sectionRef = useRef(null);
 
-  const filteredWorks = activeFilter === "DISCOVER" ? [...works].sort(() => 0.5 - Math.random()).slice(0, 20) : works.filter(w => w.category === activeFilter);
+  // Stable memoized discover pool so items don't re-shuffle on re-renders
+  const discoverWorks = useMemo(() => {
+    return [...works].sort(() => 0.5 - Math.random()).slice(0, 20);
+  }, []);
+
+  const filteredWorks = useMemo(() => {
+    return activeFilter === "DISCOVER" 
+      ? discoverWorks 
+      : works.filter(w => w.category === activeFilter);
+  }, [activeFilter, discoverWorks]);
 
   const handleFilter = (f) => {
     if (f === activeFilter) return;
@@ -71,27 +76,27 @@ const OurWorks = () => {
   };
 
   useEffect(() => {
-    // This context runs only once for static elements (Header, Filters)
+    // This context runs only once on mount for static elements (Header, Filters)
     const ctx = gsap.context(() => {
       /* Section header reveal */
       gsap.fromTo('.works-header',
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out',
           scrollTrigger: { 
             trigger: sectionRef.current, 
-            start: 'top 75%',
-            toggleActions: 'play reverse play reverse'
+            start: 'top 85%',
+            once: true
           } 
         }
       );
-      /* Filters slide in */
+      /* Filters slide in fast and stay visible */
       gsap.fromTo('.works-filter',
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.04, ease: 'power2.out',
+        { y: 15, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.35, stagger: 0.03, ease: 'power2.out',
           scrollTrigger: { 
-            trigger: '.filters-row', 
+            trigger: sectionRef.current, 
             start: 'top 85%',
-            toggleActions: 'play reverse play reverse'
+            once: true
           } 
         }
       );
@@ -113,54 +118,48 @@ const OurWorks = () => {
       observer.disconnect();
       clearTimeout(timeoutId);
     };
-  }, [activeFilter]);
+  }, []);
 
   useEffect(() => {
-    // This context runs every time the filter changes (or initial mount)
+    // Runs when filter changes and ensures all cards smoothly fulfill into their complete sharp state
     const ctx = gsap.context(() => {
-      /* Fast, clean card reveal with bidirectional scroll / descroll support */
-      gsap.utils.toArray('.work-card').forEach((card) => {
+      gsap.utils.toArray('.work-card').forEach((card, idx) => {
+        const rotDir = idx % 2 === 0 ? -2.5 : 2.5;
+
         gsap.fromTo(card,
           { 
-            y: 35, 
-            opacity: 0,
-            scale: 0.98
+            y: 45, 
+            scale: 0.94, 
+            opacity: 0, 
+            rotationZ: rotDir
           },
           { 
             y: 0, 
+            scale: 1, 
             opacity: 1, 
-            scale: 1,
-            duration: 0.55,
-            ease: 'power2.out',
+            rotationZ: 0,
+            duration: 0.75,
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: card,
               start: 'top 92%',
-              toggleActions: 'play reverse play reverse'
+              once: true
             }
           }
         );
       });
-
-      /* Images are now Masonry, removed Parallax wrapper to avoid cropping */
     }, sectionRef);
 
-    let timeoutId;
-    const observer = new ResizeObserver(() => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 100);
-    });
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    // Refresh ScrollTrigger calculations after DOM settlement
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
 
     return () => {
       ctx.revert();
-      observer.disconnect();
-      clearTimeout(timeoutId);
+      clearTimeout(timer);
     };
-  }, [activeFilter]);
+  }, [activeFilter, filteredWorks]);
 
   return (
     <section id="gallery" ref={sectionRef} className="py-12 md:py-16 px-4 sm:px-6 md:px-10 lg:px-14 w-full bg-[#12100E]">
@@ -182,15 +181,15 @@ const OurWorks = () => {
         </div>
 
         {/* Filter Pills */}
-        <div className="filters-row flex overflow-x-auto snap-x md:flex-wrap justify-start md:justify-center gap-2 md:gap-3 mb-8 md:mb-12 pb-4 md:pb-0 scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="filters-row flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-10 md:mb-14 px-2 max-w-4xl mx-auto">
           {filters.map(f => (
             <button
               key={f}
               onClick={() => handleFilter(f)}
-              className={`works-filter flex-shrink-0 snap-center whitespace-nowrap text-[9px] md:text-[10px] font-bold tracking-[0.2em] uppercase px-4 md:px-5 py-2 rounded-full border transition-all duration-300 ${
+              className={`works-filter whitespace-nowrap text-[11px] sm:text-xs font-semibold tracking-[0.14em] uppercase px-5 py-2.5 rounded-full border transition-all duration-300 cursor-pointer ${
                 activeFilter === f
-                  ? 'bg-[#C5A059] text-[#12100E] border-[#C5A059]'
-                  : 'bg-transparent text-[#FFFDF8]/50 border-white/10 hover:text-[#FFFDF8] hover:border-white/30'
+                  ? 'bg-[#C5A059] text-[#12100E] border-[#C5A059] shadow-[0_4px_16px_rgba(197,160,89,0.35)] font-bold scale-[1.03]'
+                  : 'bg-[#1C1A17] text-[#D8D2C4] border-[#C5A059]/25 hover:border-[#C5A059] hover:text-[#C5A059] hover:bg-[#26231F] shadow-sm'
               }`}
             >
               {f}
@@ -204,13 +203,13 @@ const OurWorks = () => {
             <div className="w-full md:w-1/2 flex justify-center md:justify-end">
               <PixelTransition
                 firstContent={
-                  <div className="w-full h-full bg-[#12100E] flex items-center justify-center">
+                  <div className="w-full h-full bg-[#12100E] flex items-center justify-center overflow-hidden">
                     <img
-                      src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80"
-                      alt="Featured Story"
+                      src="/featured-bridal-party.webp"
+                      alt="Featured Story: The Bridal Party"
                       loading="lazy"
                       decoding="async"
-                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+                      className="w-full h-full object-cover object-center"
                     />
                   </div>
                 }
@@ -224,8 +223,8 @@ const OurWorks = () => {
                 gridSize={12}
                 pixelColor='#1a1714'
                 animationStepDuration={0.4}
-                className="w-full max-w-[550px] h-auto border-2 border-[#C5A059] shadow-2xl rounded-none md:rounded-lg"
-                aspectRatio="62%"
+                className="w-full max-w-[550px] h-auto border-2 border-[#C5A059] shadow-2xl rounded-lg"
+                aspectRatio="56.25%"
               />
             </div>
             <div className="w-full md:w-1/2 text-center md:text-left px-4 md:px-8">
@@ -250,6 +249,7 @@ const OurWorks = () => {
                 alt={work.title}
                 loading="lazy"
                 decoding="async"
+                onLoad={() => ScrollTrigger.refresh()}
                 className="w-full h-auto block transition-transform duration-[2000ms] ease-out group-hover:scale-[1.05]"
                 style={{ willChange: 'transform' }}
               />

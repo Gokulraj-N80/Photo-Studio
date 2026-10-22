@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Home, X, Camera } from 'lucide-react';
+import { Home, Camera } from 'lucide-react';
 import gsap from 'gsap';
 
 const Navbar = () => {
   const navRef = useRef(null);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -18,13 +17,7 @@ const Navbar = () => {
       });
     }, navRef);
 
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       ctx.revert();
     };
   }, []);
@@ -32,12 +25,29 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const handleHomeClick = (e) => {
+    e.preventDefault();
+    if (location.pathname === '/' || location.pathname === '') {
+      const hero = document.getElementById('hero');
+      if (hero) {
+        hero.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      if (window.location.hash) {
+        window.history.pushState(null, '', '/');
+      }
+    } else {
+      navigate('/');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  };
+
   const handleNavClick = (e, href) => {
     if (href.includes('#')) {
       e.preventDefault();
       
       const [path, hash] = href.split('#');
-      const targetHash = '#' + hash;
       const targetPath = path || '/';
 
       if (location.pathname === targetPath) {
@@ -56,25 +66,20 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
+    { name: 'About', href: '/#about' },
     { name: 'Services', href: '/services' },
     { name: 'Our Works', href: '/#gallery' },
     { name: 'Blog', href: '/journal' },
     { name: 'Contact', href: '/contact' },
   ];
 
-
   return (
     <nav 
       ref={navRef}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
-        isScrolled 
-          ? 'py-3.5 bg-[#12100E]/95 backdrop-blur-[14px] border-b border-white/[0.08] shadow-xl' 
-          : 'py-5 bg-[#12100E]/90 backdrop-blur-[12px] border-b border-white/[0.06]'
-      }`}
+      className="fixed top-0 left-0 w-full z-50 py-3.5 sm:py-4 bg-[#12100E]/95 backdrop-blur-md border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
     >
       <div className="w-full max-w-[1700px] mx-auto px-6 lg:px-12 flex justify-between items-center">
-        <Link to="/" className="nav-logo flex items-center gap-3.5 group">
+        <Link to="/" onClick={handleHomeClick} className="nav-logo flex items-center gap-3.5 group">
           <div className="w-10 h-10 rounded-full bg-[#12100E] border border-[#C5A059]/40 shadow-[0_0_15px_rgba(197,160,89,0.2)] flex items-center justify-center transition-all duration-300 group-hover:border-[#C5A059] group-hover:scale-105">
             <Camera className="w-5 h-5 text-[#C5A059]" />
           </div>
@@ -88,12 +93,26 @@ const Navbar = () => {
           {navLinks.map((link) => {
             const isActive = location.pathname === link.href || (link.href === '/#about' && location.hash === '#about');
             
+            if (link.name === 'Home') {
+              return (
+                <Link 
+                  key={link.name}
+                  to="/" 
+                  onClick={handleHomeClick}
+                  className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : 'text-[#FFFDF8]'}`}
+                >
+                  {link.name}
+                  <span className={`absolute bottom-0 left-0 h-[1px] bg-[#C5A059] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                </Link>
+              );
+            }
+
             // For hash links on the same page, we can use an anchor tag. Otherwise use Link.
             if (link.href.includes('#')) {
               return (
                 <a 
                   key={link.name}
-                  href={link.href}
+                  href={link.href} 
                   onClick={(e) => handleNavClick(e, link.href)}
                   className={`nav-item text-xs font-sans font-medium uppercase tracking-[0.15em] hover:text-[#C5A059] transition-colors relative group py-2 ${isActive ? 'text-[#C5A059]' : 'text-[#FFFDF8]'}`}
                 >
@@ -122,7 +141,7 @@ const Navbar = () => {
 
         {/* Mobile Navbar Controls */}
         <div className="md:hidden flex items-center gap-4 z-50">
-          <Link to="/" className="flex items-center justify-center w-10 h-10 rounded-full border border-[#FFFDF8]/20 bg-[#FFFDF8]/5 text-[#FFFDF8] hover:bg-[#C5A059] hover:border-[#C5A059] hover:text-[#12100E] transition-all duration-300">
+          <Link to="/" onClick={handleHomeClick} className="flex items-center justify-center w-10 h-10 rounded-full border border-[#FFFDF8]/20 bg-[#FFFDF8]/5 text-[#FFFDF8] hover:bg-[#C5A059] hover:border-[#C5A059] hover:text-[#12100E] transition-all duration-300">
             <Home className="w-4 h-4" />
           </Link>
           
@@ -162,6 +181,20 @@ const Navbar = () => {
                   <span className="text-[#C5A059] text-xs font-sans mr-4 opacity-50">0{idx + 1}</span>
                   {link.name}
                 </a>
+              ) : link.name === 'Home' ? (
+                <Link 
+                  key={link.name}
+                  to="/" 
+                  onClick={(e) => {
+                    setIsMobileMenuOpen(false);
+                    handleHomeClick(e);
+                  }} 
+                  className={`text-3xl font-serif text-[#FFFDF8] hover:text-[#C5A059] transition-all duration-500 ease-out ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                  style={{ transitionDelay: delay }}
+                >
+                  <span className="text-[#C5A059] text-xs font-sans mr-4 opacity-50">0{idx + 1}</span>
+                  {link.name}
+                </Link>
               ) : (
                 <Link 
                   key={link.name}
