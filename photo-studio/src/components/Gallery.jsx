@@ -78,26 +78,40 @@ const OurWorks = () => {
   useEffect(() => {
     // This context runs only once on mount for static elements (Header, Filters)
     const ctx = gsap.context(() => {
-      /* Section header reveal */
+      /* Section header reveal on scroll and descroll */
       gsap.fromTo('.works-header',
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out',
+        { y: 35, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out',
           scrollTrigger: { 
             trigger: sectionRef.current, 
             start: 'top 85%',
-            once: true
+            end: 'bottom top',
+            toggleActions: 'play reverse play reverse'
           } 
         }
       );
-      /* Filters slide in fast and stay visible */
+      /* Filters slide in on scroll and descroll */
       gsap.fromTo('.works-filter',
-        { y: 15, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.35, stagger: 0.03, ease: 'power2.out',
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.45, stagger: 0.03, ease: 'power2.out',
           scrollTrigger: { 
             trigger: sectionRef.current, 
             start: 'top 85%',
-            once: true
+            end: 'bottom top',
+            toggleActions: 'play reverse play reverse'
           } 
+        }
+      );
+      /* Featured Spotlight reveal on scroll and descroll */
+      gsap.fromTo('.featured-story-section',
+        { y: 40, opacity: 0, scale: 0.96 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.featured-story-section',
+            start: 'top 88%',
+            end: 'bottom top',
+            toggleActions: 'play reverse play reverse'
+          }
         }
       );
     }, sectionRef);
@@ -121,15 +135,15 @@ const OurWorks = () => {
   }, []);
 
   useEffect(() => {
-    // Runs when filter changes and ensures all cards smoothly fulfill into their complete sharp state
+    // Runs when filter changes and animates all cards on scroll and descroll with full completion
     const ctx = gsap.context(() => {
       gsap.utils.toArray('.work-card').forEach((card, idx) => {
-        const rotDir = idx % 2 === 0 ? -2.5 : 2.5;
+        const rotDir = idx % 2 === 0 ? -2 : 2;
 
         gsap.fromTo(card,
           { 
-            y: 45, 
-            scale: 0.94, 
+            y: 55, 
+            scale: 0.92, 
             opacity: 0, 
             rotationZ: rotDir
           },
@@ -138,12 +152,13 @@ const OurWorks = () => {
             scale: 1, 
             opacity: 1, 
             rotationZ: 0,
-            duration: 0.75,
+            duration: 0.8,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: card,
-              start: 'top 92%',
-              once: true
+              start: 'top 90%',
+              end: 'bottom top',
+              toggleActions: 'play reverse play reverse'
             }
           }
         );
@@ -199,7 +214,7 @@ const OurWorks = () => {
 
         {/* Featured Spotlight Section with Pixel Transition */}
         {activeFilter === "DISCOVER" && (
-          <div className="mb-16 w-full flex flex-col md:flex-row gap-8 items-center justify-center">
+          <div className="featured-story-section mb-16 w-full flex flex-col md:flex-row gap-8 items-center justify-center">
             <div className="w-full md:w-1/2 flex justify-center md:justify-end">
               <PixelTransition
                 firstContent={
