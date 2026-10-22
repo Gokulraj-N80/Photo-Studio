@@ -160,6 +160,7 @@ const About = () => {
               ref={imgInnerRef}
               src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=900&q=80"
               alt="Apex Studio Photography"
+              referrerPolicy="no-referrer"
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover"

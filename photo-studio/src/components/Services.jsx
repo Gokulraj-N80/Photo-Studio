@@ -134,7 +134,7 @@ const ServiceCard = ({ svc, onBook }) => {
 
       {/* Front face (Image) */}
       <div ref={frontRef} className="absolute inset-0 transform-style-3d origin-bottom z-10 bg-[#12100E] rounded-sm shadow-lg overflow-hidden border-[1.5px] border-[#C5A059]">
-        <img src={svc.image} className="w-full h-full object-cover object-center" alt={svc.title} />
+        <img src={svc.image} referrerPolicy="no-referrer" className="w-full h-full object-cover object-center" alt={svc.title} />
         <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-transparent to-transparent flex items-end justify-center pb-4 md:pb-8 pointer-events-none px-2 md:px-4 text-center">
           <h4 className="text-[1.1rem] leading-tight md:text-4xl font-serif text-[#FFFDF8] font-bold drop-shadow-md">{svc.title}</h4>
         </div>

@@ -129,6 +129,9 @@ const Blog = () => {
                 <img 
                   src={post.img} 
                   alt={post.title} 
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                   className="journal-img w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105" 
                 />
               </div>

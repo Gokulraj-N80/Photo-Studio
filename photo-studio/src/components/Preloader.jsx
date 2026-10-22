@@ -143,6 +143,7 @@ const Preloader = ({ onComplete }) => {
             ref={el => imageRefs.current[index] = el}
             src={src}
             alt={`Preloader ${index}`}
+            referrerPolicy="no-referrer"
             className="absolute inset-0 w-full h-full object-cover"
           />
         ))}

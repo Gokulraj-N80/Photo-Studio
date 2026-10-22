@@ -90,6 +90,7 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
           <img 
             src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80" 
             alt="Apex Studio Session" 
+            referrerPolicy="no-referrer"
             loading="lazy"
             decoding="async"
             className="absolute inset-0 w-full h-full object-cover object-[center_18%]"

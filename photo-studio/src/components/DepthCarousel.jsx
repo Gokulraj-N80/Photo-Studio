@@ -379,6 +379,7 @@ const DepthCarousel = ({
               className="depth-carousel__img" 
               src={item.image} 
               alt={item.alt || ''} 
+              referrerPolicy="no-referrer"
               draggable={false} 
               loading="lazy"
               decoding="async"
