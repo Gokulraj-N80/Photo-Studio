@@ -92,6 +92,9 @@ const Hero = () => {
           ref={bgRef}
           src="/hero.webp" 
           alt="Luxury Editorial Photography" 
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
           className="absolute inset-0 w-full h-full object-cover object-[78%_center] md:object-[72%_center] brightness-[1.08] contrast-[1.04] saturate-[1.06]"
           style={{ opacity: 1, scale: 1.02 }}
         />

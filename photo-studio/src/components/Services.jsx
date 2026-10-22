@@ -7,37 +7,37 @@ gsap.registerPlugin(ScrollTrigger);
 const servicesData = [
   {
     id: "wedding",
-    image: "https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=900&q=80",
+    image: "/images/wedding/wedding-3.webp",
     title: "Wedding Photography",
     desc: "Cinematic documentation of your most important day, capturing every vow, tear, and joyful moment.",
   },
   {
     id: "pre-wedding",
-    image: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80",
+    image: "/images/wedding/wedding-7.webp",
     title: "Pre-Wedding",
     desc: "Artistic and conceptual storytelling of your journey before the big day, set in beautiful locations.",
   },
   {
     id: "portrait",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80",
+    image: "/images/portraits/portraits-1.webp",
     title: "Portrait Photography",
     desc: "Editorial-style portraits that bring out your authentic self with striking lighting and composition.",
   },
   {
     id: "event",
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80",
+    image: "/images/events/events-1.webp",
     title: "Event Photography",
     desc: "Unobtrusive coverage of your celebrations, ensuring every important memory is preserved.",
   },
   {
     id: "candid",
-    image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80",
+    image: "/images/wedding/wedding-11.webp",
     title: "Candid Photography",
     desc: "Catching those raw, unscripted emotions and fleeting interactions that define true stories.",
   },
   {
     id: "fashion",
-    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80",
+    image: "/images/others/others-2.webp",
     title: "Fashion Photography",
     desc: "High-end commercial and fashion shoots focused on aesthetic perfection and brand identity.",
   }

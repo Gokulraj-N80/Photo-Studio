@@ -11,45 +11,45 @@ import PixelTransition from './PixelTransition';
 
 const works = [
   // WEDDINGS
-  { src: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-1.webp", category: "WEDDINGS", title: "The Union", subtitle: "Sacred vows, eternal bonds" },
-  { src: "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-2.webp", category: "WEDDINGS", title: "Sunset Vows", subtitle: "Chasing the golden horizon" },
-  { src: "https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-3.webp", category: "WEDDINGS", title: "The Bridal Veil", subtitle: "Delicate lace and morning light" },
-  { src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-4.webp", category: "WEDDINGS", title: "Golden Embrace", subtitle: "Warm reflections of two souls" },
-  { src: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-5.webp", category: "WEDDINGS", title: "The First Dance", subtitle: "Suspended in a timeless ballroom" },
-  { src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-6.webp", category: "WEDDINGS", title: "Starlight Banquet", subtitle: "Intimate celebrations under the canopy" },
+  { src: "/images/wedding/wedding-1.webp", fallback: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "The Union", subtitle: "Sacred vows, eternal bonds" },
+  { src: "/images/wedding/wedding-2.webp", fallback: "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "Sunset Vows", subtitle: "Chasing the golden horizon" },
+  { src: "/images/wedding/wedding-3.webp", fallback: "https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "The Bridal Veil", subtitle: "Delicate lace and morning light" },
+  { src: "/images/wedding/wedding-4.webp", fallback: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "Golden Embrace", subtitle: "Warm reflections of two souls" },
+  { src: "/images/wedding/wedding-5.webp", fallback: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "The First Dance", subtitle: "Suspended in a timeless ballroom" },
+  { src: "/images/wedding/wedding-6.webp", fallback: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=80", category: "WEDDINGS", title: "Starlight Banquet", subtitle: "Intimate celebrations under the canopy" },
 
   // PORTRAITS
-  { src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80", fallback: "/images/portraits/portraits-1.webp", category: "PORTRAITS", title: "Sculpted In Light", subtitle: "Studio contrast & inner depth" },
-  { src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80", fallback: "/images/portraits/portraits-2.webp", category: "PORTRAITS", title: "The Monolith", subtitle: "Classic editorial poise" },
-  { src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80", fallback: "/images/portraits/portraits-3.webp", category: "PORTRAITS", title: "Ethereal Glance", subtitle: "Natural window light & soft tones" },
-  { src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80", fallback: "/images/portraits/portraits-4.webp", category: "PORTRAITS", title: "Grace & Solitude", subtitle: "High-contrast editorial mood" },
-  { src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80", fallback: "/images/portraits/portraits-5.webp", category: "PORTRAITS", title: "Character Study", subtitle: "Authentic cinematic portraiture" },
-  { src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80", fallback: "/images/portraits/portraits-6.webp", category: "PORTRAITS", title: "Luminous Glow", subtitle: "Warm beauty & radiant warmth" },
+  { src: "/images/portraits/portraits-1.webp", fallback: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80", category: "PORTRAITS", title: "Sculpted In Light", subtitle: "Studio contrast & inner depth" },
+  { src: "/images/portraits/portraits-2.webp", fallback: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80", category: "PORTRAITS", title: "The Monolith", subtitle: "Classic editorial poise" },
+  { src: "/images/portraits/portraits-3.webp", fallback: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80", category: "PORTRAITS", title: "Ethereal Glance", subtitle: "Natural window light & soft tones" },
+  { src: "/images/portraits/portraits-4.webp", fallback: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80", category: "PORTRAITS", title: "Grace & Solitude", subtitle: "High-contrast editorial mood" },
+  { src: "/images/portraits/portraits-5.webp", fallback: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80", category: "PORTRAITS", title: "Character Study", subtitle: "Authentic cinematic portraiture" },
+  { src: "/images/portraits/portraits-6.webp", fallback: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80", category: "PORTRAITS", title: "Luminous Glow", subtitle: "Warm beauty & radiant warmth" },
 
   // FASHION
-  { src: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80", fallback: "/images/others/others-2.webp", category: "FASHION", title: "Haute Couture", subtitle: "Architectural form & runway elegance" },
-  { src: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80", fallback: "/images/others/others-3.webp", category: "FASHION", title: "Color Theory", subtitle: "Vibrant palettes & editorial styling" },
-  { src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80", fallback: "/images/others/others-4.webp", category: "FASHION", title: "Milan Editorial", subtitle: "Urban luxury & movement" },
-  { src: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=900&q=80", fallback: "/images/others/others-5.webp", category: "FASHION", title: "Bohemian Velvet", subtitle: "Sun-drenched couture aesthetics" },
-  { src: "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=900&q=80", fallback: "/images/others/others-6.webp", category: "FASHION", title: "Modern Noir", subtitle: "Shadow play and geometric attire" },
+  { src: "/images/others/others-2.webp", fallback: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80", category: "FASHION", title: "Haute Couture", subtitle: "Architectural form & runway elegance" },
+  { src: "/images/others/others-3.webp", fallback: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80", category: "FASHION", title: "Color Theory", subtitle: "Vibrant palettes & editorial styling" },
+  { src: "/images/others/others-4.webp", fallback: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80", category: "FASHION", title: "Milan Editorial", subtitle: "Urban luxury & movement" },
+  { src: "/images/others/others-5.webp", fallback: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=900&q=80", category: "FASHION", title: "Bohemian Velvet", subtitle: "Sun-drenched couture aesthetics" },
+  { src: "/images/others/others-6.webp", fallback: "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=900&q=80", category: "FASHION", title: "Modern Noir", subtitle: "Shadow play and geometric attire" },
 
   // PRE-WEDDING
-  { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-7.webp", category: "PRE-WEDDING", title: "Dusk Whispers", subtitle: "Romantic wanderlust before the wedding" },
-  { src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-8.webp", category: "PRE-WEDDING", title: "Wanderlust Romance", subtitle: "Escaping together into nature" },
-  { src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-9.webp", category: "PRE-WEDDING", title: "Whispering Pines", subtitle: "Cinematic pre-wedding visual story" },
-  { src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-10.webp", category: "PRE-WEDDING", title: "Coastal Breeze", subtitle: "Intimate glances by the tide" },
+  { src: "/images/wedding/wedding-7.webp", fallback: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80", category: "PRE-WEDDING", title: "Dusk Whispers", subtitle: "Romantic wanderlust before the wedding" },
+  { src: "/images/wedding/wedding-8.webp", fallback: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80", category: "PRE-WEDDING", title: "Wanderlust Romance", subtitle: "Escaping together into nature" },
+  { src: "/images/wedding/wedding-9.webp", fallback: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80", category: "PRE-WEDDING", title: "Whispering Pines", subtitle: "Cinematic pre-wedding visual story" },
+  { src: "/images/wedding/wedding-10.webp", fallback: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80", category: "PRE-WEDDING", title: "Coastal Breeze", subtitle: "Intimate glances by the tide" },
 
   // CANDID
-  { src: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-11.webp", category: "CANDID", title: "Unscripted Joy", subtitle: "Genuine laughter & shared glances" },
-  { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-12.webp", category: "CANDID", title: "Best Friends Forever", subtitle: "Candid smiles between ceremonies" },
-  { src: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-13.webp", category: "CANDID", title: "The Sudden Laugh", subtitle: "Moments caught without anticipation" },
-  { src: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=900&q=80", fallback: "/images/wedding/wedding-14.webp", category: "CANDID", title: "Subtle Affection", subtitle: "Fleeting touch of hands" },
+  { src: "/images/wedding/wedding-11.webp", fallback: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80", category: "CANDID", title: "Unscripted Joy", subtitle: "Genuine laughter & shared glances" },
+  { src: "/images/wedding/wedding-12.webp", fallback: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80", category: "CANDID", title: "Best Friends Forever", subtitle: "Candid smiles between ceremonies" },
+  { src: "/images/wedding/wedding-13.webp", fallback: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=900&q=80", category: "CANDID", title: "The Sudden Laugh", subtitle: "Moments caught without anticipation" },
+  { src: "/images/wedding/wedding-14.webp", fallback: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=900&q=80", category: "CANDID", title: "Subtle Affection", subtitle: "Fleeting touch of hands" },
 
   // EVENTS
-  { src: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80", fallback: "/images/events/events-1.webp", category: "EVENTS", title: "Gala Grandeur", subtitle: "Black-tie elegance & keynote spotlights" },
-  { src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=900&q=80", fallback: "/images/events/events-2.webp", category: "EVENTS", title: "Summit Keynote", subtitle: "Inspiring talks and focused audiences" },
-  { src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80", fallback: "/images/events/events-3.webp", category: "EVENTS", title: "The Midnight Gala", subtitle: "Sparklers, champagne, and celebrations" },
-  { src: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=900&q=80", fallback: "/images/events/events-4.webp", category: "EVENTS", title: "Grand Symphony", subtitle: "Living music and live crowd energy" }
+  { src: "/images/events/events-1.webp", fallback: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80", category: "EVENTS", title: "Gala Grandeur", subtitle: "Black-tie elegance & keynote spotlights" },
+  { src: "/images/events/events-2.webp", fallback: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=900&q=80", category: "EVENTS", title: "Summit Keynote", subtitle: "Inspiring talks and focused audiences" },
+  { src: "/images/events/events-3.webp", fallback: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80", category: "EVENTS", title: "The Midnight Gala", subtitle: "Sparklers, champagne, and celebrations" },
+  { src: "/images/events/events-4.webp", fallback: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=900&q=80", category: "EVENTS", title: "Grand Symphony", subtitle: "Living music and live crowd energy" }
 ];
 
 const OurWorks = () => {
@@ -263,8 +263,9 @@ const OurWorks = () => {
                 src={work.src}
                 alt={work.title}
                 referrerPolicy="no-referrer"
-                loading="lazy"
-                decoding="async"
+                loading={idx < 8 ? "eager" : "lazy"}
+                fetchPriority={idx < 4 ? "high" : "auto"}
+                decoding={idx < 8 ? "sync" : "async"}
                 onError={(e) => {
                   if (work.fallback && e.currentTarget.src !== work.fallback) {
                     e.currentTarget.src = work.fallback;

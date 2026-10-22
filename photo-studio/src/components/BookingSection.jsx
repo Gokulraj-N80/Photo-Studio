@@ -88,11 +88,16 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
         {/* Left Side - Image with balanced portrait proportions */}
         <div className="lg:col-span-5 relative min-h-[300px] lg:min-h-full">
           <img 
-            src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80" 
+            src="/images/wedding/wedding-4.webp" 
             alt="Apex Studio Session" 
             referrerPolicy="no-referrer"
             loading="lazy"
             decoding="async"
+            onError={(e) => {
+              if (e.currentTarget.src !== 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80') {
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80';
+              }
+            }}
             className="absolute inset-0 w-full h-full object-cover object-[center_18%]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#12100E]/75 via-[#12100E]/15 to-transparent"></div>

@@ -9,11 +9,11 @@ const HorizontalGallery = () => {
   const sectionRef = useRef(null);
 
   const images = [
-    { image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80", alt: "The Vows" },
-    { image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80", alt: "Stunning Portraits" },
-    { image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80", alt: "Pure Joy" },
-    { image: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80", alt: "Pre-Wedding Romance" },
-    { image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80", alt: "Fashion & Vogue" },
+    { image: "/images/wedding/wedding-1.webp", alt: "The Vows" },
+    { image: "/images/portraits/portraits-1.webp", alt: "Stunning Portraits" },
+    { image: "/images/wedding/wedding-11.webp", alt: "Pure Joy" },
+    { image: "/images/wedding/wedding-7.webp", alt: "Pre-Wedding Romance" },
+    { image: "/images/others/others-2.webp", alt: "Fashion & Vogue" },
   ];
 
   useEffect(() => {

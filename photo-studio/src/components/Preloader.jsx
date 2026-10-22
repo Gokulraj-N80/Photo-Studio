@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import gsap from 'gsap';
 
-// A curated pool of high-performance demo imagery
+// A curated pool of local high-performance WebP imagery
 const imagePool = [
-  "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1200&q=80"
+  "/hero.webp",
+  "/images/wedding/wedding-1.webp",
+  "/images/portraits/portraits-1.webp",
+  "/images/wedding/wedding-2.webp",
+  "/images/portraits/portraits-2.webp",
+  "/images/wedding/wedding-3.webp",
+  "/images/events/events-1.webp",
+  "/images/wedding/wedding-4.webp"
 ];
 
 const getRandomImages = (count) => {
@@ -28,9 +28,31 @@ const Preloader = ({ onComplete }) => {
   // Pick 5 random images only once when the component mounts
   const randomImages = useMemo(() => getRandomImages(5), []);
 
-  // Preload images to ensure they display instantly
+  // Preload preloader images + prefetch critical landing page images in background
   useEffect(() => {
+    // 1. Preload preloader flash images
     randomImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    // 2. Background prefetch landing page gallery & hero images for instant display
+    const landingAssets = [
+      "/hero.webp",
+      "/featured-bridal-party.webp",
+      "/images/wedding/wedding-1.webp",
+      "/images/wedding/wedding-2.webp",
+      "/images/wedding/wedding-3.webp",
+      "/images/wedding/wedding-4.webp",
+      "/images/wedding/wedding-5.webp",
+      "/images/wedding/wedding-6.webp",
+      "/images/portraits/portraits-1.webp",
+      "/images/portraits/portraits-2.webp",
+      "/images/portraits/portraits-3.webp",
+      "/images/events/events-1.webp",
+      "/images/others/others-2.webp"
+    ];
+    landingAssets.forEach((src) => {
       const img = new Image();
       img.src = src;
     });
