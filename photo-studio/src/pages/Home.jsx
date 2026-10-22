@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Gallery from '../components/Gallery';
 import About from '../components/About';
-import PullQuote from '../components/PullQuote';
 import Services from '../components/Services';
 import HorizontalGallery from '../components/HorizontalGallery';
 import PricingPackages from '../components/PricingPackages';
@@ -50,9 +49,6 @@ const Home = () => {
           
           {/* Studio Story & Animated Statistics */}
           <About />
-          
-          {/* Atmospheric Quote */}
-          <PullQuote />
           
           {/* 3D Fold Interactive Services */}
           <Services onBook={(category) => setBookingCategory(category)} />
