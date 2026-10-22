@@ -19,10 +19,21 @@ const Footer = () => {
       const [path, hash] = href.split('#');
       const targetPath = path || '/';
 
-      if (location.pathname === targetPath) {
+      if (location.pathname === targetPath || location.pathname === '') {
+        if (!hash || hash === 'hero') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.history.pushState(null, '', '/');
+          return;
+        }
+
         const element = document.getElementById(hash);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          const navHeight = 75;
+          const targetY = element.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({
+            top: Math.max(0, targetY),
+            behavior: 'smooth'
+          });
           window.history.pushState(null, '', href);
         }
       } else {
@@ -90,11 +101,12 @@ const Footer = () => {
               <Compass className="w-3.5 h-3.5 text-[#C5A059]" /> Quick Links
             </h4>
             <ul className="flex flex-col gap-3.5">
-              <li><Link to="/" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block">Home</Link></li>
-              <li><a href="/#about" onClick={(e) => handleNavClick(e, '/#about')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block">About Us</a></li>
-              <li><Link to="/services" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block">Services</Link></li>
-              <li><Link to="/portfolio" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block">Our Works</Link></li>
-              <li><Link to="/contact" className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block">Contact</Link></li>
+              <li><a href="/#hero" onClick={(e) => handleNavClick(e, '/#hero')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block cursor-pointer">Home</a></li>
+              <li><a href="/#about" onClick={(e) => handleNavClick(e, '/#about')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block cursor-pointer">About Us</a></li>
+              <li><a href="/#services" onClick={(e) => handleNavClick(e, '/#services')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block cursor-pointer">Services</a></li>
+              <li><a href="/#gallery" onClick={(e) => handleNavClick(e, '/#gallery')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block cursor-pointer">Our Works</a></li>
+              <li><a href="/#blog" onClick={(e) => handleNavClick(e, '/#blog')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block cursor-pointer">Blog</a></li>
+              <li><a href="/#booking" onClick={(e) => handleNavClick(e, '/#booking')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block cursor-pointer">Contact</a></li>
             </ul>
           </div>
 

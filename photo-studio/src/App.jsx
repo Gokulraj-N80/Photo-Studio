@@ -33,13 +33,16 @@ const ScrollToTop = () => {
         document.documentElement.style.scrollBehavior = '';
       }, 10);
     } else {
-      setTimeout(() => {
-        const id = hash.replace('#', '');
+      const id = hash.replace('#', '');
+      const timer = setTimeout(() => {
         const element = document.getElementById(id);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          const navHeight = 75;
+          const targetY = element.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
         }
-      }, 0);
+      }, 150);
+      return () => clearTimeout(timer);
     }
   }, [pathname, hash]);
 
