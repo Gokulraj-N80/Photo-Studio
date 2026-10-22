@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Home from './pages/Home';
@@ -24,8 +24,19 @@ const ProtectedRoute = ({ children }) => {
 
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
+  const isInitialLoad = useRef(true);
 
   useEffect(() => {
+    // On page reload or fresh visit, always clear hash & reset scroll to Hero landing page
+    if (isInitialLoad.current) {
+      isInitialLoad.current = false;
+      if (window.location.hash) {
+        window.history.replaceState(null, '', window.location.pathname);
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      return;
+    }
+
     if (!hash) {
       document.documentElement.style.scrollBehavior = 'auto';
       window.scrollTo(0, 0);
@@ -52,13 +63,25 @@ const ScrollToTop = () => {
 function App() {
   const [loading, setLoading] = useState(window.location.pathname === '/');
 
+  useEffect(() => {
+    // Reset scroll to top immediately on reload
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    const handleBeforeUnload = () => {
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, []);
+
   return (
     <HelmetProvider>
       {loading && (
         <Preloader 
           onComplete={() => {
             setLoading(false);
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             setTimeout(() => {
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
               ScrollTrigger.refresh();
             }, 100);
             setTimeout(() => {
