@@ -46,12 +46,12 @@ const HorizontalGallery = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full bg-[#FFFDF8] pt-16 md:pt-24 pb-24 md:pb-32 overflow-hidden">
+    <section ref={sectionRef} className="w-full bg-[#12100E] pt-16 md:pt-24 pb-24 md:pb-32 overflow-hidden border-t border-white/5">
       <div className="depth-header text-center pb-10 md:pb-14 px-6">
         <h2 className="text-xs font-bold tracking-[0.3em] uppercase text-[#C5A059] mb-4">
           A COLLECTION OF MOMENTS
         </h2>
-        <h3 className="text-2xl md:text-4xl font-serif font-light text-[#12100E] leading-tight italic">
+        <h3 className="text-2xl md:text-4xl font-serif font-light text-[#FFFDF8] leading-tight italic">
           Some stories are better experienced than explained.
         </h3>
       </div>

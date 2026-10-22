@@ -82,7 +82,7 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
   };
 
   return (
-    <section id="booking" ref={sectionRef} className="py-12 md:py-16 px-4 sm:px-6 md:px-8 w-full bg-[#12100E] border-t border-white/5">
+    <section id="booking" ref={sectionRef} className="py-12 md:py-16 px-4 sm:px-6 md:px-8 w-full bg-[#12100E]">
       <div ref={cardRef} className="w-full max-w-[1150px] mx-auto grid grid-cols-1 lg:grid-cols-12 bg-[#FFFDF8] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] border border-[#C5A059]/25">
         
         {/* Left Side - Image with balanced portrait proportions */}

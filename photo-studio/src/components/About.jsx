@@ -142,7 +142,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-8 md:py-16 px-4 md:px-6 w-full bg-[#FFFDF8] overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-8 md:py-16 px-4 md:px-6 w-full bg-[#12100E] overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         {/* ── Left — Asymmetric Image ── */}
@@ -178,23 +178,23 @@ const About = () => {
             <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059]">BEHIND THE LENS</h2>
           </div>
 
-          <h3 className="text-3xl md:text-5xl font-serif font-bold text-[#12100E] mb-6 md:mb-8 leading-tight">
+          <h3 className="text-3xl md:text-5xl font-serif font-bold text-[#FFFDF8] mb-6 md:mb-8 leading-tight">
             <span className="block overflow-hidden pb-2"><span className="about-heading-line block">Capturing Authentic</span></span>
             <span className="block overflow-hidden"><span className="about-heading-line block">Emotions &amp; Stories.</span></span>
           </h3>
 
           <div className="about-text relative mb-12 pl-6 md:pl-10">
             <Quote className="absolute left-0 top-0 text-[#C5A059] w-6 md:w-8 h-6 md:h-8 opacity-40 -translate-x-2 -translate-y-2" />
-            <p className="text-[#201D19]/80 mb-6 leading-relaxed text-lg font-light">
+            <p className="text-[#FFFDF8]/70 mb-6 leading-relaxed text-lg font-light">
               At Apex Studio, we believe that photography is more than just taking pictures. It's about freezing genuine feelings, unguarded smiles, and the invisible connections between people.
             </p>
-            <p className="text-[#201D19]/80 mb-6 leading-relaxed text-lg font-light">
+            <p className="text-[#FFFDF8]/70 mb-6 leading-relaxed text-lg font-light">
               We focus on telling your unique story through an artistic and cinematic lens, ensuring every moment is preserved beautifully for generations to come.
             </p>
 
-            <div className="mt-8 p-5 bg-[#C5A059]/10 border-l-2 border-[#C5A059] rounded-r-sm">
-              <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#12100E] mb-2">Visit Our Studio</h4>
-              <p className="text-[#201D19]/80 text-sm font-light leading-relaxed">
+            <div className="mt-8 p-5 bg-white/5 border border-white/10 border-l-2 border-l-[#C5A059] rounded-r-sm">
+              <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#FFFDF8] mb-2">Visit Our Studio</h4>
+              <p className="text-[#FFFDF8]/70 text-sm font-light leading-relaxed">
                 Apex Studio<br />
                 450 Fashion Avenue, New York, NY
               </p>
@@ -202,7 +202,7 @@ const About = () => {
           </div>
 
           {/* Statistics */}
-          <div className="stat-grid grid grid-cols-2 md:grid-cols-3 gap-8 pt-8 border-t border-[#12100E]/10">
+          <div className="stat-grid grid grid-cols-2 md:grid-cols-3 gap-8 pt-8 border-t border-white/10">
             {[
               { ref: counterRef1, target: 1000, label: 'Moments Captured' },
               { ref: counterRef2, target: 500,  label: 'Happy Clients' },
@@ -212,7 +212,7 @@ const About = () => {
                 <span className="block text-[#C5A059] text-4xl font-serif font-bold mb-2">
                   <span ref={ref}>0</span>+
                 </span>
-                <span className="text-[11px] text-[#201D19]/60 font-bold uppercase tracking-[0.2em]">{label}</span>
+                <span className="text-[11px] text-[#FFFDF8]/60 font-bold uppercase tracking-[0.2em]">{label}</span>
               </div>
             ))}
           </div>

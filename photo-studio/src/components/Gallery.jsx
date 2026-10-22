@@ -177,7 +177,7 @@ const OurWorks = () => {
   }, [activeFilter, filteredWorks]);
 
   return (
-    <section id="gallery" ref={sectionRef} className="py-12 md:py-16 px-4 sm:px-6 md:px-10 lg:px-14 w-full bg-[#12100E]">
+    <section id="gallery" ref={sectionRef} className="py-12 md:py-16 px-4 sm:px-6 md:px-10 lg:px-14 w-full bg-[#FFFDF8]">
       <div className="w-full max-w-[1700px] mx-auto">
 
         {/* Header */}
@@ -187,10 +187,10 @@ const OurWorks = () => {
             <h2 className="text-xs font-bold tracking-[0.25em] uppercase text-[#C5A059]">OUR WORKS</h2>
             <div className="w-12 h-[1px] bg-[#C5A059]" />
           </div>
-          <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#FFFDF8] leading-tight">
+          <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#12100E] leading-tight">
             Stories We've Had the Honor to Tell.
           </h3>
-          <p className="text-[#FFFDF8]/50 text-sm font-light max-w-md leading-relaxed text-center hidden md:block">
+          <p className="text-[#12100E]/70 text-sm font-light max-w-md leading-relaxed text-center hidden md:block">
             Every image is a chapter. Every session, a complete story.
           </p>
         </div>
@@ -204,7 +204,7 @@ const OurWorks = () => {
               className={`works-filter whitespace-nowrap text-[11px] sm:text-xs font-semibold tracking-[0.14em] uppercase px-5 py-2.5 rounded-full border transition-all duration-300 cursor-pointer ${
                 activeFilter === f
                   ? 'bg-[#C5A059] text-[#12100E] border-[#C5A059] shadow-[0_4px_16px_rgba(197,160,89,0.35)] font-bold scale-[1.03]'
-                  : 'bg-[#1C1A17] text-[#D8D2C4] border-[#C5A059]/25 hover:border-[#C5A059] hover:text-[#C5A059] hover:bg-[#26231F] shadow-sm'
+                  : 'bg-white text-[#12100E]/75 border-[#12100E]/15 hover:border-[#C5A059] hover:text-[#C5A059] hover:bg-[#FAF7F0] shadow-sm'
               }`}
             >
               {f}
@@ -243,8 +243,8 @@ const OurWorks = () => {
               />
             </div>
             <div className="w-full md:w-1/2 text-center md:text-left px-4 md:px-8">
-              <h4 className="font-serif text-3xl font-bold text-[#FFFDF8] mb-4">Featured Story: The Bridal Party</h4>
-              <p className="text-sm text-[#FFFDF8]/70 leading-relaxed max-w-md mx-auto md:mx-0">
+              <h4 className="font-serif text-3xl font-bold text-[#12100E] mb-4">Featured Story: The Bridal Party</h4>
+              <p className="text-sm text-[#12100E]/70 leading-relaxed max-w-md mx-auto md:mx-0">
                 Hover over (or tap) the image to reveal the story behind this unscripted moment. The best photos aren't posed; they are the genuine reactions, the inside jokes, and the shared laughter between friends.
               </p>
             </div>
@@ -293,7 +293,7 @@ const OurWorks = () => {
         <div className="text-center mt-14">
           <Link
             to="/#booking"
-            className="inline-flex items-center gap-3 bg-transparent text-[#FFFDF8] hover:text-[#C5A059] text-[11px] font-bold tracking-[0.2em] uppercase border border-[#FFFDF8]/20 hover:border-[#C5A059] px-10 py-4 rounded-full transition-all duration-300"
+            className="inline-flex items-center gap-3 bg-transparent text-[#12100E] hover:text-[#C5A059] text-[11px] font-bold tracking-[0.2em] uppercase border border-[#12100E]/20 hover:border-[#C5A059] px-10 py-4 rounded-full transition-all duration-300 shadow-sm"
           >
             Book Your Session <span className="text-base">→</span>
           </Link>
