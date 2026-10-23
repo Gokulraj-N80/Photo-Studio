@@ -100,7 +100,9 @@ const Hero = () => {
         />
         
         {/* Soft, focused text-side shadow gradient leaving the couple luminous */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#12100E]/85 via-[#12100E]/40 to-transparent w-full md:w-[62%]" />
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-[#12100E]/85 via-[#12100E]/40 to-transparent w-full md:w-[62%]" />
+        {/* Mobile full backdrop gradient for high-contrast legible editorial typography */}
+        <div className="md:hidden absolute inset-0 bg-gradient-to-t from-[#12100E]/95 via-[#12100E]/65 to-[#12100E]/35" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#12100E]/80 via-[#12100E]/20 to-transparent pointer-events-none" />
         
         {/* Film Grain */}

@@ -19,7 +19,7 @@ export const SEO_CONFIG = {
     "https://wa.me/15552345678"
   ],
   LOGO_URL: "/logo.png",
-  PRIMARY_IMAGE: "/images/wedding/wedding-32.webp",
+  PRIMARY_IMAGE: "/images/wedding/wedding-3.webp",
   SERVICES: [
     "Wedding Photography",
     "Candid Photography",

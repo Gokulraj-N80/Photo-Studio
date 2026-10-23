@@ -1,16 +1,17 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useRef, useMemo, useState } from 'react';
 import gsap from 'gsap';
 
-// A curated pool of local high-performance WebP imagery
+// A curated pool of local, 100% clean studio WebP imagery
 const imagePool = [
   "/hero.webp",
   "/images/wedding/wedding-1.webp",
-  "/images/portraits/portraits-1.webp",
   "/images/wedding/wedding-2.webp",
-  "/images/portraits/portraits-2.webp",
   "/images/wedding/wedding-3.webp",
+  "/images/wedding/wedding-4.webp",
+  "/images/portraits/portraits-1.webp",
+  "/images/portraits/portraits-2.webp",
   "/images/events/events-1.webp",
-  "/images/wedding/wedding-4.webp"
+  "/images/others/others-2.webp"
 ];
 
 const getRandomImages = (count) => {
@@ -24,41 +25,59 @@ const Preloader = ({ onComplete }) => {
   const textRef = useRef(null);
   const subTextRef = useRef(null);
   const overlayRef = useRef(null);
+  const [imagesReady, setImagesReady] = useState(false);
   
-  // Pick 5 random images only once when the component mounts
+  // Pick 5 random clean images only once when the component mounts
   const randomImages = useMemo(() => getRandomImages(5), []);
 
-  // Preload preloader images + prefetch critical landing page images in background
+  // Pre-decode preloader flash images + prefetch top landing assets in background
   useEffect(() => {
-    // 1. Preload preloader flash images
-    randomImages.forEach((src) => {
-      const img = new Image();
-      img.src = src;
+    let isCancelled = false;
+
+    // 1. Decode critical images before starting animation to prevent blank flashes
+    const decodePromises = randomImages.concat(["/hero.webp"]).map((src) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.src = src;
+        if (img.decode) {
+          img.decode().then(resolve).catch(resolve);
+        } else {
+          img.onload = resolve;
+          img.onerror = resolve;
+        }
+      });
     });
 
-    // 2. Background prefetch landing page gallery & hero images for instant display
+    // Max 1.2s safety failsafe timeout so on slow cellular it never hangs
+    const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 1200));
+
+    Promise.race([Promise.all(decodePromises), timeoutPromise]).then(() => {
+      if (!isCancelled) setImagesReady(true);
+    });
+
+    // 2. Background prefetch remaining gallery images for instant viewing after preloader
     const landingAssets = [
-      "/hero.webp",
       "/featured-bridal-party.webp",
-      "/images/wedding/wedding-1.webp",
-      "/images/wedding/wedding-2.webp",
-      "/images/wedding/wedding-3.webp",
-      "/images/wedding/wedding-4.webp",
-      "/images/wedding/wedding-5.webp",
-      "/images/wedding/wedding-6.webp",
-      "/images/portraits/portraits-1.webp",
-      "/images/portraits/portraits-2.webp",
-      "/images/portraits/portraits-3.webp",
-      "/images/events/events-1.webp",
-      "/images/others/others-2.webp"
+      "/images/wedding/wedding-9.webp",
+      "/images/wedding/wedding-18.webp",
+      "/images/wedding/wedding-19.webp",
+      "/images/wedding/wedding-20.webp",
+      "/images/wedding/wedding-21.webp",
+      "/images/kids/kids-1.webp"
     ];
     landingAssets.forEach((src) => {
       const img = new Image();
       img.src = src;
     });
+
+    return () => {
+      isCancelled = true;
+    };
   }, [randomImages]);
 
   useEffect(() => {
+    if (!imagesReady) return;
+
     document.body.style.overflow = 'hidden';
     
     const ctx = gsap.context(() => {
@@ -70,22 +89,23 @@ const Preloader = ({ onComplete }) => {
       });
 
       // Initial state
-      gsap.set(imageRefs.current, { opacity: 0, scale: 1.2 });
-      gsap.set(textRef.current, { opacity: 0, scale: 0.8 });
-      gsap.set(subTextRef.current, { opacity: 0, y: 20 });
+      gsap.set(imageRefs.current, { opacity: 0, scale: 1.15 });
+      gsap.set(textRef.current, { opacity: 0, scale: 0.85 });
+      gsap.set(subTextRef.current, { opacity: 0, y: 15 });
       gsap.set(overlayRef.current, { yPercent: 0 });
 
       // Create a rapid sequence for the images
-      const imageDuration = 0.15; // very fast flash
+      const imageDuration = 0.16; // smooth flash
       
       imageRefs.current.forEach((img, i) => {
+        if (!img) return;
         const isLast = i === imageRefs.current.length - 1;
         
         // Show image
         tl.to(img, {
           opacity: 1,
           scale: 1,
-          duration: isLast ? 0.4 : imageDuration,
+          duration: isLast ? 0.38 : imageDuration,
           ease: "power2.out"
         });
         
@@ -93,46 +113,49 @@ const Preloader = ({ onComplete }) => {
         if (!isLast) {
           tl.to(img, {
             opacity: 0,
-            duration: 0.05, // virtually instant cut
+            duration: 0.04, // instant cut
           });
         }
       });
 
       // The last image scales up dramatically and fades out as the text stamps in
-      tl.to(imageRefs.current[imageRefs.current.length - 1], {
-        scale: 2,
-        opacity: 0,
-        filter: "blur(10px)",
-        duration: 0.6,
-        ease: "power3.in"
-      }, "+=0.2")
+      const lastImg = imageRefs.current[imageRefs.current.length - 1];
+      if (lastImg) {
+        tl.to(lastImg, {
+          scale: 1.8,
+          opacity: 0,
+          filter: "blur(8px)",
+          duration: 0.55,
+          ease: "power3.in"
+        }, "+=0.15");
+      }
+
       // Brand Name Reveal
-      .to(textRef.current, {
+      tl.to(textRef.current, {
         opacity: 1,
         scale: 1,
-        duration: 0.8,
+        duration: 0.75,
         ease: "back.out(1.5)"
-      }, "<0.2")
+      }, "<0.15")
       .to(subTextRef.current, {
         opacity: 1,
         y: 0,
-        duration: 0.6,
+        duration: 0.5,
         ease: "power2.out"
-      }, "-=0.4")
-      // Hold for a moment to admire the logo
-      // Then slide everything up
+      }, "-=0.35")
+      // Slide everything up
       .to([textRef.current, subTextRef.current], {
-        y: -50,
+        y: -40,
         opacity: 0,
-        duration: 0.4,
+        duration: 0.35,
         ease: "power2.in",
-        delay: 0.1
+        delay: 0.15
       })
       .to(overlayRef.current, {
         yPercent: -100,
-        duration: 1,
+        duration: 0.9,
         ease: "expo.inOut"
-      }, "-=0.2");
+      }, "-=0.15");
 
     }, containerRef);
 
@@ -140,7 +163,7 @@ const Preloader = ({ onComplete }) => {
       ctx.revert();
       document.body.style.overflow = '';
     };
-  }, [onComplete]);
+  }, [imagesReady, onComplete]);
 
   return (
     <div 
@@ -157,8 +180,8 @@ const Preloader = ({ onComplete }) => {
       <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay pointer-events-none z-20"
            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
 
-      {/* Image Sequence Container */}
-      <div className="absolute z-30 w-64 h-80 md:w-80 md:h-[28rem] overflow-hidden rounded-sm shadow-2xl flex items-center justify-center">
+      {/* Image Sequence Container - Perfectly proportioned for mobile & desktop */}
+      <div className="absolute z-30 w-52 h-72 sm:w-64 sm:h-80 md:w-80 md:h-[28rem] overflow-hidden rounded-sm shadow-2xl flex items-center justify-center bg-[#141210]">
         {randomImages.map((src, index) => (
           <img 
             key={index}
@@ -171,17 +194,17 @@ const Preloader = ({ onComplete }) => {
         ))}
       </div>
 
-      {/* Brand Text */}
-      <div className="relative z-40 flex flex-col items-center justify-center">
+      {/* Brand Text - Responsive, never overflowing on small mobile screens */}
+      <div className="relative z-40 flex flex-col items-center justify-center px-4 text-center">
         <h1 
           ref={textRef}
-          className="text-5xl md:text-7xl lg:text-9xl font-serif text-[#FFFDF8] tracking-[0.15em] uppercase drop-shadow-2xl"
+          className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-serif text-[#FFFDF8] tracking-[0.1em] sm:tracking-[0.15em] uppercase drop-shadow-2xl whitespace-nowrap"
         >
           Apex Studio
         </h1>
         <p 
           ref={subTextRef}
-          className="mt-4 text-xs md:text-sm font-sans text-[#C5A059] tracking-[0.4em] uppercase"
+          className="mt-3 sm:mt-4 text-[10px] sm:text-xs md:text-sm font-sans text-[#C5A059] tracking-[0.25em] sm:tracking-[0.4em] uppercase"
         >
           Creative Photography
         </p>

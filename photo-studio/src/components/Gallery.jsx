@@ -196,12 +196,12 @@ const OurWorks = () => {
         </div>
 
         {/* Filter Pills */}
-        <div className="filters-row flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-10 md:mb-14 px-2 max-w-4xl mx-auto">
+        <div className="filters-row flex flex-wrap items-center justify-center gap-1.5 sm:gap-3.5 mb-8 md:mb-14 px-2 max-w-4xl mx-auto">
           {filters.map(f => (
             <button
               key={f}
               onClick={() => handleFilter(f)}
-              className={`works-filter whitespace-nowrap text-[11px] sm:text-xs font-semibold tracking-[0.14em] uppercase px-5 py-2.5 rounded-full border transition-all duration-300 cursor-pointer ${
+              className={`works-filter whitespace-nowrap text-[10px] sm:text-xs font-semibold tracking-[0.1em] sm:tracking-[0.14em] uppercase px-3.5 py-1.5 sm:px-5 sm:py-2.5 rounded-full border transition-all duration-300 cursor-pointer ${
                 activeFilter === f
                   ? 'bg-[#C5A059] text-[#12100E] border-[#C5A059] shadow-[0_4px_16px_rgba(197,160,89,0.35)] font-bold scale-[1.03]'
                   : 'bg-white text-[#12100E]/75 border-[#12100E]/15 hover:border-[#C5A059] hover:text-[#C5A059] hover:bg-[#FAF7F0] shadow-sm'
@@ -214,7 +214,7 @@ const OurWorks = () => {
 
         {/* Featured Spotlight Section with Pixel Transition */}
         {activeFilter === "DISCOVER" && (
-          <div className="featured-story-section mb-16 w-full flex flex-col md:flex-row gap-8 items-center justify-center">
+          <div className="featured-story-section mb-12 md:mb-16 w-full flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-center">
             <div className="w-full md:w-1/2 flex justify-center md:justify-end">
               <PixelTransition
                 firstContent={
@@ -229,10 +229,10 @@ const OurWorks = () => {
                   </div>
                 }
                 secondContent={
-                  <div className="w-full h-full flex flex-col items-center justify-center bg-[#1a1714] border border-[#C5A059]/20 p-6 text-center">
-                    <p className="text-[10px] text-[#C5A059] font-bold uppercase tracking-[0.3em] mb-4">Behind the Lens</p>
-                    <p className="font-serif text-2xl md:text-3xl text-[#FFFDF8] mb-3">Pure Joy</p>
-                    <p className="text-xs text-[#FFFDF8]/60 max-w-xs">We captured the raw emotion of their special day. Real smiles, unscripted joy, and the priceless reactions of best friends.</p>
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-[#1a1714] border border-[#C5A059]/20 p-4 sm:p-6 text-center">
+                    <p className="text-[9px] sm:text-[10px] text-[#C5A059] font-bold uppercase tracking-[0.3em] mb-2 sm:mb-4">Behind the Lens</p>
+                    <p className="font-serif text-xl sm:text-2xl md:text-3xl text-[#FFFDF8] mb-2 sm:mb-3">Pure Joy</p>
+                    <p className="text-[11px] sm:text-xs text-[#FFFDF8]/60 max-w-xs leading-relaxed">We captured the raw emotion of their special day. Real smiles, unscripted joy, and the priceless reactions of best friends.</p>
                   </div>
                 }
                 gridSize={12}
@@ -243,8 +243,8 @@ const OurWorks = () => {
               />
             </div>
             <div className="w-full md:w-1/2 text-center md:text-left px-4 md:px-8">
-              <h4 className="font-serif text-3xl font-bold text-[#12100E] mb-4">Featured Story: The Bridal Party</h4>
-              <p className="text-sm text-[#12100E]/70 leading-relaxed max-w-md mx-auto md:mx-0">
+              <h4 className="font-serif text-2xl sm:text-3xl font-bold text-[#12100E] mb-2 sm:mb-4">Featured Story: The Bridal Party</h4>
+              <p className="text-xs sm:text-sm text-[#12100E]/70 leading-relaxed max-w-md mx-auto md:mx-0">
                 Hover over (or tap) the image to reveal the story behind this unscripted moment. The best photos aren't posed; they are the genuine reactions, the inside jokes, and the shared laughter between friends.
               </p>
             </div>
@@ -263,35 +263,35 @@ const OurWorks = () => {
                 src={work.src}
                 alt={work.title}
                 referrerPolicy="no-referrer"
-                loading={idx < 8 ? "eager" : "lazy"}
-                fetchPriority={idx < 4 ? "high" : "auto"}
-                decoding={idx < 8 ? "sync" : "async"}
+                loading={idx < 6 ? "eager" : "lazy"}
+                fetchPriority={idx < 3 ? "high" : "auto"}
+                decoding={idx < 6 ? "sync" : "async"}
                 onError={(e) => {
                   if (work.fallback && e.currentTarget.src !== work.fallback) {
                     e.currentTarget.src = work.fallback;
                   }
                 }}
-                className="w-full h-auto min-h-[220px] object-cover block bg-[#1C1A17] transition-transform duration-[2000ms] ease-out group-hover:scale-[1.05]"
+                className="w-full h-auto min-h-[160px] sm:min-h-[220px] object-cover block bg-[#1C1A17] transition-transform duration-[2000ms] ease-out group-hover:scale-[1.05]"
                 style={{ willChange: 'transform' }}
               />
 
               {/* Gradient overlay always-on */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#12100E]/80 via-[#12100E]/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#12100E]/85 via-[#12100E]/20 to-transparent" />
 
-              {/* Bottom text — visible always, enhanced on hover */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <div className="w-6 md:w-8 h-[1.5px] bg-[#C5A059] mb-2 md:mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100" />
-                <span className="text-[8px] md:text-[9px] text-[#C5A059] font-bold uppercase tracking-[0.3em] block mb-1">
+              {/* Bottom text — visible always on mobile, enhanced on hover */}
+              <div className="absolute bottom-0 left-0 right-0 p-2.5 sm:p-4 md:p-6 transform translate-y-1 sm:translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="w-5 sm:w-8 h-[1.5px] bg-[#C5A059] mb-1 sm:mb-2 opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500 delay-100" />
+                <span className="text-[7px] sm:text-[9px] text-[#C5A059] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] block mb-0.5 sm:mb-1">
                   {work.category}
                 </span>
-                <h4 className="text-[#FFFDF8] font-serif text-lg md:text-2xl font-bold">{work.title}</h4>
-                <p className="text-[#FFFDF8]/60 text-[10px] md:text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
+                <h4 className="text-[#FFFDF8] font-serif text-sm sm:text-lg md:text-2xl font-bold leading-tight">{work.title}</h4>
+                <p className="text-[#FFFDF8]/70 text-[9px] sm:text-[10px] md:text-xs mt-0.5 sm:mt-1 opacity-75 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500 delay-150 line-clamp-1 sm:line-clamp-none">
                   {work.subtitle}
                 </p>
               </div>
 
               {/* Corner accent */}
-              <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-[#C5A059]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="hidden sm:block absolute top-4 right-4 w-6 h-6 border-t border-r border-[#C5A059]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
           ))}
         </div>

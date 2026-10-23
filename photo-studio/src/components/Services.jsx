@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 const servicesData = [
   {
     id: "wedding",
-    image: "/images/wedding/wedding-3.webp",
+    image: "/images/wedding/wedding-1.webp",
     title: "Wedding Photography",
     desc: "Cinematic documentation of your most important day, capturing every vow, tear, and joyful moment.",
   },
@@ -91,6 +91,7 @@ const ServiceCard = ({ svc, onBook }) => {
       className="service-card group relative w-full aspect-[4/5] cursor-pointer [perspective:1500px] z-10 hover:z-50"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
+      onClick={() => setIsOpen(prev => !prev)}
     >
       {/* Threads from the exact top corners */}
       <div 
@@ -124,7 +125,7 @@ const ServiceCard = ({ svc, onBook }) => {
         <div className={`mt-2 w-full flex justify-center relative z-20 transition-all duration-500 ${isOpen ? 'opacity-100 translate-y-0 delay-[400ms]' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
           <a 
             href="#booking"
-            onClick={() => onBook && onBook(svc.id)}
+            onClick={(e) => { e.stopPropagation(); onBook && onBook(svc.id); }}
             className="bg-[#C5A059] hover:bg-[#12100E] text-[#FFFDF8] px-6 py-2 rounded-sm transition-colors duration-300 uppercase tracking-[0.1em] text-[10px] font-bold shadow-md"
           >
             Book
@@ -134,7 +135,14 @@ const ServiceCard = ({ svc, onBook }) => {
 
       {/* Front face (Image) */}
       <div ref={frontRef} className="absolute inset-0 transform-style-3d origin-bottom z-10 bg-[#12100E] rounded-sm shadow-lg overflow-hidden border-[1.5px] border-[#C5A059]">
-        <img src={svc.image} referrerPolicy="no-referrer" className="w-full h-full object-cover object-center" alt={svc.title} />
+        <img 
+          src={svc.image} 
+          referrerPolicy="no-referrer" 
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover object-center" 
+          alt={svc.title} 
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-transparent to-transparent flex items-end justify-center pb-4 md:pb-8 pointer-events-none px-2 md:px-4 text-center">
           <h4 className="text-[1.1rem] leading-tight md:text-4xl font-serif text-[#FFFDF8] font-bold drop-shadow-md">{svc.title}</h4>
         </div>

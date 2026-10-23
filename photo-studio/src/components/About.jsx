@@ -161,7 +161,7 @@ const About = () => {
               src="/images/portraits/portraits-1.webp"
               alt="Apex Studio Photography"
               referrerPolicy="no-referrer"
-              loading="eager"
+              loading="lazy"
               decoding="async"
               onError={(e) => {
                 if (e.currentTarget.src !== 'https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=900&q=80') {

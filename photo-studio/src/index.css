@@ -46,7 +46,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .masonry-grid {
   column-count: 2;
-  column-gap: 0.75rem;
+  column-gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .masonry-grid {
+    column-gap: 0.75rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -72,7 +78,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .masonry-item {
   break-inside: avoid;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .masonry-item {
+    margin-bottom: 0.75rem;
+  }
 }
 
 @media (min-width: 768px) {
