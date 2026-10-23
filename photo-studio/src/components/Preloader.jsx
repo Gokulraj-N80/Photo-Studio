@@ -21,6 +21,7 @@ const getRandomImages = (count) => {
 
 const Preloader = ({ onComplete }) => {
   const containerRef = useRef(null);
+  const imageBoxRef = useRef(null);
   const imageRefs = useRef([]);
   const textRef = useRef(null);
   const subTextRef = useRef(null);
@@ -90,6 +91,7 @@ const Preloader = ({ onComplete }) => {
 
       // Initial state
       gsap.set(imageRefs.current, { opacity: 0, scale: 1.15 });
+      if (imageBoxRef.current) gsap.set(imageBoxRef.current, { opacity: 1, scale: 1, display: 'flex' });
       gsap.set(textRef.current, { opacity: 0, scale: 0.85 });
       gsap.set(subTextRef.current, { opacity: 0, y: 15 });
       gsap.set(overlayRef.current, { yPercent: 0 });
@@ -118,16 +120,16 @@ const Preloader = ({ onComplete }) => {
         }
       });
 
-      // The last image scales up dramatically and fades out as the text stamps in
+      // The last image and its container scale up and fade out before the text stamps in
       const lastImg = imageRefs.current[imageRefs.current.length - 1];
       if (lastImg) {
-        tl.to(lastImg, {
-          scale: 1.8,
+        tl.to([lastImg, imageBoxRef.current], {
+          scale: 1.5,
           opacity: 0,
-          filter: "blur(8px)",
-          duration: 0.55,
-          ease: "power3.in"
-        }, "+=0.15");
+          duration: 0.45,
+          ease: "power2.in"
+        }, "+=0.15")
+        .set(imageBoxRef.current, { display: 'none' });
       }
 
       // Brand Name Reveal
@@ -181,7 +183,10 @@ const Preloader = ({ onComplete }) => {
            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
 
       {/* Image Sequence Container - Perfectly proportioned for mobile & desktop */}
-      <div className="absolute z-30 w-52 h-72 sm:w-64 sm:h-80 md:w-80 md:h-[28rem] overflow-hidden rounded-sm shadow-2xl flex items-center justify-center bg-[#141210]">
+      <div 
+        ref={imageBoxRef}
+        className="absolute z-30 w-52 h-72 sm:w-64 sm:h-80 md:w-80 md:h-[28rem] overflow-hidden rounded-sm flex items-center justify-center pointer-events-none"
+      >
         {randomImages.map((src, index) => (
           <img 
             key={index}
@@ -189,7 +194,7 @@ const Preloader = ({ onComplete }) => {
             src={src}
             alt={`Preloader ${index}`}
             referrerPolicy="no-referrer"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover shadow-2xl"
           />
         ))}
       </div>
