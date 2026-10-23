@@ -27,7 +27,7 @@ const packagesData = [
 
 const CheckIcon = ({ theme }) => (
   <svg 
-    className={`w-4 h-4 mr-3 flex-shrink-0 ${theme === 'elite' ? 'text-[#C5A059]' : 'text-[#C5A059]'}`} 
+    className={`w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2.5 sm:mr-3 flex-shrink-0 ${theme === 'elite' ? 'text-[#C5A059]' : 'text-[#C5A059]'}`} 
     fill="none" viewBox="0 0 24 24" stroke="currentColor"
   >
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -70,25 +70,25 @@ const PricingPackages = ({ onBook }) => {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full py-24 bg-[#FFFDF8]">
-      <div className="pricing-header text-center mb-16 md:mb-24">
-        <h2 className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#C5A059] mb-4">Investment</h2>
-        <h3 className="text-3xl md:text-5xl font-serif font-bold text-[#12100E]">Signature Collections</h3>
+    <div ref={containerRef} className="w-full py-12 sm:py-16 md:py-24 bg-[#FFFDF8]">
+      <div className="pricing-header text-center mb-8 sm:mb-12 md:mb-20 px-4">
+        <h2 className="text-[10px] md:text-xs font-bold tracking-[0.25em] md:tracking-[0.3em] uppercase text-[#C5A059] mb-2 md:mb-4">Investment</h2>
+        <h3 className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-[#12100E]">Signature Collections</h3>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-8 w-full max-w-[1550px] mx-auto px-6 sm:px-10 lg:px-14">
+      <div className="flex flex-col lg:flex-row justify-center items-center lg:items-stretch gap-5 sm:gap-6 lg:gap-8 w-full max-w-[1550px] mx-auto px-4 sm:px-8 lg:px-14">
         
         {packagesData.map((pkg, idx) => {
           const isDark = pkg.theme === 'standard' || pkg.theme === 'elite';
           return (
             <div 
               key={idx} 
-              className={`tier-card relative flex flex-col w-full lg:w-1/3 rounded-sm transition-all duration-500 hover:-translate-y-3 ${
+              className={`tier-card relative flex flex-col w-full max-w-sm sm:max-w-md lg:max-w-none lg:w-1/3 rounded-sm transition-all duration-500 hover:-translate-y-2 ${
                 pkg.theme === 'standard' 
-                  ? 'bg-[#12100E] p-8 md:p-10 border border-[#C5A059] shadow-xl lg:h-[420px] hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)] z-10' 
+                  ? 'bg-[#12100E] p-5 sm:p-7 md:p-10 border border-[#C5A059] shadow-lg lg:h-[420px] hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)] z-10' 
                   : pkg.theme === 'premium'
-                  ? 'bg-white p-10 md:p-12 border border-[#C5A059] shadow-[0_8px_30px_rgba(0,0,0,0.06)] lg:h-[480px] z-20 hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)]'
-                  : 'bg-[#12100E] p-10 md:p-14 border border-[#C5A059] shadow-2xl lg:h-[550px] z-30 hover:shadow-[0_0_60px_rgba(197,160,89,0.35)]'
+                  ? 'bg-white p-6 sm:p-8 md:p-12 border border-[#C5A059] shadow-[0_8px_30px_rgba(0,0,0,0.06)] lg:h-[480px] z-20 hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)]'
+                  : 'bg-[#12100E] p-6 sm:p-8 md:p-14 border border-[#C5A059] shadow-xl lg:h-[550px] z-30 hover:shadow-[0_0_60px_rgba(197,160,89,0.35)]'
               }`}
             >
               {/* Decorative Texture Pattern */}
@@ -99,33 +99,33 @@ const PricingPackages = ({ onBook }) => {
                 }} 
               />
               {pkg.theme === 'premium' && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C5A059] text-[#12100E] text-[9px] font-bold tracking-widest uppercase px-6 py-2 rounded-full shadow-lg whitespace-nowrap">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C5A059] text-[#12100E] text-[8px] sm:text-[9px] font-bold tracking-widest uppercase px-4 sm:px-6 py-1 sm:py-2 rounded-full shadow-lg whitespace-nowrap">
                   Most Popular
                 </div>
               )}
               
-              <div className={`text-center pb-6 mb-6 border-b ${
+              <div className={`text-center pb-3.5 mb-3.5 sm:pb-5 sm:mb-5 md:pb-6 md:mb-6 border-b ${
                 isDark ? 'border-[#C5A059]/30' : 'border-[#12100E]/10'
               }`}>
-                <h4 className={`text-2xl md:text-3xl font-serif font-bold mb-3 ${
+                <h4 className={`text-xl sm:text-2xl md:text-3xl font-serif font-bold mb-1 sm:mb-2 md:mb-3 ${
                   pkg.theme === 'elite' ? 'text-[#C5A059]' : (isDark ? 'text-white' : 'text-[#12100E]')
                 }`}>
                   {pkg.name}
                 </h4>
-                <p className={`text-xs font-light italic leading-relaxed ${
+                <p className={`text-[11px] sm:text-xs font-light italic leading-relaxed ${
                   isDark ? 'text-[#FFFDF8]/70' : 'text-[#12100E]/60'
                 }`}>
                   {pkg.desc}
                 </p>
               </div>
               
-              <ul className="flex-grow flex flex-col gap-4 mb-8">
+              <ul className="flex-grow flex flex-col gap-2.5 sm:gap-3.5 md:gap-4 mb-5 sm:mb-6 md:mb-8">
                 {pkg.features.map((feature, fIdx) => (
-                  <li key={fIdx} className={`flex items-center text-[13px] md:text-sm font-light ${
+                  <li key={fIdx} className={`flex items-center text-xs sm:text-[13px] md:text-sm font-light ${
                     isDark ? 'text-[#FFFDF8]' : 'text-[#12100E]'
                   }`}>
                     <CheckIcon theme={pkg.theme} />
-                    {feature}
+                    <span>{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -133,7 +133,7 @@ const PricingPackages = ({ onBook }) => {
               <a 
                 href="#booking"
                 onClick={() => onBook && onBook(`package-${pkg.name.toLowerCase()}`)}
-                className={`mt-auto w-full py-4 rounded-sm font-bold uppercase tracking-widest text-[10px] transition-all duration-500 block text-center border ${
+                className={`mt-auto w-full py-2.5 sm:py-3.5 md:py-4 rounded-sm font-bold uppercase tracking-widest text-[9px] sm:text-[10px] transition-all duration-500 block text-center border ${
                   pkg.theme === 'elite' 
                     ? 'bg-[#C5A059] border-[#C5A059] hover:bg-white hover:border-white text-[#12100E] hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]' 
                     : pkg.theme === 'standard'
@@ -148,11 +148,11 @@ const PricingPackages = ({ onBook }) => {
         })}
       </div>
       
-      <div className="text-center mt-16 md:mt-24">
-        <p className="text-[#12100E]/60 text-sm font-light mb-6 italic">Looking for something specific?</p>
+      <div className="text-center mt-10 sm:mt-14 md:mt-24 px-4">
+        <p className="text-[#12100E]/60 text-xs sm:text-sm font-light mb-4 sm:mb-6 italic">Looking for something specific?</p>
         <a 
           href="/services"
-          className="inline-block px-10 py-4 border border-[#C5A059] text-[#12100E] font-bold uppercase tracking-widest text-[10px] md:text-xs hover:bg-[#C5A059] hover:text-white transition-all duration-500 rounded-sm"
+          className="inline-block px-7 sm:px-10 py-3 sm:py-4 border border-[#C5A059] text-[#12100E] font-bold uppercase tracking-widest text-[9px] sm:text-[10px] md:text-xs hover:bg-[#C5A059] hover:text-white transition-all duration-500 rounded-sm"
         >
           View All Services
         </a>
