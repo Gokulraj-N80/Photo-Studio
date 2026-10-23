@@ -97,7 +97,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/journal" element={<JournalPage />} />
+          <Route path="/journal" element={<Navigate to="/" replace />} />
           <Route path="/contact" element={<ContactPage />} />
           
           {/* SEO Landing Pages */}

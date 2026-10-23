@@ -15,7 +15,6 @@ const Navbar = () => {
     { name: 'About', href: '/#about', id: 'about' },
     { name: 'Services', href: '/#services', id: 'services' },
     { name: 'Our Works', href: '/#gallery', id: 'gallery' },
-    { name: 'Blog', href: '/#blog', id: 'blog' },
     { name: 'Contact', href: '/#booking', id: 'booking' },
   ];
 
@@ -36,7 +35,7 @@ const Navbar = () => {
   useEffect(() => {
     if (location.pathname !== '/' && location.pathname !== '') return;
 
-    const sectionIds = ['hero', 'gallery', 'about', 'services', 'booking', 'blog'];
+    const sectionIds = ['hero', 'gallery', 'about', 'services', 'booking'];
     
     const handleScroll = () => {
       const scrollPos = window.scrollY + 120;

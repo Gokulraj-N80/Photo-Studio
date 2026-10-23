@@ -7,7 +7,6 @@ import Services from '../components/Services';
 import HorizontalGallery from '../components/HorizontalGallery';
 import PricingPackages from '../components/PricingPackages';
 import BookingSection from '../components/BookingSection';
-import Blog from '../components/Blog';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -62,8 +61,6 @@ const Home = () => {
           {/* Interactive Booking & Calendar */}
           <BookingSection selectedCategory={bookingCategory} onCategoryChange={setBookingCategory} />
           
-          {/* Editorial Stories & Journal */}
-          <Blog />
         </main>
         <Footer />
       </div>

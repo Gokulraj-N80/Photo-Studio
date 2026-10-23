@@ -105,7 +105,6 @@ const Footer = () => {
               <li><a href="/#about" onClick={(e) => handleNavClick(e, '/#about')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block cursor-pointer">About Us</a></li>
               <li><a href="/#services" onClick={(e) => handleNavClick(e, '/#services')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block cursor-pointer">Services</a></li>
               <li><a href="/#gallery" onClick={(e) => handleNavClick(e, '/#gallery')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block cursor-pointer">Our Works</a></li>
-              <li><a href="/#blog" onClick={(e) => handleNavClick(e, '/#blog')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block cursor-pointer">Blog</a></li>
               <li><a href="/#booking" onClick={(e) => handleNavClick(e, '/#booking')} className="text-[#FFFDF8]/70 hover:text-[#C5A059] text-sm transition-colors inline-block cursor-pointer">Contact</a></li>
             </ul>
           </div>
