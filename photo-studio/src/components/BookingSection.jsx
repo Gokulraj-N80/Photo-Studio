@@ -198,7 +198,8 @@ const BookingSection = ({ selectedCategory = 'wedding', onCategoryChange }) => {
                 <label className="text-[9px] uppercase tracking-[0.18em] font-bold text-[#C5A059] block">Your Vision</label>
                 <textarea 
                   name="notes"
-                  className="w-full h-[250px] bg-transparent border border-[#12100E]/20 p-3 text-xs text-[#12100E] focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-[#12100E]/30 resize-none rounded-md"
+                  rows="3"
+                  className="w-full h-24 sm:h-32 md:h-44 bg-transparent border border-[#12100E]/20 p-2.5 sm:p-3 text-xs text-[#12100E] focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-[#12100E]/30 resize-none rounded-md"
                   placeholder="Tell us what you're dreaming of... How do you envision your shoot? Any specific locations or styles?"
                 ></textarea>
               </div>
