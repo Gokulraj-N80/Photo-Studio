@@ -171,20 +171,35 @@ const Footer = () => {
                 </button>
               </div>
 
-              {/* Clean Google Map Iframe */}
+              {/* Privacy-friendly, AdBlock-safe Studio Map Embed */}
               <div className="w-full h-[180px] sm:h-[195px] relative overflow-hidden bg-[#161412]">
                 <iframe
                   title="Apex Studio Location - 450 Fashion Ave, New York"
                   src={
                     mapType === 'street'
-                      ? "https://maps.google.com/maps?q=450%20Fashion%20Avenue,%20New%20York,%20NY%2010001&t=m&z=15&ie=UTF8&iwloc=&output=embed"
-                      : "https://maps.google.com/maps?q=450%20Fashion%20Avenue,%20New%20York,%20NY%2010001&t=k&z=17&ie=UTF8&iwloc=&output=embed"
+                      ? "https://www.openstreetmap.org/export/embed.html?bbox=-73.9935%2C40.7505%2C-73.9815%2C40.7565&layer=mapnik&marker=40.7533%2C-73.9876"
+                      : "https://www.openstreetmap.org/export/embed.html?bbox=-73.9935%2C40.7505%2C-73.9815%2C40.7565&layer=hot&marker=40.7533%2C-73.9876"
                   }
                   className="w-full h-full border-0"
+                  style={{
+                    filter: mapType === 'street' 
+                      ? 'invert(92%) hue-rotate(180deg) brightness(92%) contrast(92%)' 
+                      : 'brightness(90%) contrast(105%)'
+                  }}
                   loading="lazy"
                   allowFullScreen={false}
-                  referrerPolicy="no-referrer-when-downgrade"
+                  referrerPolicy="no-referrer"
                 />
+
+                {/* Location Beacon Pin */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full pointer-events-none flex flex-col items-center">
+                  <div className="relative flex items-center justify-center">
+                    <span className="absolute w-8 h-8 rounded-full bg-[#C5A059]/30 animate-ping" />
+                    <div className="w-7 h-7 rounded-full bg-[#C5A059] border-2 border-[#12100E] shadow-xl flex items-center justify-center">
+                      <MapPin className="w-4 h-4 text-[#12100E]" />
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Studio Info & Action Footer Strip */}
